@@ -1,0 +1,6 @@
+0 => piso vacio
+1 => pared
+2 => caja sobre piso vacio
+3 => caja sobre meta
+4 => meta
+5 => jugador sobre piso vacio
