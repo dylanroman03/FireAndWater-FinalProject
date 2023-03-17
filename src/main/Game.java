@@ -23,6 +23,7 @@ public class Game implements Runnable {
 	private Player player;
 	private LevelManager levelManager;
 	private FireManager fireManager;
+
 	private FloorManager floorManager;
 
 	public Game() {
@@ -39,7 +40,7 @@ public class Game implements Runnable {
 		levelManager = new LevelManager();
 		fireManager = new FireManager(levelManager);
 		floorManager = new FloorManager(levelManager);
-		player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), (TILES_SIZE), (TILES_SIZE ), levelManager.getLvlData());
+		player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), (TILES_SIZE), (TILES_SIZE ), this);
 	}
 
 	private void startGameLoop() {
@@ -107,11 +108,11 @@ public class Game implements Runnable {
 		return player;
 	}
 
-	public FireManager getFireManager() {
-		return fireManager;
-	}
-
 	public LevelManager getLevelManager() {
 		return levelManager;
+	}
+
+	public FireManager getFireManager() {
+		return fireManager;
 	}
 }

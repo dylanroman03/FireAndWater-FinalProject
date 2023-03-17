@@ -1,8 +1,10 @@
 package entities;
 
 import static utilities.Constants.PATH_WARRIOR_LIST;
+import static utilities.Constants.PlayerConstants.DIE;
 import static utilities.Constants.PlayerConstants.DOWN;
 import static utilities.Constants.PlayerConstants.IDLE;
+import static utilities.Constants.PlayerConstants.IDLE_LEFT;
 import static utilities.Constants.PlayerConstants.JUMP;
 import static utilities.Constants.PlayerConstants.RUNNING_LEFT;
 import static utilities.Constants.PlayerConstants.RUNNING_RIGHT;
@@ -27,7 +29,18 @@ public class Player extends Entity {
 	private boolean jump;
 	private boolean right;
 	private boolean fall;
+	private boolean death;
+	private View view;
+	private boolean stopAnimation = false;
 	private float runningSpeed = 2.0f;
+
+	public enum View {
+		LEFT,
+		RIGHT,
+	}
+
+	private Game game;
+	private int[][] lvlData;
 
 	// Gravity
 	private float airSpeed = 0f;
@@ -36,18 +49,19 @@ public class Player extends Entity {
 	private float fallSpeed = 0.5f * Game.SCALE;
 	private boolean inAir = false;
 
-	private int[][] lvlData;
-
-	public Player(float x, float y, int width, int height, int[][] lvlData) {
+	public Player(float x, float y, int width, int height, Game game) {
 		super(x, y, width, height);
-		this.lvlData = lvlData;
+		this.game = game;
+		lvlData = game.getLevelManager().getLvlData();
 		loadAnimations();
 		initHitBox(x, y, width, height);
 	}
 
 	public void update() {
 		updatePosition();
-		updateAnimationTick();
+		if (!stopAnimation) {
+			updateAnimationTick();
+		}
 		setAnimation();
 	}
 
@@ -72,7 +86,12 @@ public class Player extends Entity {
 			}
 
 			if (aniIndex >= animations[playerAction].length) {
-				aniIndex = 0;
+				if (death) {
+					stopAnimation = true;
+					aniIndex--;
+				} else {
+					aniIndex = 0;
+				}
 			}
 
 		}
@@ -91,6 +110,10 @@ public class Player extends Entity {
 			else
 				playerAction = DOWN;
 
+		} else if (death) {
+			playerAction = DIE;
+		} else if (view == View.LEFT){
+			playerAction = IDLE_LEFT;
 		} else {
 			playerAction = IDLE;
 		}
@@ -111,7 +134,7 @@ public class Player extends Entity {
 			jump();
 		}
 
-		if (!left && !right && !inAir)
+		if (!left && !right && !inAir || death)
 			return;
 
 		float xSpeed = 0;
@@ -135,6 +158,11 @@ public class Player extends Entity {
 		}
 
 		moving = true;
+
+		if (game.getFireManager().intersectFire(2, hitBox)) {
+			death = true;
+			moving = false;
+		}
 
 	}
 
@@ -168,13 +196,13 @@ public class Player extends Entity {
 	}
 
 	public static float getEntityY(Rectangle2D.Float hitbox, float airSpeed) {
-		int currentTile = (int) (hitbox.y / Game.TILES_SIZE);
-		if (airSpeed > 0) {
-			return hitbox.y;
-		}
+		// int currentTile = (int) (hitbox.y / Game.TILES_SIZE);
+		// if (airSpeed > 0) {
+		return hitbox.y;
+		// }
 
 		// Jumping
-		return (currentTile * Game.TILES_SIZE);
+		// return (currentTile * Game.TILES_SIZE);
 	}
 
 	private void jump() {
@@ -196,6 +224,7 @@ public class Player extends Entity {
 
 	public void setLeft(boolean left) {
 		this.left = left;
+		view = View.LEFT;
 	}
 
 	public boolean isJump() {
@@ -204,7 +233,6 @@ public class Player extends Entity {
 
 	public void setJump(boolean jump) {
 		this.jump = jump;
-		// if (!this.jump) this.jump = jump;
 	}
 
 	public boolean isRight() {
@@ -213,6 +241,7 @@ public class Player extends Entity {
 
 	public void setRight(boolean right) {
 		this.right = right;
+		view = View.RIGHT;
 	}
 
 	public boolean isFall() {

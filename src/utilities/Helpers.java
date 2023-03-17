@@ -12,6 +12,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 import entities.Player;
+import managers.FireManager;
 
 public class Helpers {
   private Helpers() {

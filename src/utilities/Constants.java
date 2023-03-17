@@ -3,14 +3,6 @@ package utilities;
 public class Constants {
 	private Constants() {}
 	
-	// public static class Directions {
-	// 	private Directions(){}
-
-	// 	public static final int LEFT = 0;
-	// 	public static final int UP = 1;
-	// 	public static final int RIGHT = 2;
-	// }
-
 	public static class PlayerConstants {
 		private PlayerConstants() {}
 
@@ -19,6 +11,8 @@ public class Constants {
 		public static final int RUNNING_RIGHT = 2;
 		public static final int DOWN = 3;
 		public static final int IDLE = 4;
+		public static final int IDLE_LEFT = 5;
+		public static final int DIE = 6;
 	}
 
 
@@ -28,6 +22,8 @@ public class Constants {
 			"res/Heros/1 Pink_Monster/Pink_Monster_Run_6.png",
 			"res/Heros/1 Pink_Monster/Pink_Monster_Fall_4.png",
 			"res/Heros/1 Pink_Monster/Pink_Monster_Idle_4.png",
+			"res/Heros/1 Pink_Monster/Pink_Monster_Idle_Left_4.png",
+			"res/Heros/1 Pink_Monster/Pink_Monster_Death_8.png",
 		};
 
 
