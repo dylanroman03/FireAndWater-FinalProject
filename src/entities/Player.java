@@ -1,13 +1,6 @@
 package entities;
 
 import static utilities.Constants.PATH_WARRIOR_LIST;
-import static utilities.Constants.PlayerConstants.DIE;
-import static utilities.Constants.PlayerConstants.DOWN;
-import static utilities.Constants.PlayerConstants.IDLE;
-import static utilities.Constants.PlayerConstants.IDLE_LEFT;
-import static utilities.Constants.PlayerConstants.JUMP;
-import static utilities.Constants.PlayerConstants.RUNNING_LEFT;
-import static utilities.Constants.PlayerConstants.RUNNING_RIGHT;
 import static utilities.Helpers.canMove;
 import static utilities.Helpers.getAnimations;
 import static utilities.Helpers.isSolid;
@@ -16,14 +9,18 @@ import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import gui.Playing;
 import main.Game;
+import utilities.Constants.Heroes;
+import utilities.Constants.PlayerActions;
 
 public class Player extends Entity {
 	private BufferedImage[][] animations = new BufferedImage[PATH_WARRIOR_LIST.length][];
 	private int aniTick;
 	private double aniIndex;
 	private int aniSpeed = 10;
-	private int playerAction = JUMP;
+	private PlayerActions playerAction = PlayerActions.IDLE;
+	// private int playerAction = JUMP;
 	private boolean moving = false;
 	private boolean left;
 	private boolean jump;
@@ -39,7 +36,7 @@ public class Player extends Entity {
 		RIGHT,
 	}
 
-	private Game game;
+	private Playing playing;
 	private int[][] lvlData;
 
 	// Gravity
@@ -49,10 +46,10 @@ public class Player extends Entity {
 	private float fallSpeed = 0.5f * Game.SCALE;
 	private boolean inAir = false;
 
-	public Player(float x, float y, int width, int height, Game game) {
+	public Player(float x, float y, int width, int height, Playing playing) {
 		super(x, y, width, height);
-		this.game = game;
-		lvlData = game.getLevelManager().getLvlData();
+		this.playing = playing;
+		lvlData = playing.getLevelManager().getLvlData();
 		loadAnimations();
 		initHitBox(x, y, width, height);
 	}
@@ -66,7 +63,7 @@ public class Player extends Entity {
 	}
 
 	public void render(Graphics g) {
-		g.drawImage(animations[playerAction][(int) aniIndex], (int) (hitBox.x), (int) (hitBox.y),
+		g.drawImage(animations[playerAction.ordinal()][(int) aniIndex], (int) (hitBox.x), (int) (hitBox.y),
 				width, height, null);
 
 		if (Game.DEBUGING) {
@@ -85,7 +82,7 @@ public class Player extends Entity {
 				aniIndex = aniIndex + 0.25;
 			}
 
-			if (aniIndex >= animations[playerAction].length) {
+			if (aniIndex >= animations[playerAction.ordinal()].length) {
 				if (death) {
 					stopAnimation = true;
 					aniIndex--;
@@ -98,24 +95,25 @@ public class Player extends Entity {
 	}
 
 	private void setAnimation() {
-		int startAni = playerAction;
+		// int startAni = playerAction;
+		PlayerActions startAni = playerAction;
 
 		if (moving) {
 			if (left)
-				playerAction = RUNNING_LEFT;
+				playerAction = PlayerActions.RUNNING_LEFT;
 			else if (right)
-				playerAction = RUNNING_RIGHT;
+				playerAction = PlayerActions.RUNNING_RIGHT;
 			else if (jump)
-				playerAction = JUMP;
+				playerAction = PlayerActions.JUMP;
 			else
-				playerAction = DOWN;
+				playerAction = PlayerActions.DOWN;
 
 		} else if (death) {
-			playerAction = DIE;
+			playerAction = PlayerActions.DIE;
 		} else if (view == View.LEFT){
-			playerAction = IDLE_LEFT;
+			playerAction = PlayerActions.IDLE_LEFT;
 		} else {
-			playerAction = IDLE;
+			playerAction = PlayerActions.IDLE;
 		}
 
 		if (startAni != playerAction)
@@ -159,7 +157,7 @@ public class Player extends Entity {
 
 		moving = true;
 
-		if (game.getFireManager().intersectFire(2, hitBox)) {
+		if (playing.getFireManager().intersectFire(Heroes.PINK_MONSTER, hitBox)) {
 			death = true;
 			moving = false;
 		}
@@ -258,9 +256,5 @@ public class Player extends Entity {
 		fall = false;
 		jump = false;
 		moving = false;
-	}
-
-	public int getPlayerAction() {
-		return playerAction;
 	}
 }

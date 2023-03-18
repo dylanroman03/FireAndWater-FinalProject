@@ -2,10 +2,8 @@ package main;
 
 import java.awt.Graphics;
 
-import entities.Player;
-import managers.FireManager;
-import managers.FloorManager;
-import managers.LevelManager;
+import gui.Playing;
+import utilities.Constants.States;
 
 public class Game implements Runnable {
 	private GamePanel gamePanel;
@@ -20,14 +18,13 @@ public class Game implements Runnable {
 	public static final int GAME_HEIGHT = TILES_SIZE * TILES_HEIGTH;
 	public static final boolean DEBUGING = true;
 
-	private Player player;
-	private LevelManager levelManager;
-	private FireManager fireManager;
 
-	private FloorManager floorManager;
+	private Playing playing;
+
+	private States state = States.PLAYING;
 
 	public Game() {
-		initClasses();
+		playing = new Playing(this);
 
 		gamePanel = new GamePanel(this);
 		new GameWindow(gamePanel);
@@ -36,29 +33,32 @@ public class Game implements Runnable {
 		startGameLoop();
 	}
 
-	private void initClasses() {
-		levelManager = new LevelManager();
-		fireManager = new FireManager(levelManager);
-		floorManager = new FloorManager(levelManager);
-		player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), (TILES_SIZE), (TILES_SIZE ), this);
-	}
-
 	private void startGameLoop() {
 		Thread gameThread;
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
-	
+
 	public void render(Graphics g) {
-		levelManager.render(g);
-		fireManager.render(g);
-		player.render(g);
-		floorManager.render(g);
+		switch (state) {
+			case PLAYING:
+				playing.render(g);
+				break;
+
+			default:
+				break;
+		}
 	}
 
 	public void update() {
-		fireManager.update();
-		player.update();
+		switch (state) {
+			case PLAYING:
+				playing.update();
+				break;
+
+			default:
+				break;
+		}
 	}
 
 	@Override
@@ -101,18 +101,21 @@ public class Game implements Runnable {
 	}
 
 	public void windowsFocusLost() {
-		player.resetDirection();
+		switch (state) {
+			case PLAYING:
+				playing.windowsFocusLost();
+				break;
+
+			default:
+				break;
+		}
 	}
 
-	public Player getPlayer() {
-		return player;
+	public States getState() {
+		return state;
 	}
 
-	public LevelManager getLevelManager() {
-		return levelManager;
-	}
-
-	public FireManager getFireManager() {
-		return fireManager;
+	public Playing getPlaying() {
+		return playing;
 	}
 }

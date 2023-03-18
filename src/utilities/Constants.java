@@ -1,20 +1,30 @@
 package utilities;
 
 public class Constants {
-	private Constants() {}
-	
-	public static class PlayerConstants {
-		private PlayerConstants() {}
-
-		public static final int JUMP = 0;
-		public static final int RUNNING_LEFT = 1;
-		public static final int RUNNING_RIGHT = 2;
-		public static final int DOWN = 3;
-		public static final int IDLE = 4;
-		public static final int IDLE_LEFT = 5;
-		public static final int DIE = 6;
+	private Constants() {
 	}
 
+	public enum PlayerActions {
+		JUMP,
+		RUNNING_LEFT,
+		RUNNING_RIGHT,
+		DOWN,
+		IDLE,
+		IDLE_LEFT,
+		DIE
+	}
+
+	public enum Heroes {
+		PINK_MONSTER, DUDE_MONSTER
+	}
+
+	public enum FireTypes {
+		PURPLE, BLUE, GREEN
+	}
+
+	public enum States {
+		MENU, PLAYING, CREDITS 
+	}
 
 	public static final String[] PATH_WARRIOR_LIST = {
 			"res/Heros/1 Pink_Monster/Pink_Monster_Jump_8.png",
@@ -23,17 +33,8 @@ public class Constants {
 			"res/Heros/1 Pink_Monster/Pink_Monster_Fall_4.png",
 			"res/Heros/1 Pink_Monster/Pink_Monster_Idle_4.png",
 			"res/Heros/1 Pink_Monster/Pink_Monster_Idle_Left_4.png",
-			"res/Heros/1 Pink_Monster/Pink_Monster_Death_8.png",
-		};
-
-
-	public static class FireTypes {
-		private FireTypes() {}
-
-		public static final int PURPLE = 2;
-		public static final int BLUE = 3;
-		public static final int GREEN = 4;
-	}
+			"res/Heros/1 Pink_Monster/Pink_Monster_Death_8.png"
+	};
 
 	public static final String PATH_FLOOR_LEVELS = "res/floor.png";
 	public static final String PATH_FILE_LEVELS = "levels/";

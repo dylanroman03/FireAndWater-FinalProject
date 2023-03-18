@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 
 import entities.Fire;
 import utilities.Constants.FireTypes;
+import utilities.Constants.Heroes;
 
 public class FireManager {
 	private BufferedImage[] blueAnimations;
@@ -26,9 +27,9 @@ public class FireManager {
 		purpleAnimations = getAnimations(PATH_PURPLE_FIRE);
 		greenAnimations = getAnimations(PATH_GREEN_FIRE);
 
-		fires[0] = addFires(lvlData, FireTypes.BLUE, blueAnimations);
-		fires[1] = addFires(lvlData, FireTypes.PURPLE, purpleAnimations);
-		fires[2] = addFires(lvlData, FireTypes.GREEN, greenAnimations);
+		fires[0] = addFires(lvlData, FireTypes.BLUE.ordinal() + 2, blueAnimations);
+		fires[1] = addFires(lvlData, FireTypes.PURPLE.ordinal() + 2, purpleAnimations);
+		fires[2] = addFires(lvlData, FireTypes.GREEN.ordinal() + 2, greenAnimations);
 
 	}
 
@@ -73,13 +74,13 @@ public class FireManager {
 		return fires;
 	}
 
-	public boolean intersectFire(int type, Rectangle2D hBox) {
+	public boolean intersectFire(Heroes hero, Rectangle2D hBox) {
 		Fire[] fires;
 
-		if (type == FireTypes.BLUE) {
-			fires = this.fires[1];
-		} else {
+		if (hero == Heroes.PINK_MONSTER) {
 			fires = this.fires[0];
+		} else {
+			fires = this.fires[1];
 		}
 
 		for (Fire fire : fires) {
