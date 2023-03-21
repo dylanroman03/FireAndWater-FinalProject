@@ -22,7 +22,7 @@ public class GamePanel extends JPanel {
 		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouseInputs);
 		addMouseMotionListener(mouseInputs);
-
+    setLayout(null);
 	}
 
 	private void setPanelSize() {
@@ -37,12 +37,7 @@ public class GamePanel extends JPanel {
 		super.paintComponent(g);
 
 		g.setColor(Color.white);
-		for (int i = 0; i < 64; i++)
-			for (int j = 0; j < 40; j++)
-				g.fillRect(i * 20, j * 20, 20, 20);
-
 		game.render(g);
-
 	}
 
 	public Game getGame() {

@@ -4,7 +4,7 @@ import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_BLUE_FIRE;
 import static utilities.Constants.PATH_GREEN_FIRE;
 import static utilities.Constants.PATH_PURPLE_FIRE;
-import static utilities.Helpers.getAnimations;
+import static utilities.Helpers.getAnimationsX;
 
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
@@ -23,9 +23,9 @@ public class FireManager {
 	public FireManager(LevelManager levelManager) {
 		int[][] lvlData = levelManager.getLvlData();
 
-		blueAnimations = getAnimations(PATH_BLUE_FIRE);
-		purpleAnimations = getAnimations(PATH_PURPLE_FIRE);
-		greenAnimations = getAnimations(PATH_GREEN_FIRE);
+		blueAnimations = getAnimationsX(PATH_BLUE_FIRE);
+		purpleAnimations = getAnimationsX(PATH_PURPLE_FIRE);
+		greenAnimations = getAnimationsX(PATH_GREEN_FIRE);
 
 		fires[0] = addFires(lvlData, FireTypes.BLUE.ordinal() + 2, blueAnimations);
 		fires[1] = addFires(lvlData, FireTypes.PURPLE.ordinal() + 2, purpleAnimations);

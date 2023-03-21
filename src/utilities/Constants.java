@@ -41,4 +41,7 @@ public class Constants {
 	public static final String PATH_BLUE_FIRE = "res/Fires/blue/loops/1_burning_loop_8.png";
 	public static final String PATH_PURPLE_FIRE = "res/Fires/purple/loops/1_burning_loop_8.png";
 	public static final String PATH_GREEN_FIRE = "res/Fires/green/loops/1_burning_loop_8.png";
+	
+	public static final String PATH_DIALOG = "res/Gui/Dialog.png";
+	public static final String PATH_PLAY_BTN = "res/Gui/Buttons_2.png";
 }

@@ -1,4 +1,4 @@
-package gui;
+package screens;
 
 import static main.Game.GAME_HEIGHT;
 import static main.Game.TILES_SIZE;

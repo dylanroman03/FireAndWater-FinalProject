@@ -2,11 +2,13 @@ package main;
 
 import java.awt.Graphics;
 
-import gui.Playing;
+import screens.Menu;
+import screens.Playing;
 import utilities.Constants.States;
 
 public class Game implements Runnable {
 	private GamePanel gamePanel;
+	private GameWindow gameWindow;
 	private boolean isGaming = true;
 
 	public static final int TILES_DEFAULT_SIZE = 15;
@@ -18,17 +20,19 @@ public class Game implements Runnable {
 	public static final int GAME_HEIGHT = TILES_SIZE * TILES_HEIGTH;
 	public static final boolean DEBUGING = true;
 
-
 	private Playing playing;
+	private Menu menu;
 
-	private States state = States.PLAYING;
+	private States state = States.MENU;
 
 	public Game() {
 		playing = new Playing(this);
+		menu = new Menu(this);
 
 		gamePanel = new GamePanel(this);
-		new GameWindow(gamePanel);
+		gameWindow = new GameWindow(gamePanel);
 		gamePanel.requestFocus();
+
 
 		startGameLoop();
 	}
@@ -44,7 +48,17 @@ public class Game implements Runnable {
 			case PLAYING:
 				playing.render(g);
 				break;
-
+			case MENU:
+				// gamePanel.revalidate();
+				// gameWindow.getContentPane().removeAll();
+				// JPanel panel = new JPanel();
+				// panel.add(new JButton("1"));
+				// gameWindow.add(panel);
+				// gameWindow.repaint();
+				menu.render(g, gameWindow, gamePanel);
+				break;
+			case CREDITS:
+				break;
 			default:
 				break;
 		}
@@ -55,7 +69,11 @@ public class Game implements Runnable {
 			case PLAYING:
 				playing.update();
 				break;
-
+			case MENU:
+				menu.update(gameWindow, gamePanel);
+				break;
+			case CREDITS:
+				break;
 			default:
 				break;
 		}
@@ -114,6 +132,11 @@ public class Game implements Runnable {
 	public States getState() {
 		return state;
 	}
+
+	public void setState(States state) {
+		this.state = state;
+	}
+
 
 	public Playing getPlaying() {
 		return playing;

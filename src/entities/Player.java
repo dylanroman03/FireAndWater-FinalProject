@@ -2,15 +2,15 @@ package entities;
 
 import static utilities.Constants.PATH_WARRIOR_LIST;
 import static utilities.Helpers.canMove;
-import static utilities.Helpers.getAnimations;
+import static utilities.Helpers.getAnimationsX;
 import static utilities.Helpers.isSolid;
 
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-import gui.Playing;
 import main.Game;
+import screens.Playing;
 import utilities.Constants.Heroes;
 import utilities.Constants.PlayerActions;
 
@@ -212,7 +212,7 @@ public class Player extends Entity {
 
 	private void loadAnimations() {
 		for (int i = 0; i < animations.length; i++) {
-			animations[i] = getAnimations(PATH_WARRIOR_LIST[i]);
+			animations[i] = getAnimationsX(PATH_WARRIOR_LIST[i]);
 		}
 	}
 
