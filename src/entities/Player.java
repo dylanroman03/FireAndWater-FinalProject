@@ -1,6 +1,6 @@
 package entities;
 
-import static utilities.Constants.PATH_WARRIOR_LIST;
+import static utilities.Constants.PATH_CHARACTERS_LIST;
 import static utilities.Helpers.canMove;
 import static utilities.Helpers.getAnimationsX;
 import static utilities.Helpers.isSolid;
@@ -15,7 +15,7 @@ import utilities.Constants.Heroes;
 import utilities.Constants.PlayerActions;
 
 public class Player extends Entity {
-	private BufferedImage[][] animations = new BufferedImage[PATH_WARRIOR_LIST.length][];
+	private BufferedImage[][] animations = new BufferedImage[PATH_CHARACTERS_LIST[0].length][];
 	private int aniTick;
 	private double aniIndex;
 	private int aniSpeed = 10;
@@ -30,6 +30,7 @@ public class Player extends Entity {
 	private View view;
 	private boolean stopAnimation = false;
 	private float runningSpeed = 2.0f;
+	private Heroes hero = Heroes.PINK_MONSTER;
 
 	public enum View {
 		LEFT,
@@ -157,7 +158,7 @@ public class Player extends Entity {
 
 		moving = true;
 
-		if (playing.getFireManager().intersectFire(Heroes.PINK_MONSTER, hitBox)) {
+		if (playing.getFireManager().intersectFire(hero, hitBox)) {
 			death = true;
 			moving = false;
 		}
@@ -212,7 +213,7 @@ public class Player extends Entity {
 
 	private void loadAnimations() {
 		for (int i = 0; i < animations.length; i++) {
-			animations[i] = getAnimationsX(PATH_WARRIOR_LIST[i]);
+			animations[i] = getAnimationsX(PATH_CHARACTERS_LIST[hero.ordinal()][i]);
 		}
 	}
 
@@ -256,5 +257,10 @@ public class Player extends Entity {
 		fall = false;
 		jump = false;
 		moving = false;
+	}
+
+	public void setHero(Heroes hero) {
+		this.hero = hero;
+		loadAnimations();
 	}
 }

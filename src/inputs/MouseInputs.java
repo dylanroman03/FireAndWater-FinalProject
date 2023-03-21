@@ -7,8 +7,10 @@ import java.awt.event.MouseMotionListener;
 import main.GamePanel;
 
 public class MouseInputs implements MouseListener, MouseMotionListener {
+	GamePanel gamePanel;
 
 	public MouseInputs(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
 	}
 
 	@Override
@@ -29,8 +31,14 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// Auto-generated method stub
-
+		switch (gamePanel.getGame().getState()) {
+			case CHARACTERS:
+				gamePanel.getGame().getCharacters().mouseClick(e);
+				break;
+		
+			default:
+				break;
+		}
 	}
 
 	@Override

@@ -2,8 +2,10 @@ package main;
 
 import java.awt.Graphics;
 
+import screens.Characters;
 import screens.Menu;
 import screens.Playing;
+import utilities.Constants.Heroes;
 import utilities.Constants.States;
 
 public class Game implements Runnable {
@@ -22,12 +24,14 @@ public class Game implements Runnable {
 
 	private Playing playing;
 	private Menu menu;
+	private Characters characters;
 
 	private States state = States.MENU;
 
 	public Game() {
 		playing = new Playing(this);
 		menu = new Menu(this);
+		characters = new Characters(this);
 
 		gamePanel = new GamePanel(this);
 		gameWindow = new GameWindow(gamePanel);
@@ -49,15 +53,12 @@ public class Game implements Runnable {
 				playing.render(g);
 				break;
 			case MENU:
-				// gamePanel.revalidate();
-				// gameWindow.getContentPane().removeAll();
-				// JPanel panel = new JPanel();
-				// panel.add(new JButton("1"));
-				// gameWindow.add(panel);
-				// gameWindow.repaint();
-				menu.render(g, gameWindow, gamePanel);
+				menu.render(g, gamePanel);
 				break;
 			case CREDITS:
+				break;
+			case CHARACTERS:
+				characters.render(g, gamePanel);
 				break;
 			default:
 				break;
@@ -70,9 +71,12 @@ public class Game implements Runnable {
 				playing.update();
 				break;
 			case MENU:
-				menu.update(gameWindow, gamePanel);
+				menu.update();
 				break;
 			case CREDITS:
+				characters.update();
+				break;
+			case CHARACTERS:
 				break;
 			default:
 				break;
@@ -140,5 +144,14 @@ public class Game implements Runnable {
 
 	public Playing getPlaying() {
 		return playing;
+	}
+
+	public Characters getCharacters() {
+		return characters;
+	}
+
+	public void setHero(Heroes selectedHero) {
+		System.out.println("Hero: " + selectedHero);
+		playing.getPlayer().setHero(selectedHero);
 	}
 }

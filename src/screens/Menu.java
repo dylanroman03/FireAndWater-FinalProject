@@ -15,12 +15,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
-
 import gui.Button;
 import main.Game;
 import main.GamePanel;
-import main.GameWindow;
 import utilities.Constants.States;
 
 public class Menu {
@@ -44,19 +41,18 @@ public class Menu {
 
     playButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        setPlaying();
+        goCharacters();
       }
     });
   }
 
-  protected void setPlaying() {
-    game.setState(States.PLAYING);
-    gamePanel.requestFocus();
+  protected void goCharacters() {
+    game.setState(States.CHARACTERS);
     gamePanel.removeAll();
     gamePanel.revalidate();
   }
 
-  public void render(Graphics g, GameWindow gameWindow, GamePanel gamePanel) {
+  public void render(Graphics g, GamePanel gamePanel) {
     this.gamePanel = gamePanel;
     g.drawImage(dialog, (GAME_WIDTH - (TILES_SIZE * 8)) / 2, (GAME_HEIGHT - (TILES_SIZE * 8)) / 2, TILES_SIZE * 8,
         TILES_SIZE * 8, null);
@@ -64,12 +60,11 @@ public class Menu {
     if (flag) {
       gamePanel.add(playButton);
       playButton.setBounds();
-      gamePanel.add(new JButton("credits"));
       gamePanel.revalidate();
       flag = false;
     }
   }
 
-  public void update(GameWindow gameWindow, GamePanel gamePanel) {
+  public void update() {
   }
 }
