@@ -20,6 +20,14 @@ public class Manager {
     }
   }
 
+  public void update() {
+    for (Entity[] entitiesArray : entities) {
+      for (Entity entity : entitiesArray) {
+        entity.update();
+      }
+    }
+  }
+
   public boolean someIntersect(Heroes hero, Entity hBox) {
 		Entity[] entityToCompare;
 

@@ -162,8 +162,9 @@ public class Player extends Entity {
 			moving = false;
 		}
 
-		playing.getCoinManager().someIntersect(hero, this);
+		playing.getCrystalManager().someIntersect(hero, this);
 		playing.getLevelManager().intersectDoor(hero, this);
+		playing.getLeverManager().someIntersect(hero, this);
 
 	}
 

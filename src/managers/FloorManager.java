@@ -5,7 +5,10 @@ import static utilities.Constants.PATH_FLOOR_LEVELS;
 import static utilities.Helpers.getImage;
 
 import java.awt.image.BufferedImage;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import entities.Entity;
 import entities.Floor;
 
 public class FloorManager extends Manager {
@@ -25,21 +28,48 @@ public class FloorManager extends Manager {
 
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] == 1) length++;
+        if (lvlData[i][j] == 1 || lvlData[i][j] > 10 && lvlData[i][j] < 20)
+          length++;
       }
     }
 
     Floor[] floorArray = new Floor[length];
 
     for (int i = 0; i < lvlData.length; i++) {
-     for (int j = 0; j < lvlData[0].length; j++) {
-       if (lvlData[i][j] == 1) {
+      for (int j = 0; j < lvlData[0].length; j++) {
+        if (lvlData[i][j] == 1) {
           floorArray[e] = new Floor((TILES_SIZE * j), (TILES_SIZE * i), floorImage);
           e++;
-       }
-     } 
+        } else if (lvlData[i][j] > 10 && lvlData[i][j] < 20) {
+          String numStr = Integer.toString(lvlData[i][j]);
+          char digit = numStr.charAt(1);
+
+          floorArray[e] = new Floor((TILES_SIZE * j), (TILES_SIZE * i), floorImage, digit);
+          e++;
+        }
+      }
     }
 
     entities[0] = floorArray;
-	}
+  }
+
+  public void movePlatform(int idPlatform) {
+    for (Entity[] entitiesArray : entities) {
+      for (Entity entity : entitiesArray) {
+        Floor floor = (Floor) entity;
+
+        if (floor.id == idPlatform) {
+          Timer timer = new Timer();
+
+          timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+              floor.move(true);
+            }
+          }, 3 * 1000);
+
+        }
+      }
+    }
+  }
 }
