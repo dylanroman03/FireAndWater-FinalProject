@@ -26,7 +26,7 @@ public class Game implements Runnable {
 	private Menu menu;
 	private Characters characters;
 
-	private States state = States.MENU;
+	private States state = States.PLAYING;
 
 	public Game() {
 		playing = new Playing(this);

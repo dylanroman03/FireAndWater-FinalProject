@@ -4,20 +4,18 @@ import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_FLOOR_LEVELS;
 import static utilities.Helpers.getImage;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import entities.Floor;
 
-public class FloorManager {
+public class FloorManager extends Manager {
   private BufferedImage floorImage;
-  private Floor[] floor;
   private int[][] lvlData;
 
   public FloorManager(LevelManager levelManager) {
+    super(1);
     this.lvlData = levelManager.getLvlData();
     floorImage = getImage(PATH_FLOOR_LEVELS);
-
     addFloor();
   }
 
@@ -36,18 +34,12 @@ public class FloorManager {
     for (int i = 0; i < lvlData.length; i++) {
      for (int j = 0; j < lvlData[0].length; j++) {
        if (lvlData[i][j] == 1) {
-          floorArray[e] = new Floor((TILES_SIZE * j), (TILES_SIZE * i));
+          floorArray[e] = new Floor((TILES_SIZE * j), (TILES_SIZE * i), floorImage);
           e++;
        }
      } 
     }
 
-    floor = floorArray;
+    entities[0] = floorArray;
 	}
-
-  public void render(Graphics g) {
-    for (Floor floorItem : floor) {
-      floorItem.render(floorImage, g);
-    }
-  }
 }

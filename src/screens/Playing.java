@@ -7,6 +7,7 @@ import java.awt.Graphics;
 
 import entities.Player;
 import main.Game;
+import managers.CrystalManager;
 import managers.FireManager;
 import managers.FloorManager;
 import managers.LevelManager;
@@ -15,6 +16,8 @@ public class Playing {
   private Player player;
   private LevelManager levelManager;
   private FireManager fireManager;
+  private CrystalManager coinManager;
+
 
   private FloorManager floorManager;
   private Game game;
@@ -27,6 +30,7 @@ public class Playing {
   private void initClasses() {
     levelManager = new LevelManager();
     fireManager = new FireManager(levelManager);
+    coinManager = new CrystalManager(levelManager);
     floorManager = new FloorManager(levelManager);
     player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), (TILES_SIZE), (TILES_SIZE), this);
   }
@@ -34,6 +38,7 @@ public class Playing {
   public void render(Graphics g) {
     levelManager.render(g);
     fireManager.render(g);
+    coinManager.render(g);
     player.render(g);
     floorManager.render(g);
   }
@@ -57,5 +62,9 @@ public class Playing {
 
   public Player getPlayer() {
     return player;
+  }
+
+  public CrystalManager getCoinManager() {
+    return coinManager;
   }
 }

@@ -28,8 +28,16 @@ public abstract class Entity {
 		g.drawRect((int) hitBox.x, (int) hitBox.y, (int) hitBox.width, (int) hitBox.height);
 	}
 
+	// Intersect method for collision detection
+	public boolean intersect(Entity entity) {
+		return hitBox.intersects(entity.getHitBox());
+	}
+
 	public Rectangle2D.Float getHitBox() {
 		return hitBox;
+	}
+
+	public void render(Graphics g) {
 	}
 
 }

@@ -20,7 +20,6 @@ public class Player extends Entity {
 	private double aniIndex;
 	private int aniSpeed = 10;
 	private PlayerActions playerAction = PlayerActions.IDLE;
-	// private int playerAction = JUMP;
 	private boolean moving = false;
 	private boolean left;
 	private boolean jump;
@@ -158,10 +157,13 @@ public class Player extends Entity {
 
 		moving = true;
 
-		if (playing.getFireManager().intersectFire(hero, hitBox)) {
+		if (playing.getFireManager().someIntersect(hero, this)) {
 			death = true;
 			moving = false;
 		}
+
+		playing.getCoinManager().someIntersect(hero, this);
+		playing.getLevelManager().intersectDoor(hero, this);
 
 	}
 

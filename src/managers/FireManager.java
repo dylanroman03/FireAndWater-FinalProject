@@ -6,44 +6,34 @@ import static utilities.Constants.PATH_GREEN_FIRE;
 import static utilities.Constants.PATH_PURPLE_FIRE;
 import static utilities.Helpers.getAnimationsX;
 
-import java.awt.Graphics;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import entities.Entity;
 import entities.Fire;
 import utilities.Constants.FireTypes;
-import utilities.Constants.Heroes;
 
-public class FireManager {
+public class FireManager extends Manager {
 	private BufferedImage[] blueAnimations;
 	private BufferedImage[] greenAnimations;
 	private BufferedImage[] purpleAnimations;
-	Fire[][] fires = new Fire[3][];
 
 	public FireManager(LevelManager levelManager) {
+		super(3);
 		int[][] lvlData = levelManager.getLvlData();
 
 		blueAnimations = getAnimationsX(PATH_BLUE_FIRE);
 		purpleAnimations = getAnimationsX(PATH_PURPLE_FIRE);
 		greenAnimations = getAnimationsX(PATH_GREEN_FIRE);
 
-		fires[0] = addFires(lvlData, FireTypes.BLUE.ordinal() + 2, blueAnimations);
-		fires[1] = addFires(lvlData, FireTypes.PURPLE.ordinal() + 2, purpleAnimations);
-		fires[2] = addFires(lvlData, FireTypes.GREEN.ordinal() + 2, greenAnimations);
-
-	}
-
-	public void render(Graphics g) {
-		for (Fire[] fireArray : fires) {
-			for (Fire fire : fireArray) {
-				fire.render(g);
-			}
-		}
+		entities[0] = addFires(lvlData, FireTypes.BLUE.ordinal() + 2, blueAnimations);
+		entities[1] = addFires(lvlData, FireTypes.PURPLE.ordinal() + 2, purpleAnimations);
+		entities[2] = addFires(lvlData, FireTypes.GREEN.ordinal() + 2, greenAnimations);
 	}
 
 	public void update() {
-		for (Fire[] fireArray : fires) {
-			for (Fire fire : fireArray) {
+		for (Entity[] fireArray : entities) {
+			for (Entity entity : fireArray) {
+				Fire fire = (Fire) entity;
 				fire.update();
 			}
 		}
@@ -73,23 +63,4 @@ public class FireManager {
 
 		return fires;
 	}
-
-	public boolean intersectFire(Heroes hero, Rectangle2D hBox) {
-		Fire[] fires;
-
-		if (hero == Heroes.PINK_MONSTER) {
-			fires = this.fires[0];
-		} else {
-			fires = this.fires[1];
-		}
-
-		for (Fire fire : fires) {
-			if (fire.getHitBox().intersects(hBox)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 }

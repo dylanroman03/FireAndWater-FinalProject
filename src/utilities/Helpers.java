@@ -67,47 +67,6 @@ public class Helpers {
     float height = player.getHitBox().height;
     float width = player.getHitBox().width;
 
-    // switch (player.getPlayerAction()) {
-    // case RUNNING_LEFT:
-    // if (x <= 0) {
-    // return false;
-    // }
-    // if (!isSolid(x, y, lvlData) && (!isSolid(x, y + height, lvlData))) {
-    // return true;
-    // }
-    // break;
-    // case RUNNING_RIGHT:
-    // if (x + width >= GAME_WIDTH) {
-    // return false;
-    // }
-
-    // if (!isSolid(x + width, y, lvlData) && (!isSolid(x + width, y + height,
-    // lvlData))) {
-    // return true;
-    // }
-    // break;
-    // case JUMP:
-    // if (y <= 0) {
-    // return false;
-    // }
-
-    // if (!isSolid(x, y, lvlData) && (!isSolid(x + width, y, lvlData))) {
-    // return true;
-    // }
-    // break;
-    // case DOWN:
-    // if (y + height >= GAME_HEIGTH) {
-    // return false;
-    // }
-
-    // if (!isSolid(x, y + height, lvlData) && (!isSolid(x + width, y + height,
-    // lvlData))) {
-    // return true;
-    // }
-    // break;
-    // default:
-    // break;
-    // }
     if (x < 0 || x >= GAME_WIDTH || y < 0 || y >= GAME_HEIGHT) {
       return false;
     } else if (!isSolid(x, y, lvlData) && (!isSolid(x + width, y + height, lvlData))
