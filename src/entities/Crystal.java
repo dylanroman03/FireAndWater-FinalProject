@@ -9,12 +9,10 @@ import main.Game;
 
 public class Crystal extends Entity {
   private BufferedImage animations;
-  private int type;
   private boolean visible = true;
 
   public Crystal(float x, float y, int type, BufferedImage animations) {
     super(x, y, TILES_SIZE, TILES_SIZE);
-    this.type = type;
     this.animations = animations;
     initHitBox(x, y, TILES_SIZE, TILES_SIZE);
   }

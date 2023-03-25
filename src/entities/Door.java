@@ -12,12 +12,10 @@ import utilities.Constants.Heroes;
 
 public class Door extends Entity {
   private BufferedImage[] animations;
-  private Heroes type;
   private int aniTick = 0;
 
   public Door(float x, float y, int width, int height, Heroes type) {
     super(x, y, TILES_SIZE, TILES_SIZE);
-    this.type = type;
 
     initHitBox(x, y, TILES_SIZE, TILES_SIZE);
     animations = getAnimationsX(PATH_DOOR);

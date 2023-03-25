@@ -5,7 +5,6 @@ import static utilities.Constants.PATH_FLOOR_LEVELS;
 import static utilities.Helpers.getImage;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -16,12 +15,11 @@ import main.Game;
 import utilities.Constants.Heroes;
 
 public class LevelManager {
-  private BufferedImage levelFloor;
   private int[][] lvlData;
   private Door[] doors = new Door[2];
 
   public LevelManager() {
-    levelFloor = getImage(PATH_FLOOR_LEVELS);
+    getImage(PATH_FLOOR_LEVELS);
     lvlData = getLevelData();
     initDoors();
   }

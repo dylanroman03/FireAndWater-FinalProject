@@ -10,7 +10,6 @@ import utilities.Constants.States;
 
 public class Game implements Runnable {
 	private GamePanel gamePanel;
-	private GameWindow gameWindow;
 	private boolean isGaming = true;
 
 	public static final int TILES_DEFAULT_SIZE = 15;
@@ -34,7 +33,7 @@ public class Game implements Runnable {
 		characters = new Characters(this);
 
 		gamePanel = new GamePanel(this);
-		gameWindow = new GameWindow(gamePanel);
+		new GameWindow(gamePanel);
 		gamePanel.requestFocus();
 
 

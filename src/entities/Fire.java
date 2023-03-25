@@ -9,14 +9,12 @@ import main.Game;
 
 public class Fire extends Entity {
   private BufferedImage[] animations;
-  private int type;
   private int aniIndex = 0;
 	private int aniTick = 0;
 	private int aniSpeed = 15;
 
   public Fire(float x, float y, int type, BufferedImage[] animations) {
     super(x, y, TILES_SIZE, TILES_SIZE);
-    this.type = type;
     this.animations = animations;
     initHitBox(x, y, TILES_SIZE, TILES_SIZE);
   }
