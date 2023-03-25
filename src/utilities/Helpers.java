@@ -5,6 +5,7 @@ import static main.Game.GAME_WIDTH;
 import static main.Game.TILES_SIZE;
 
 import java.awt.Image;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,7 +14,8 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import entities.Player;
+import entities.Entity;
+import screens.Playing;
 
 public class Helpers {
   private Helpers() {
@@ -63,23 +65,24 @@ public class Helpers {
     return new ImageIcon(image).getImage().getScaledInstance(width, height, 4);
   }
 
-  public static boolean canMove(Player player, float x, float y, int[][] lvlData) {
-    float height = player.getHitBox().height;
-    float width = player.getHitBox().width;
+  public static boolean canMove(Playing playing, float x, float y) {
+    float height = playing.getPlayer().getHitBox().height;
+    float width = playing.getPlayer().getHitBox().width;
 
     if (x < 0 || x >= GAME_WIDTH || y < 0 || y >= GAME_HEIGHT) {
       return false;
-    } else if (!isSolid(x, y, lvlData) && (!isSolid(x + width, y + height, lvlData))
-        && (!isSolid(x + width, y, lvlData)) && (!isSolid(x, y + height, lvlData))) {
+    } else if (!isSolid(x, y, playing) && (!isSolid(x + width, y + height, playing))
+        && (!isSolid(x + width, y, playing)) && (!isSolid(x, y + height, playing))) {
       return true;
     }
 
     return false;
   }
 
-  public static boolean isSolid(float x, float y, int[][] lvlData) {
+  public static boolean isSolid(float x, float y, Playing playing) {
     float xIndex = x / TILES_SIZE;
     float yIndex = y / TILES_SIZE;
+    int[][] lvlData = playing.getLevelManager().getLvlData();
 
     if (xIndex >= lvlData[0].length || yIndex >= lvlData.length) {
       return true;
@@ -90,6 +93,12 @@ public class Helpers {
     if (x < 0 || x >= GAME_WIDTH || y < 0 || y >= GAME_HEIGHT || value == 1) {
       return true;
     }
+
+    for (Entity platform : playing.getPlatformManager().getPlatforms()) {
+      if (platform.getHitBox().intersects(new Rectangle2D.Float(x, y, 1, 1))) {
+        return true;
+      }
+    };
 
     return false;
   }

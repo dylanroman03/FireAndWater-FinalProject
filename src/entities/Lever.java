@@ -1,12 +1,13 @@
 package entities;
 
+import static main.Game.DEBUGING;
 import static main.Game.TILES_SIZE;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import main.Game;
-import managers.FloorManager;
+import managers.PlatformManager;
 
 public class Lever extends Entity {
   private boolean isOn = false;
@@ -35,18 +36,13 @@ public class Lever extends Entity {
   public void render(Graphics g) {
     super.render(g);
     g.drawImage(leverImages[aniTick], (int) hitBox.x, (int) hitBox.y, TILES_SIZE, TILES_SIZE, null);
-    // g.setColor(Color.BLACK);
-    // g.fillRect((int) hitBox.x, (int) hitBox.y, 20, 60); // base of the lever
-    // if (isOn) {
-    //   g.setColor(Color.RED);
-    //   g.fillOval((int) (hitBox.x) + 5, (int) (hitBox.y) + 5, 10, 10); // handle in on position
-    // } else {
-    //   g.setColor(Color.GRAY);
-    //   g.fillOval((int) (hitBox.x) + 5, (int) (hitBox.y) + 45, 10, 10); // handle in off position
-    // }
+
+    if (DEBUGING) {
+      showHitBox(g);  
+    }
   }
 
-  public boolean intersect(Entity entity, FloorManager floorManager) {
+  public boolean intersect(Entity entity, PlatformManager platformManager) {
     Player player = (Player) entity;
 
     switch (player.getPlayerAction()) {
@@ -54,7 +50,7 @@ public class Lever extends Entity {
         if (player.hitBox.intersects(hitBox.x + hitBox.width, hitBox.y, 1, hitBox.height)) {
           if (isOn) {
             turnOff();
-            floorManager.movePlatform(idPlatform, false);
+            platformManager.movePlatform(idPlatform, false);
           }
           return true;
         }
@@ -63,7 +59,7 @@ public class Lever extends Entity {
         if (player.hitBox.intersects(hitBox.x, hitBox.y, 1, hitBox.height)) {
           if (!isOn) {
             turnOn();
-            floorManager.movePlatform(idPlatform, true);
+            platformManager.movePlatform(idPlatform, true);
           }
           return true;
         }

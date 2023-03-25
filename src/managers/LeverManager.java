@@ -12,13 +12,13 @@ import utilities.Constants.Heroes;
 
 public class LeverManager extends Manager {
   private int[][] lvlData;
-  private FloorManager floorManager;
+  private PlatformManager platformManager;
   private BufferedImage[] leverImages =  new BufferedImage[2];
 
-  public LeverManager(LevelManager levelManager, FloorManager floorManager) {
+  public LeverManager(LevelManager levelManager, PlatformManager platforManager) {
     super(1);
     this.lvlData = levelManager.getLvlData();
-    this.floorManager = floorManager;
+    this.platformManager = platforManager;
     leverImages = getAnimationsX(PATH_LEVER);
     addLever();
   }
@@ -55,7 +55,7 @@ public class LeverManager extends Manager {
     for (Entity[] entitiesArray : entities) {
       for (Entity entity : entitiesArray) {
         Lever lever = (Lever) entity;
-        if (lever.intersect(player, floorManager)) {
+        if (lever.intersect(player, platformManager)) {
           return true;
         }
       }

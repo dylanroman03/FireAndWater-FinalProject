@@ -21,10 +21,6 @@ public class Player extends Entity {
 	private int aniSpeed = 10;
 	private PlayerActions playerAction = PlayerActions.IDLE;
 
-	public PlayerActions getPlayerAction() {
-		return playerAction;
-	}
-
 	private boolean moving = false;
 	private boolean left;
 	private boolean jump;
@@ -156,7 +152,7 @@ public class Player extends Entity {
 			}
 		}
 
-		if (canMove(this, hitBox.x + xSpeed, hitBox.y, lvlData) 
+		if (canMove(playing, hitBox.x + xSpeed, hitBox.y) 
 				&& !playing.getLeverManager().someIntersect(hero, this)) {
 			hitBox.x += xSpeed;
 		}
@@ -174,8 +170,8 @@ public class Player extends Entity {
 	}
 
 	private boolean isInFloor() {
-		if (!isSolid(hitBox.x, hitBox.y + hitBox.height + 1, lvlData)
-				&& (!isSolid(hitBox.x + hitBox.width, hitBox.y + hitBox.height + 1, lvlData))) {
+		if (!isSolid(hitBox.x, hitBox.y + hitBox.height + 1, playing)
+				&& (!isSolid(hitBox.x + hitBox.width, hitBox.y + hitBox.height + 1, playing))) {
 			return false;
 		}
 
@@ -183,7 +179,7 @@ public class Player extends Entity {
 	}
 
 	private void inAir() {
-		if (canMove(this, hitBox.x, hitBox.y + airSpeed, lvlData) && !playing.getLeverManager().someIntersect(hero, this)) {
+		if (canMove(playing, hitBox.x, hitBox.y + airSpeed) && !playing.getLeverManager().someIntersect(hero, this)) {
 			hitBox.y += airSpeed;
 			airSpeed += gravity;
 			if (airSpeed > 0) {
@@ -264,5 +260,9 @@ public class Player extends Entity {
 	public void setHero(Heroes hero) {
 		this.hero = hero;
 		loadAnimations();
+	}
+
+	public PlayerActions getPlayerAction() {
+		return playerAction;
 	}
 }
