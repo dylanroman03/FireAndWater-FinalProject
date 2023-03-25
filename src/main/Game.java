@@ -3,6 +3,7 @@ package main;
 import java.awt.Graphics;
 
 import screens.Characters;
+import screens.GameWon;
 import screens.Menu;
 import screens.Playing;
 import utilities.Constants.Heroes;
@@ -24,6 +25,7 @@ public class Game implements Runnable {
 	private Playing playing;
 	private Menu menu;
 	private Characters characters;
+	private GameWon gameWon;
 
 	private States state = States.PLAYING;
 
@@ -31,6 +33,7 @@ public class Game implements Runnable {
 		playing = new Playing(this);
 		menu = new Menu(this);
 		characters = new Characters(this);
+		gameWon = new GameWon(this);
 
 		gamePanel = new GamePanel(this);
 		new GameWindow(gamePanel);
@@ -49,7 +52,7 @@ public class Game implements Runnable {
 	public void render(Graphics g) {
 		switch (state) {
 			case PLAYING:
-				playing.render(g);
+				playing.render(g, gamePanel);
 				break;
 			case MENU:
 				menu.render(g, gamePanel);
@@ -58,6 +61,9 @@ public class Game implements Runnable {
 				break;
 			case CHARACTERS:
 				characters.render(g, gamePanel);
+				break;
+			case GAME_WON:
+			 	gameWon.render(g, gamePanel);
 				break;
 			default:
 				break;
@@ -143,6 +149,10 @@ public class Game implements Runnable {
 
 	public Playing getPlaying() {
 		return playing;
+	}
+
+	public void setPlaying(Playing playing) {
+		this.playing = playing;
 	}
 
 	public Characters getCharacters() {

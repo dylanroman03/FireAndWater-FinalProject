@@ -29,6 +29,7 @@ public class Player extends Entity {
 	private boolean death;
 	private View view;
 	private boolean stopAnimation = false;
+	private boolean gameWon = false;
 	private float runningSpeed = 2.0f;
 	private Heroes hero = Heroes.PINK_MONSTER;
 
@@ -131,7 +132,7 @@ public class Player extends Entity {
 			jump();
 		}
 
-		if (!left && !right && !inAir || death)
+		if (!left && !right && !inAir || death || gameWon)
 			return;
 
 		float xSpeed = 0;
@@ -161,8 +162,13 @@ public class Player extends Entity {
 			death = true;
 			moving = false;
 		}
+		
+		if (playing.getLevelManager().intersectDoor(hero, this)) {
+    	playing.nextLevel();
+			gameWon = true;
+			stopAnimation = true;
+		}
 
-		playing.getLevelManager().intersectDoor(hero, this);
 		playing.getCrystalManager().someIntersect(hero, this);
 		playing.getSwitchManager().someIntersect(hero, this);
 	}

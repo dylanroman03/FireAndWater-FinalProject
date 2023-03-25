@@ -23,7 +23,7 @@ public class Constants {
 	}
 
 	public enum States {
-		MENU, CHARACTERS, PLAYING, CREDITS
+		MENU, CHARACTERS, PLAYING, CREDITS, GAME_WON
 	}
 
 	public static final String[][] PATH_CHARACTERS_LIST = {

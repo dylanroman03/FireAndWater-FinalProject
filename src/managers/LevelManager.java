@@ -17,8 +17,17 @@ import utilities.Constants.Heroes;
 public class LevelManager {
   private int[][] lvlData;
   private Door[] doors = new Door[2];
+  private String[] levels = {"01.txt", "02.txt"};
+  private int currentlyLevel = 0;
 
   public LevelManager() {
+    getImage(PATH_FLOOR_LEVELS);
+    lvlData = getLevelData();
+    initDoors();
+  }
+
+  public LevelManager(int level) {
+    currentlyLevel = level;
     getImage(PATH_FLOOR_LEVELS);
     lvlData = getLevelData();
     initDoors();
@@ -28,7 +37,7 @@ public class LevelManager {
     int[][] matrix = null;
 
     try {
-      File myObj = new File(PATH_FILE_LEVELS + "01.txt");
+      File myObj = new File(PATH_FILE_LEVELS + levels[currentlyLevel]);
       Scanner data = new Scanner(myObj);
       int x = data.nextInt();
       int y = data.nextInt();
@@ -61,11 +70,13 @@ public class LevelManager {
     }
   }
 
-  public void intersectDoor(Heroes hero, Entity entity) {
+  public boolean intersectDoor(Heroes hero, Entity entity) {
     Door door = doors[hero.ordinal()];
     if (door.intersect(entity)) {
       door.setAniTick(1);
+      return true;
     }
+    return false;
   }
 
   private void initDoors() {
@@ -78,6 +89,18 @@ public class LevelManager {
         }
       }
     }
+  }
+
+  public void setCurrentlyLevel(int currentlyLevel) {
+    this.currentlyLevel = currentlyLevel;
+  }
+
+  public String[] getLevels() {
+    return levels;
+  }
+
+  public int getCurrentlyLevel() {
+    return currentlyLevel;
   }
 
   public int[][] getLvlData() {

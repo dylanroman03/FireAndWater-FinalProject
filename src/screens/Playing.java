@@ -7,6 +7,7 @@ import java.awt.Graphics;
 
 import entities.Player;
 import main.Game;
+import main.GamePanel;
 import managers.CrystalManager;
 import managers.FireManager;
 import managers.FloorManager;
@@ -14,6 +15,7 @@ import managers.LevelManager;
 import managers.LeverManager;
 import managers.PlatformManager;
 import managers.SwitchManager;
+import utilities.Constants.States;
 
 public class Playing {
   private Player player;
@@ -25,25 +27,25 @@ public class Playing {
   private PlatformManager platformManager;
 
 
-  public PlatformManager getPlatformManager() {
-    return platformManager;
-  }
-
-  public LeverManager getLeverManager() {
-    return leverManager;
-  }
-
   private FloorManager floorManager;
   private Game game;
+  private GamePanel gamePanel;
 
   public Playing(Game game) {
     this.game = game;
+    levelManager = new LevelManager();
+
+    initClasses();
+  }
+
+  public Playing(Game game, int level) {
+    this.game = game;
+    levelManager = new LevelManager(level);
+
     initClasses();
   }
 
   private void initClasses() {
-    levelManager = new LevelManager();
-
     fireManager = new FireManager(levelManager);
     crystalManager = new CrystalManager(levelManager);
 
@@ -56,7 +58,9 @@ public class Playing {
     player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), (TILES_SIZE), (TILES_SIZE), this);
   }
 
-  public void render(Graphics g) {
+  public void render(Graphics g, GamePanel gamePanel) {
+    this.gamePanel = gamePanel;
+
     levelManager.render(g);
 
     fireManager.render(g);
@@ -83,8 +87,19 @@ public class Playing {
     player.resetDirection();
   }
 
+  public void nextLevel() {
+    game.setState(States.GAME_WON);
+    gamePanel.requestFocus();
+    gamePanel.removeAll();
+    gamePanel.revalidate();
+  }
+
   public LevelManager getLevelManager() {
     return levelManager;
+  }
+
+  public void setLevelManager(LevelManager levelManager) {
+    this.levelManager = levelManager;
   }
 
   public FireManager getFireManager() {
@@ -101,5 +116,13 @@ public class Playing {
 
   public SwitchManager getSwitchManager() {
     return switchManager;
+  }
+
+  public PlatformManager getPlatformManager() {
+    return platformManager;
+  }
+
+  public LeverManager getLeverManager() {
+    return leverManager;
   }
 }
