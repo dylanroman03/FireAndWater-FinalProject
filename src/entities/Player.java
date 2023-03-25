@@ -20,6 +20,11 @@ public class Player extends Entity {
 	private double aniIndex;
 	private int aniSpeed = 10;
 	private PlayerActions playerAction = PlayerActions.IDLE;
+
+	public PlayerActions getPlayerAction() {
+		return playerAction;
+	}
+
 	private boolean moving = false;
 	private boolean left;
 	private boolean jump;
@@ -110,7 +115,7 @@ public class Player extends Entity {
 
 		} else if (death) {
 			playerAction = PlayerActions.DIE;
-		} else if (view == View.LEFT){
+		} else if (view == View.LEFT) {
 			playerAction = PlayerActions.IDLE_LEFT;
 		} else {
 			playerAction = PlayerActions.IDLE;
@@ -151,7 +156,8 @@ public class Player extends Entity {
 			}
 		}
 
-		if (canMove(this, hitBox.x + xSpeed, hitBox.y, lvlData)) {
+		if (canMove(this, hitBox.x + xSpeed, hitBox.y, lvlData) 
+				&& !playing.getLeverManager().someIntersect(hero, this)) {
 			hitBox.x += xSpeed;
 		}
 
@@ -162,9 +168,8 @@ public class Player extends Entity {
 			moving = false;
 		}
 
-		playing.getCrystalManager().someIntersect(hero, this);
 		playing.getLevelManager().intersectDoor(hero, this);
-		playing.getLeverManager().someIntersect(hero, this);
+		playing.getCrystalManager().someIntersect(hero, this);
 
 	}
 
@@ -178,7 +183,7 @@ public class Player extends Entity {
 	}
 
 	private void inAir() {
-		if (canMove(this, hitBox.x, hitBox.y + airSpeed, lvlData)) {
+		if (canMove(this, hitBox.x, hitBox.y + airSpeed, lvlData) && !playing.getLeverManager().someIntersect(hero, this)) {
 			hitBox.y += airSpeed;
 			airSpeed += gravity;
 			if (airSpeed > 0) {
@@ -198,13 +203,7 @@ public class Player extends Entity {
 	}
 
 	public static float getEntityY(Rectangle2D.Float hitbox, float airSpeed) {
-		// int currentTile = (int) (hitbox.y / Game.TILES_SIZE);
-		// if (airSpeed > 0) {
 		return hitbox.y;
-		// }
-
-		// Jumping
-		// return (currentTile * Game.TILES_SIZE);
 	}
 
 	private void jump() {

@@ -5,8 +5,6 @@ import static utilities.Constants.PATH_FLOOR_LEVELS;
 import static utilities.Helpers.getImage;
 
 import java.awt.image.BufferedImage;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import entities.Entity;
 import entities.Floor;
@@ -53,21 +51,13 @@ public class FloorManager extends Manager {
     entities[0] = floorArray;
   }
 
-  public void movePlatform(int idPlatform) {
+  public void movePlatform(int idPlatform, boolean climbing) {
     for (Entity[] entitiesArray : entities) {
       for (Entity entity : entitiesArray) {
         Floor floor = (Floor) entity;
 
         if (floor.id == idPlatform) {
-          Timer timer = new Timer();
-
-          timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-              floor.move(true);
-            }
-          }, 3 * 1000);
-
+          floor.move(climbing);
         }
       }
     }

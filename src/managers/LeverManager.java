@@ -1,6 +1,10 @@
 package managers;
 
 import static main.Game.TILES_SIZE;
+import static utilities.Constants.PATH_LEVER;
+import static utilities.Helpers.getAnimationsX;
+
+import java.awt.image.BufferedImage;
 
 import entities.Entity;
 import entities.Lever;
@@ -9,11 +13,13 @@ import utilities.Constants.Heroes;
 public class LeverManager extends Manager {
   private int[][] lvlData;
   private FloorManager floorManager;
+  private BufferedImage[] leverImages =  new BufferedImage[2];
 
   public LeverManager(LevelManager levelManager, FloorManager floorManager) {
     super(1);
     this.lvlData = levelManager.getLvlData();
     this.floorManager = floorManager;
+    leverImages = getAnimationsX(PATH_LEVER);
     addLever();
   }
 
@@ -35,7 +41,7 @@ public class LeverManager extends Manager {
           String numStr = Integer.toString(lvlData[i][j]);
           char digit = numStr.charAt(1);
 
-          leverArray[e] = new Lever((TILES_SIZE * j), (TILES_SIZE * i), TILES_SIZE, TILES_SIZE, digit);
+          leverArray[e] = new Lever((TILES_SIZE * j), (TILES_SIZE * i), TILES_SIZE, TILES_SIZE, digit, leverImages);
           e++;
        }
      } 
@@ -49,7 +55,9 @@ public class LeverManager extends Manager {
     for (Entity[] entitiesArray : entities) {
       for (Entity entity : entitiesArray) {
         Lever lever = (Lever) entity;
-        lever.intersect(player, floorManager);
+        if (lever.intersect(player, floorManager)) {
+          return true;
+        }
       }
     }
 
