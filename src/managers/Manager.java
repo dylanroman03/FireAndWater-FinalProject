@@ -8,6 +8,10 @@ import utilities.Constants.Heroes;
 public class Manager {
   protected Entity[][] entities;
 
+  public Manager() {
+    entities = new Entity[1][];
+  }
+
   public Manager(int length) {
     entities = new Entity[length][];
   }
@@ -28,27 +32,35 @@ public class Manager {
     }
   }
 
-  public boolean someIntersect(Heroes hero, Entity hBox) {
-		Entity[] entityToCompare;
+  public boolean someIntersect(Heroes hero, Entity heroEntity) {
+    Entity[][] entityToCompare;
+
+    if (entities.length > 2) {
+      entityToCompare = new Entity[2][];
+      entityToCompare[1] = this.entities[2];
+    } else {
+      entityToCompare = new Entity[1][];
+    }
 
     if (entities.length > 1) {
       if (hero == Heroes.PINK_MONSTER) {
-        entityToCompare = this.entities[0];
+        entityToCompare[0] = this.entities[0];
       } else {
-        entityToCompare = this.entities[1];
+        entityToCompare[0] = this.entities[1];
       }
     } else {
-      entityToCompare = this.entities[0];
+      entityToCompare[0] = this.entities[0];
     }
 
+    for (Entity[] entityArray : entityToCompare) {
+      for (Entity entity : entityArray) {
+        if (entity.intersect(heroEntity)) {
+          return true;
+        }
+      }
+    }
 
-		for (Entity entity : entityToCompare) {
-			if (entity.intersect(hBox)) {
-				return true;
-			}
-		}
-
-		return false;
-	}
+    return false;
+  }
 
 }

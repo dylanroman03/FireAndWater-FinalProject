@@ -38,7 +38,6 @@ public class Player extends Entity {
 	}
 
 	private Playing playing;
-	private int[][] lvlData;
 
 	// Gravity
 	private float airSpeed = 0f;
@@ -50,7 +49,6 @@ public class Player extends Entity {
 	public Player(float x, float y, int width, int height, Playing playing) {
 		super(x, y, width, height);
 		this.playing = playing;
-		lvlData = playing.getLevelManager().getLvlData();
 		loadAnimations();
 		initHitBox(x, y, width, height);
 	}
@@ -166,7 +164,7 @@ public class Player extends Entity {
 
 		playing.getLevelManager().intersectDoor(hero, this);
 		playing.getCrystalManager().someIntersect(hero, this);
-
+		playing.getSwitchManager().someIntersect(hero, this);
 	}
 
 	private boolean isInFloor() {

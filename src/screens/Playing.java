@@ -13,6 +13,7 @@ import managers.FloorManager;
 import managers.LevelManager;
 import managers.LeverManager;
 import managers.PlatformManager;
+import managers.SwitchManager;
 
 public class Playing {
   private Player player;
@@ -20,6 +21,7 @@ public class Playing {
   private FireManager fireManager;
   private CrystalManager crystalManager;
   private LeverManager leverManager;
+  private SwitchManager switchManager;
   private PlatformManager platformManager;
 
 
@@ -47,7 +49,10 @@ public class Playing {
 
     floorManager = new FloorManager(levelManager);
     platformManager = new PlatformManager(levelManager);
+
     leverManager = new LeverManager(levelManager, platformManager);
+    switchManager = new SwitchManager(levelManager, platformManager);
+
     player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), (TILES_SIZE), (TILES_SIZE), this);
   }
 
@@ -59,6 +64,7 @@ public class Playing {
     leverManager.render(g);
 
     platformManager.render(g);
+    switchManager.render(g);
 
     player.render(g);
     floorManager.render(g);
@@ -66,7 +72,10 @@ public class Playing {
 
   public void update() {
     fireManager.update();
+
+    switchManager.update();
     platformManager.update();
+
     player.update();
   }
 
@@ -88,5 +97,9 @@ public class Playing {
 
   public CrystalManager getCrystalManager() {
     return crystalManager;
+  }
+
+  public SwitchManager getSwitchManager() {
+    return switchManager;
   }
 }

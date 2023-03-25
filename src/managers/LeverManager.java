@@ -16,7 +16,7 @@ public class LeverManager extends Manager {
   private BufferedImage[] leverImages =  new BufferedImage[2];
 
   public LeverManager(LevelManager levelManager, PlatformManager platforManager) {
-    super(1);
+    super();
     this.lvlData = levelManager.getLvlData();
     this.platformManager = platforManager;
     leverImages = getAnimationsX(PATH_LEVER);
