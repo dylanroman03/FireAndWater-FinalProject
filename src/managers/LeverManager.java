@@ -29,7 +29,7 @@ public class LeverManager extends Manager {
 
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] > 70 && lvlData[i][j] < 80) length++;
+        if (lvlData[i][j] > 700 && lvlData[i][j] < 800) length++;
       }
     }
 
@@ -37,11 +37,12 @@ public class LeverManager extends Manager {
 
     for (int i = 0; i < lvlData.length; i++) {
      for (int j = 0; j < lvlData[0].length; j++) {
-       if (lvlData[i][j] > 70 && lvlData[i][j] < 80) {
+       if (lvlData[i][j] > 700 && lvlData[i][j] < 800) {
           String numStr = Integer.toString(lvlData[i][j]);
           char digit = numStr.charAt(1);
+          char isOn = numStr.charAt(2);
 
-          leverArray[e] = new Lever((TILES_SIZE * j), (TILES_SIZE * i), TILES_SIZE, TILES_SIZE, digit, leverImages);
+          leverArray[e] = new Lever((TILES_SIZE * j), (TILES_SIZE * i), TILES_SIZE, TILES_SIZE, digit, leverImages, isOn);
           e++;
        }
      } 

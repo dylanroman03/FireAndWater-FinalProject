@@ -30,7 +30,7 @@ public class Player extends Entity {
 	private View view;
 	private boolean stopAnimation = false;
 	private boolean gameWon = false;
-	private float runningSpeed = 2.0f;
+	private float runningSpeed = 1.5f;
 	private Heroes hero = Heroes.PINK_MONSTER;
 
 	public enum View {
@@ -42,9 +42,9 @@ public class Player extends Entity {
 
 	// Gravity
 	private float airSpeed = 0f;
-	private float gravity = 0.04f * Game.SCALE;
-	private float jumpingSpeed = -2.00f * Game.SCALE;
-	private float fallSpeed = 0.5f * Game.SCALE;
+	private float gravity = 0.03f * Game.SCALE;
+	private float jumpingSpeed = -1.50f * Game.SCALE;
+	private float fallSpeed = 0.7f * Game.SCALE;
 	private boolean inAir = false;
 
 	public Player(float x, float y, int width, int height, Playing playing) {

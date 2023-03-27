@@ -2,6 +2,7 @@ package screens;
 
 import static main.Game.GAME_HEIGHT;
 import static main.Game.TILES_SIZE;
+import static utilities.Helpers.resetPanel;
 
 import java.awt.Graphics;
 
@@ -89,9 +90,7 @@ public class Playing {
 
   public void nextLevel() {
     game.setState(States.GAME_WON);
-    gamePanel.requestFocus();
-    gamePanel.removeAll();
-    gamePanel.revalidate();
+    resetPanel(gamePanel);
   }
 
   public LevelManager getLevelManager() {

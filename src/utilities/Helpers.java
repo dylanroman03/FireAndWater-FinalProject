@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import entities.Entity;
+import main.GamePanel;
 import screens.Playing;
 
 public class Helpers {
@@ -98,8 +99,14 @@ public class Helpers {
       if (platform.getHitBox().intersects(new Rectangle2D.Float(x, y, 1, 1))) {
         return true;
       }
-    };
+    }
 
     return false;
+  }
+
+  public static void resetPanel(GamePanel gamePanel) {
+    gamePanel.requestFocus();
+    gamePanel.removeAll();
+    gamePanel.revalidate();
   }
 }

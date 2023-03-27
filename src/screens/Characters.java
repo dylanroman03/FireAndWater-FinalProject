@@ -9,6 +9,7 @@ import static utilities.Constants.PATH_PLAY_BTN;
 import static utilities.Helpers.getAnimationsX;
 import static utilities.Helpers.getAnimationsY;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.resetPanel;
 import static utilities.Helpers.resizeImage;
 
 import java.awt.Graphics;
@@ -101,9 +102,7 @@ public class Characters {
   protected void goPlaying() {
     game.setHero(selectedHero);
     game.setState(States.PLAYING);
-    gamePanel.requestFocus();
-    gamePanel.removeAll();
-    gamePanel.revalidate();
+    resetPanel(gamePanel);
   }
 
   private void loadImages() {

@@ -27,7 +27,7 @@ public class PlatformManager extends Manager {
 
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] > 10 && lvlData[i][j] < 20)
+        if (lvlData[i][j] > 100 && lvlData[i][j] < 200)
           length++;
       }
     }
@@ -36,11 +36,12 @@ public class PlatformManager extends Manager {
 
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[0].length; j++) {
-        if (lvlData[i][j] > 10 && lvlData[i][j] < 20) {
+        if (lvlData[i][j] > 100 && lvlData[i][j] < 200) {
           String numStr = Integer.toString(lvlData[i][j]);
-          char digit = numStr.charAt(1);
+          char id = numStr.charAt(1);
+          char status = numStr.charAt(2);
 
-          platformArray[e] = new Platform((TILES_SIZE * j), (TILES_SIZE * i), platformImage, digit);
+          platformArray[e] = new Platform((TILES_SIZE * j), (TILES_SIZE * i), platformImage, id, status);
           e++;
         }
       }
@@ -49,13 +50,13 @@ public class PlatformManager extends Manager {
     entities[0] = platformArray;
   }
 
-  public void movePlatform(int idPlatform, boolean climbing) {
+  public void movePlatform(int idPlatform) {
     for (Entity[] entitiesArray : entities) {
       for (Entity entity : entitiesArray) {
         Platform platform = (Platform) entity;
 
         if (platform.id == idPlatform) {
-          platform.move(climbing);
+          platform.move();
         }
       }
     }

@@ -13,10 +13,11 @@ public class Platform extends Entity {
   private boolean climbing;
   private boolean dropping;
 
-  public Platform(float x, float y, BufferedImage image, int id) {
+  public Platform(float x, float y, BufferedImage image, int id, char status) {
     super(x, y, TILES_SIZE * 2, (int) (TILES_SIZE / 3));
     this.image = image;
-    yInit = y;
+    yInit = status == 0 ? y : y + 100;
+    climbing= status == 0 ? false : true;
     initHitBox(x, y, width, height);
 
     this.id = id;
@@ -44,13 +45,13 @@ public class Platform extends Entity {
     }
   }
 
-  public void move(boolean up) {
-    if (up) {
-      climbing = true;
-      dropping = false;
-    } else {
+  public void move() {
+    if (climbing) {
       climbing = false;
       dropping = true;
+    } else {
+      climbing = true;
+      dropping = false;
     }
   }
 

@@ -51,11 +51,19 @@ public class Switch extends Entity {
     if (super.intersect(entity)) {
       if (!isOn) {
         turnOn(); 
+        return true;
       }
-      return true;
     }
 
     return false;
+  }
+
+  public void changeState() {
+    if (isOn) {
+      turnOff();
+    } else {
+      turnOn();
+    }
   }
 
   public void turnOn() {

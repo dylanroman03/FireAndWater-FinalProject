@@ -5,11 +5,10 @@ import static main.Game.GAME_WIDTH;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_DIALOG;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.resetPanel;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import main.Game;
 import main.GamePanel;
@@ -24,13 +23,13 @@ public class GameWon {
     this.game = game;
     dialog = getImage(PATH_DIALOG);
 
-    Timer timer = new Timer();
-    timer.schedule(new TimerTask() {
-      @Override
-      public void run() {
-        nextLevel();
-      }
-    }, 2 * 1000);
+    // Timer timer = new Timer();
+    // timer.schedule(new TimerTask() {
+    //   @Override
+    //   public void run() {
+    //     nextLevel();
+    //   }
+    // }, 2 * 1000);
   }
 
   public void render(Graphics g, GamePanel gamePanel) {
@@ -55,9 +54,7 @@ public class GameWon {
       System.out.println("Siguiente Nivel: " + game.getPlaying().getLevelManager().getCurrentlyLevel());
 
       game.setState(States.PLAYING);
-      gamePanel.requestFocus();
-      gamePanel.removeAll();
-      gamePanel.revalidate();
+      resetPanel(gamePanel);
     }
   }
 

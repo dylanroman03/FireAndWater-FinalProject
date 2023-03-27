@@ -13,29 +13,31 @@ public class Lever extends Entity {
   private boolean isOn = false;
   private int idPlatform;
   private BufferedImage[] leverImages;
-  private int aniTick = 1;
+  private int aniIndex = 1;
 
-  public Lever(float x, float y, int width, int height, int idPlatform, BufferedImage[] leverImages) {
+  public Lever(float x, float y, int width, int height, int idPlatform, BufferedImage[] leverImages, char isOn) {
     super(x, y, width, height);
     this.idPlatform = idPlatform;
     this.leverImages = leverImages;
+    this.isOn = isOn == 0 ? false : true;
+    this.aniIndex = isOn == 0 ? 1 : 0;
     initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
   }
 
   public void turnOn() {
     this.isOn = true;
-    aniTick = 0;
+    aniIndex = 0;
   }
 
   public void turnOff() {
     this.isOn = false;
-    aniTick = 1;
+    aniIndex = 1;
   }
 
   @Override
   public void render(Graphics g) {
     super.render(g);
-    g.drawImage(leverImages[aniTick], (int) hitBox.x, (int) hitBox.y, TILES_SIZE, TILES_SIZE, null);
+    g.drawImage(leverImages[aniIndex], (int) hitBox.x, (int) hitBox.y, TILES_SIZE, TILES_SIZE, null);
 
     if (DEBUGING) {
       showHitBox(g);  
@@ -50,7 +52,7 @@ public class Lever extends Entity {
         if (player.hitBox.intersects(hitBox.x + hitBox.width, hitBox.y, 1, hitBox.height)) {
           if (isOn) {
             turnOff();
-            platformManager.movePlatform(idPlatform, false);
+            platformManager.movePlatform(idPlatform);
           }
           return true;
         }
@@ -59,7 +61,7 @@ public class Lever extends Entity {
         if (player.hitBox.intersects(hitBox.x, hitBox.y, 1, hitBox.height)) {
           if (!isOn) {
             turnOn();
-            platformManager.movePlatform(idPlatform, true);
+            platformManager.movePlatform(idPlatform);
           }
           return true;
         }
