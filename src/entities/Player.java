@@ -46,6 +46,7 @@ public class Player extends Entity {
 	private float jumpingSpeed = -1.50f * Game.SCALE;
 	private float fallSpeed = 0.7f * Game.SCALE;
 	private boolean inAir = false;
+	public 	float xSpeed = 0;
 
 	public Player(float x, float y, int width, int height, Playing playing) {
 		super(x, y, width, height);
@@ -135,7 +136,7 @@ public class Player extends Entity {
 		if (!left && !right && !inAir || death || gameWon)
 			return;
 
-		float xSpeed = 0;
+		xSpeed = 0;
 
 		if (left && !right) {
 			xSpeed = -runningSpeed;
@@ -151,8 +152,7 @@ public class Player extends Entity {
 			}
 		}
 
-		if (canMove(playing, hitBox.x + xSpeed, hitBox.y) 
-				&& !playing.getLeverManager().someIntersect(hero, this)) {
+		if (canMove(playing, hitBox.x + xSpeed, hitBox.y)) {
 			hitBox.x += xSpeed;
 		}
 
@@ -171,6 +171,7 @@ public class Player extends Entity {
 
 		playing.getCrystalManager().someIntersect(hero, this);
 		playing.getSwitchManager().someIntersect(hero, this);
+		playing.getLeverManager().someIntersect(hero, this);
 	}
 
 	private boolean isInFloor() {
@@ -183,7 +184,7 @@ public class Player extends Entity {
 	}
 
 	private void inAir() {
-		if (canMove(playing, hitBox.x, hitBox.y + airSpeed) && !playing.getLeverManager().someIntersect(hero, this)) {
+		if (canMove(playing, hitBox.x, hitBox.y + airSpeed)) {
 			hitBox.y += airSpeed;
 			airSpeed += gravity;
 			if (airSpeed > 0) {

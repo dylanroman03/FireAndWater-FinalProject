@@ -15,7 +15,7 @@ public class Lever extends Entity {
   private BufferedImage[] leverImages;
   private int aniIndex = 1;
 
-  public Lever(float x, float y, int width, int height, int idPlatform, BufferedImage[] leverImages, char isOn) {
+  public Lever(float x, float y, int width, int height, BufferedImage[] leverImages, int idPlatform, int isOn) {
     super(x, y, width, height);
     this.idPlatform = idPlatform;
     this.leverImages = leverImages;
@@ -40,7 +40,7 @@ public class Lever extends Entity {
     g.drawImage(leverImages[aniIndex], (int) hitBox.x, (int) hitBox.y, TILES_SIZE, TILES_SIZE, null);
 
     if (DEBUGING) {
-      showHitBox(g);  
+      showHitBox(g);
     }
   }
 
@@ -49,7 +49,8 @@ public class Lever extends Entity {
 
     switch (player.getPlayerAction()) {
       case RUNNING_LEFT:
-        if (player.hitBox.intersects(hitBox.x + hitBox.width, hitBox.y, 1, hitBox.height)) {
+        // check if lever intersect with the left side of the player
+        if (hitBox.intersects(player.hitBox.x + player.xSpeed, player.hitBox.y, 1, 1)) {
           if (isOn) {
             turnOff();
             platformManager.movePlatform(idPlatform);
@@ -58,7 +59,8 @@ public class Lever extends Entity {
         }
         break;
       case RUNNING_RIGHT:
-        if (player.hitBox.intersects(hitBox.x, hitBox.y, 1, hitBox.height)) {
+        // check if lever intersect with the right side of the player
+        if (hitBox.intersects(player.hitBox.x + player.hitBox.width + player.xSpeed, player.hitBox.y, 1, hitBox.height)) {
           if (!isOn) {
             turnOn();
             platformManager.movePlatform(idPlatform);
@@ -66,10 +68,8 @@ public class Lever extends Entity {
           return true;
         }
         break;
-      case DOWN:
-        return super.intersect(entity);
       default:
-      break;
+        break;
     }
 
     return false;

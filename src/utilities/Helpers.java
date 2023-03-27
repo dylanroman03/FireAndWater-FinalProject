@@ -75,6 +75,33 @@ public class Helpers {
     } else if (!isSolid(x, y, playing) && (!isSolid(x + width, y + height, playing))
         && (!isSolid(x + width, y, playing)) && (!isSolid(x, y + height, playing))) {
       return true;
+      // } else {
+      // switch (playing.getPlayer().getPlayerAction()) {
+      // case RUNNING_LEFT:
+      // if (!isSolid(x, y, playing))
+      // if (!isSolid(x, y + height, playing))
+      // return true;
+      // break;
+      // case RUNNING_RIGHT:
+      // if (!isSolid(x + width, y, playing))
+      // if (!isSolid(x + width, y + height, playing))
+      // return true;
+      // break;
+      // case JUMP:
+      // if (!isSolid(x, y, playing))
+      // if (!isSolid(x + width, y, playing))
+      // return true;
+      // break;
+      // case DOWN:
+      // if (!isSolid(x, y + height, playing))
+      // if (!isSolid(x + width, y + height, playing))
+      // return true;
+      // break;
+      // default:
+      // if (!isSolid(x, y + height, playing))
+      // if (!isSolid(x + width, y + height, playing))
+      // return false;
+      // }
     }
 
     return false;
@@ -91,7 +118,7 @@ public class Helpers {
 
     int value = lvlData[(int) yIndex][(int) xIndex];
 
-    if (x < 0 || x >= GAME_WIDTH || y < 0 || y >= GAME_HEIGHT || value == 1) {
+    if (x < 0 || x >= GAME_WIDTH || y < 0 || y >= GAME_HEIGHT || value == 1 || value > 700 && value < 800) {
       return true;
     }
 

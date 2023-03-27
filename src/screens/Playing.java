@@ -26,9 +26,8 @@ public class Playing {
   private LeverManager leverManager;
   private SwitchManager switchManager;
   private PlatformManager platformManager;
-
-
   private FloorManager floorManager;
+
   private Game game;
   private GamePanel gamePanel;
 
@@ -123,5 +122,9 @@ public class Playing {
 
   public LeverManager getLeverManager() {
     return leverManager;
+  }
+
+  public FloorManager getFloorManager() {
+    return floorManager;
   }
 }

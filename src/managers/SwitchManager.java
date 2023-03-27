@@ -42,7 +42,7 @@ public class SwitchManager extends Manager {
       for (int j = 0; j < lvlData[0].length; j++) {
         if (lvlData[i][j] > 80 && lvlData[i][j] < 90) {
           String numStr = Integer.toString(lvlData[i][j]);
-          char digit = numStr.charAt(1);
+          int digit = Character.getNumericValue(numStr.charAt(1));
 
           leverArray[e] = new Switch((TILES_SIZE * j), (TILES_SIZE * i), TILES_SIZE, TILES_SIZE, digit, animations);
           e++;

@@ -13,7 +13,7 @@ public class Platform extends Entity {
   private boolean climbing;
   private boolean dropping;
 
-  public Platform(float x, float y, BufferedImage image, int id, char status) {
+  public Platform(float x, float y, BufferedImage image, int id, int status) {
     super(x, y, TILES_SIZE * 2, (int) (TILES_SIZE / 3));
     this.image = image;
     yInit = status == 0 ? y : y + 100;
@@ -21,6 +21,7 @@ public class Platform extends Entity {
     initHitBox(x, y, width, height);
 
     this.id = id;
+    System.out.println(id);
   }
 
   @Override

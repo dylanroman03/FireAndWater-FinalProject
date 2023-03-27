@@ -38,8 +38,9 @@ public class PlatformManager extends Manager {
       for (int j = 0; j < lvlData[0].length; j++) {
         if (lvlData[i][j] > 100 && lvlData[i][j] < 200) {
           String numStr = Integer.toString(lvlData[i][j]);
-          char id = numStr.charAt(1);
-          char status = numStr.charAt(2);
+          int id = Character.getNumericValue(numStr.charAt(1));
+          int status = Character.getNumericValue(numStr.charAt(2));
+          System.out.println("id: " + id + " status: " + status);
 
           platformArray[e] = new Platform((TILES_SIZE * j), (TILES_SIZE * i), platformImage, id, status);
           e++;
@@ -56,6 +57,7 @@ public class PlatformManager extends Manager {
         Platform platform = (Platform) entity;
 
         if (platform.id == idPlatform) {
+          System.out.println("idPlatform: " + idPlatform + " platform.id: " + platform.id);
           platform.move();
         }
       }
