@@ -67,10 +67,6 @@ public class LevelManager {
   }
 
   public void render(Graphics g) {
-    // for (int i = 0; i < lvlData.length; i++) {
-    //   for (int j = 0; j < lvlData[0].length; j++) {
-    //   }
-    // }
     g.drawImage(background, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
     g.drawImage(backgroundTwo, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
     

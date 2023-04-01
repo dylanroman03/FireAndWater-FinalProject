@@ -3,6 +3,9 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+
+import main.Game;
 
 public abstract class Entity {
 
@@ -11,6 +14,8 @@ public abstract class Entity {
 	protected int width;
 	protected int height;
 	protected Rectangle2D.Float hitBox;
+	protected BufferedImage[] animations;
+	protected int aniIndex = 0;
 
 	public Entity(float x, float y, int width, int height) {
 		this.x = x;
@@ -38,6 +43,11 @@ public abstract class Entity {
 	}
 
 	public void render(Graphics g) {
+    g.drawImage(animations[aniIndex], (int) (hitBox.x), (int) (hitBox.y), width, height, null);
+
+    if (Game.DEBUGING) {
+      showHitBox(g);
+    }
 	}
 
   public void update() {

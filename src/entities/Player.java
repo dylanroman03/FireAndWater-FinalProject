@@ -63,6 +63,7 @@ public class Player extends Entity {
 		setAnimation();
 	}
 
+	@Override
 	public void render(Graphics g) {
 		g.drawImage(animations[playerAction.ordinal()][(int) aniIndex], (int) (hitBox.x), (int) (hitBox.y),
 				width, height, null);
