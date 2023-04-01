@@ -50,7 +50,7 @@ public class Playing {
     crystalManager = new CrystalManager(levelManager);
 
     floorManager = new FloorManager(levelManager);
-    platformManager = new PlatformManager(levelManager);
+    platformManager = new PlatformManager(levelManager, this);
 
     leverManager = new LeverManager(levelManager, platformManager);
     switchManager = new SwitchManager(levelManager, platformManager);

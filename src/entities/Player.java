@@ -270,4 +270,8 @@ public class Player extends Entity {
 	public PlayerActions getPlayerAction() {
 		return playerAction;
 	}
+
+  public void setY(float f) {
+		hitBox.y = f;
+  }
 }

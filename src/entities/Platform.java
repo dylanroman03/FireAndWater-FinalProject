@@ -34,16 +34,27 @@ public class Platform extends Entity {
     }
   }
 
-  public void update() {
+  public void update(Player player) {
     if (climbing) {
       if (yInit - 100 < hitBox.y) {
+        if(isPlayerOver(player)) {
+          player.setY(player.getY() - 0.5f);
+        }
         hitBox.y -= 0.5;
       }
     } else if (dropping) {
       if (hitBox.y < yInit) {
+        if (isPlayerOver(player)) {
+          player.setY(player.getY() + 0.5f);
+        }
         hitBox.y += 0.5;
       }
     }
+  }
+
+  private boolean isPlayerOver(Player player) {
+    return player.getX() + player.getWidth() > hitBox.x && player.getX() < hitBox.x + width
+        && player.getY() + player.getHeight() + 5 > hitBox.y;
   }
 
   public void move() {

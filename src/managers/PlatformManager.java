@@ -8,17 +8,30 @@ import java.awt.image.BufferedImage;
 
 import entities.Entity;
 import entities.Platform;
+import screens.Playing;
 
 public class PlatformManager extends Manager {
   private int[][] lvlData;
   private BufferedImage platformImage;
+  private Playing playing;
 
-  public PlatformManager(LevelManager levelManager) {
+  public PlatformManager(LevelManager levelManager, Playing playing) {
     super(1);
     this.lvlData = levelManager.getLvlData();
+    this.playing = playing;
     BufferedImage buildImg = getImage(PATH_LEVEL_BUILD);
     platformImage = buildImg.getSubimage(753, 20, 175, 12);
     addEntity();
+  }
+
+  @Override
+  public void update() {
+    for (Entity[] entitiesArray : entities) {
+      for (Entity entity : entitiesArray) {
+        Platform platform = (Platform) entity;
+        platform.update(playing.getPlayer());
+      }
+    }
   }
 
   private void addEntity() {
@@ -57,7 +70,6 @@ public class PlatformManager extends Manager {
         Platform platform = (Platform) entity;
 
         if (platform.id == idPlatform) {
-          System.out.println("idPlatform: " + idPlatform + " platform.id: " + platform.id);
           platform.move();
         }
       }

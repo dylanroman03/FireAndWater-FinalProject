@@ -43,4 +43,19 @@ public abstract class Entity {
   public void update() {
   }
 
+	public float getY() {
+		return hitBox.y;
+	}
+
+	public float getX() {
+		return hitBox.x;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
 }
