@@ -54,7 +54,7 @@ public class Platform extends Entity {
 
   private boolean isPlayerOver(Player player) {
     return player.getX() + player.getWidth() > hitBox.x && player.getX() < hitBox.x + width
-        && player.getY() + player.getHeight() + 5 > hitBox.y;
+        && player.getY() + player.getHeight() + 5 > hitBox.y && player.getY() < hitBox.y + height;
   }
 
   public void move() {

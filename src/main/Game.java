@@ -13,14 +13,14 @@ public class Game implements Runnable {
 	private GamePanel gamePanel;
 	private boolean isGaming = true;
 
-	public static final int TILES_DEFAULT_SIZE = 11;
+	public static final int TILES_DEFAULT_SIZE = 10;
 	public static final float SCALE = 3f;
 	public static final int TILES_WIDTH = 29;
-	public static final int TILES_HEIGTH = 19;
+	public static final int TILES_HEIGTH = 24;
 	public static final int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public static final int GAME_WIDTH = TILES_SIZE * TILES_WIDTH;
 	public static final int GAME_HEIGHT = TILES_SIZE * TILES_HEIGTH;
-	public static final boolean DEBUGING = true;
+	public static final boolean DEBUGING = false;
 
 	private Playing playing;
 	private Menu menu;

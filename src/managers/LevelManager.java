@@ -1,10 +1,15 @@
 package managers;
 
+import static main.Game.GAME_HEIGHT;
+import static main.Game.GAME_WIDTH;
+import static utilities.Constants.PATH_BACKGROUND;
+import static utilities.Constants.PATH_BACKGROUND_TWO;
 import static utilities.Constants.PATH_FILE_LEVELS;
 import static utilities.Constants.PATH_FLOOR_LEVELS;
 import static utilities.Helpers.getImage;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -19,9 +24,12 @@ public class LevelManager {
   private Door[] doors = new Door[2];
   private String[] levels = {"01.txt", "02.txt"};
   private int currentlyLevel = 0;
+  private BufferedImage background;
+  private BufferedImage backgroundTwo;
 
   public LevelManager() {
-    getImage(PATH_FLOOR_LEVELS);
+    background = getImage(PATH_BACKGROUND);
+    backgroundTwo = getImage(PATH_BACKGROUND_TWO);
     lvlData = getLevelData();
     initDoors();
   }
@@ -61,10 +69,11 @@ public class LevelManager {
   public void render(Graphics g) {
     // for (int i = 0; i < lvlData.length; i++) {
     //   for (int j = 0; j < lvlData[0].length; j++) {
-    //     if (lvlData[i][j] == 8) {
-    //     }
     //   }
     // }
+    g.drawImage(background, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
+    g.drawImage(backgroundTwo, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
+    
     for (Door door : doors) {
       door.render(g);
     }
