@@ -47,7 +47,6 @@ public class Constants {
 		}
 	};
 
-	public static final String PATH_FLOOR_LEVELS = "res/floor.png";
 	public static final String PATH_FILE_LEVELS = "levels/";
 
 	public static final String PATH_BLUE_FIRE = "res/Fires/blue/loops/1_burning_loop_8.png";
@@ -60,6 +59,9 @@ public class Constants {
 	public static final String PATH_DOOR = "res/Doors_2.png";
 	public static final String PATH_LEVER = "res/Lever_2.png";
 	public static final String PATH_SWITCH = "res/Switch_4.png";
+	public static final String PATH_FLOOR = "res/floor.png";
+	public static final String PATH_BOX = "res/Box.png";
+
 	public static final String PATH_LEVEL_BUILD = "res/Mainlev_Build.png";
 	public static final String PATH_BACKGROUND = "res/background1.png";
 	public static final String PATH_BACKGROUND_TWO = "res/background4b.png";

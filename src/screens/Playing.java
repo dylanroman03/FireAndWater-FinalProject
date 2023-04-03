@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import entities.Player;
 import main.Game;
 import main.GamePanel;
+import managers.BoxManager;
 import managers.CrystalManager;
 import managers.FireManager;
 import managers.FloorManager;
@@ -27,6 +28,7 @@ public class Playing {
   private SwitchManager switchManager;
   private PlatformManager platformManager;
   private FloorManager floorManager;
+  private BoxManager boxManager;
 
   private Game game;
   private GamePanel gamePanel;
@@ -51,6 +53,7 @@ public class Playing {
 
     floorManager = new FloorManager(levelManager);
     platformManager = new PlatformManager(levelManager, this);
+    boxManager = new BoxManager(levelManager, floorManager);
 
     leverManager = new LeverManager(levelManager, platformManager);
     switchManager = new SwitchManager(levelManager, platformManager);
@@ -63,12 +66,13 @@ public class Playing {
 
     levelManager.render(g);
 
+    platformManager.render(g);
+    switchManager.render(g);
+    boxManager.render(g);
+
     fireManager.render(g);
     crystalManager.render(g);
     leverManager.render(g);
-
-    platformManager.render(g);
-    switchManager.render(g);
 
     player.render(g);
     floorManager.render(g);
@@ -79,6 +83,7 @@ public class Playing {
 
     switchManager.update();
     platformManager.update();
+    boxManager.update();
 
     player.update();
   }
@@ -126,5 +131,9 @@ public class Playing {
 
   public FloorManager getFloorManager() {
     return floorManager;
+  }
+
+  public BoxManager getBoxManager() {
+    return boxManager;
   }
 }

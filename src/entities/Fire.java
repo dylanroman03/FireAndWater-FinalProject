@@ -10,7 +10,7 @@ public class Fire extends Entity {
 
   public Fire(float x, float y, int type, BufferedImage[] animations) {
     super(x, y, TILES_SIZE, TILES_SIZE);
-    this.animations = animations;
+    this.sprites = animations;
     initHitBox(x, y, TILES_SIZE, TILES_SIZE);
   }
 

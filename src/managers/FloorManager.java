@@ -1,7 +1,7 @@
 package managers;
 
 import static main.Game.TILES_SIZE;
-import static utilities.Constants.PATH_FLOOR_LEVELS;
+import static utilities.Constants.PATH_FLOOR;
 import static utilities.Constants.PATH_LEVEL_BUILD;
 import static utilities.Helpers.getImage;
 
@@ -23,7 +23,7 @@ public class FloorManager extends Manager {
   public FloorManager(LevelManager levelManager) {
     super(1);
     this.lvlData = levelManager.getLvlData();
-    sandImg = getImage(PATH_FLOOR_LEVELS);
+    sandImg = getImage(PATH_FLOOR);
     cornerLOneImg = getImage(PATH_LEVEL_BUILD).getSubimage(16, 240, 30, 37);
     cornerLTwoImg = getImage(PATH_LEVEL_BUILD).getSubimage(46, 240, 15, 37);
 

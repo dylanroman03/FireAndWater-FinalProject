@@ -8,6 +8,10 @@ import utilities.Constants.Heroes;
 public class Manager {
   protected Entity[][] entities;
 
+  public Entity[][] getEntities() {
+    return entities;
+  }
+
   public Manager() {
     entities = new Entity[1][];
   }

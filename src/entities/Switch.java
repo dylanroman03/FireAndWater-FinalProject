@@ -13,7 +13,7 @@ public class Switch extends Entity {
   public Switch(float x, float y, int width, int height, int idPlatform, BufferedImage[] animations) {
     super(x, y, width, height);
     this.idPlatform = idPlatform;
-    this.animations = animations;
+    this.sprites = animations;
     aniIndex = 1;
     initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
   }
@@ -23,7 +23,7 @@ public class Switch extends Entity {
     aniTick++;
     if (aniTick >= aniSpeed) {
       aniTick = 0;
-      if (isOn && aniIndex < animations.length - 1) {
+      if (isOn && aniIndex < sprites.length - 1) {
         aniIndex++;
       } else if (!isOn && aniIndex > 0) {
         aniIndex--;

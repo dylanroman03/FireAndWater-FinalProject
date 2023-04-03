@@ -16,7 +16,7 @@ public class PlatformManager extends Manager {
   private Playing playing;
 
   public PlatformManager(LevelManager levelManager, Playing playing) {
-    super(1);
+    super();
     this.lvlData = levelManager.getLvlData();
     this.playing = playing;
     BufferedImage buildImg = getImage(PATH_LEVEL_BUILD);
@@ -53,7 +53,6 @@ public class PlatformManager extends Manager {
           String numStr = Integer.toString(lvlData[i][j]);
           int id = Character.getNumericValue(numStr.charAt(1));
           int status = Character.getNumericValue(numStr.charAt(2));
-          System.out.println("id: " + id + " status: " + status);
 
           platformArray[e] = new Platform((TILES_SIZE * j), (TILES_SIZE * i), platformImage, id, status);
           e++;

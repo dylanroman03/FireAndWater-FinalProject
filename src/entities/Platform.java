@@ -12,8 +12,8 @@ public class Platform extends Entity {
 
   public Platform(float x, float y, BufferedImage image, int id, int status) {
     super(x, y, TILES_SIZE * 2, (int) (TILES_SIZE / 3));
-    animations = new BufferedImage[1];
-    animations[0] = image;
+    sprites = new BufferedImage[1];
+    sprites[0] = image;
     yInit = status == 0 ? y : y + 100;
     climbing= status == 0 ? false : true;
     initHitBox(x, y, width, height);

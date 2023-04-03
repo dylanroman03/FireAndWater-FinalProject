@@ -12,7 +12,7 @@ public class Lever extends Entity {
   public Lever(float x, float y, int width, int height, BufferedImage[] animations, int idPlatform, int isOn) {
     super(x, y, width, height);
     this.idPlatform = idPlatform;
-    this.animations = animations;
+    this.sprites = animations;
     this.isOn = isOn == 0 ? false : true;
     this.aniIndex = isOn == 0 ? 1 : 0;
     initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);

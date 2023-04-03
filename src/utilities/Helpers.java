@@ -128,6 +128,10 @@ public class Helpers {
       }
     }
 
+    if (playing.getBoxManager().someIntersect(playing.getPlayer().getHero(), playing.getPlayer())) {
+      return true;  
+    }
+
     return false;
   }
 

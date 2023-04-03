@@ -13,7 +13,7 @@ public class Door extends Entity {
     super(x, y, TILES_SIZE, TILES_SIZE);
 
     initHitBox(x, y, TILES_SIZE, TILES_SIZE);
-    animations = getAnimationsX(PATH_DOOR);
+    sprites = getAnimationsX(PATH_DOOR);
   }
 
   public void setAniTick(int aniTick) {

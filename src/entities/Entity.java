@@ -14,7 +14,7 @@ public abstract class Entity {
 	protected int width;
 	protected int height;
 	protected Rectangle2D.Float hitBox;
-	protected BufferedImage[] animations;
+	protected BufferedImage[] sprites;
 	protected int aniIndex = 0;
 
 	public Entity(float x, float y, int width, int height) {
@@ -38,12 +38,8 @@ public abstract class Entity {
 		return hitBox.intersects(entity.getHitBox());
 	}
 
-	public Rectangle2D.Float getHitBox() {
-		return hitBox;
-	}
-
 	public void render(Graphics g) {
-    g.drawImage(animations[aniIndex], (int) (hitBox.x), (int) (hitBox.y), width, height, null);
+    g.drawImage(sprites[aniIndex], (int) (hitBox.x), (int) (hitBox.y), width, height, null);
 
     if (Game.DEBUGING) {
       showHitBox(g);
@@ -52,6 +48,10 @@ public abstract class Entity {
 
   public void update() {
   }
+
+	public Rectangle2D.Float getHitBox() {
+		return hitBox;
+	}
 
 	public float getY() {
 		return hitBox.y;
