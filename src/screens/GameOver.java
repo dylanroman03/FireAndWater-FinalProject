@@ -3,13 +3,10 @@ package screens;
 import static main.Game.GAME_HEIGHT;
 import static main.Game.GAME_WIDTH;
 import static main.Game.TILES_SIZE;
-import static utilities.Constants.PATH_BUTTONS;
-import static utilities.Helpers.getAnimationsY;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
 
@@ -23,11 +20,9 @@ public class GameOver extends Dialog {
   private Button retryButton;
   private Button menuButton;
   private boolean flag = true;
-  private BufferedImage[] buttons;
 
   public GameOver(Game game) {
     super(game);
-    buttons = getAnimationsY(PATH_BUTTONS);
     initButtons();
   }
 

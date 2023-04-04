@@ -289,4 +289,8 @@ public class Player extends Entity {
 	public Heroes getHero() {
 		return hero;
 	}
+
+  public String getName() {
+    return name;
+  }
 }

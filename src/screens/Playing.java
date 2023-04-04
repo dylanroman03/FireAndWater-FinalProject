@@ -45,7 +45,7 @@ public class Playing {
   private boolean isGamePaused = false;
 
   private GameOver gameOver;
-  private GameWon gameWon;
+  private Summary gameWon;
 
   private int time;
   private Timer timer = new Timer();
@@ -164,7 +164,7 @@ public class Playing {
 
   public void gameWon() {
     timer.cancel();
-    gameWon = new GameWon(game);
+    gameWon = new Summary(game);
     isGameWon = true;
   }
 
@@ -218,5 +218,9 @@ public class Playing {
 
   public boolean isPlaying() {
     return isPlaying;
+  }
+
+  public void setPlayer(Player player) {
+    this.player = player;
   }
 }

@@ -1,33 +1,42 @@
 package screens;
 
-import static utilities.Helpers.resetPanel;
+import static main.Game.GAME_HEIGHT;
+import static main.Game.GAME_WIDTH;
+import static main.Game.TILES_SIZE;
 
 import java.awt.Graphics;
 
+import gui.Button;
 import gui.Dialog;
 import main.Game;
 import main.GamePanel;
 import utilities.Constants.States;
 
-public class GameWon extends Dialog {
-  private GamePanel gamePanel;
-
-  public GameWon(Game game) {
+public class Summary extends Dialog {
+  private Button nextButton;
+  private boolean flag = true;
+  
+  public Summary(Game game) {
     super(game);
-    this.game = game;
-    // dialog = getImage(PATH_DIALOG);
+    initButtons();
   }
 
-  // public void render(Graphics g, GamePanel gamePanel) {
-  // this.gamePanel = gamePanel;
-  // g.drawImage(dialog, (GAME_WIDTH - (TILES_SIZE * 8)) / 2, (GAME_HEIGHT -
-  // (TILES_SIZE * 8)) / 2, TILES_SIZE * 8,
-  // TILES_SIZE * 8, null);
-  // }
+  private void initButtons() {
+    nextButton = new Button((TILES_SIZE * 7), (GAME_HEIGHT / 2), "Continuar");
+    nextButton.addActionListener(e -> {
+      nextLevel();
+    });
+  }
 
   public void render(Graphics g, GamePanel gamePanel) {
     super.render(g, gamePanel);
-    this.gamePanel = gamePanel;
+    if (flag) {
+      gamePanel.add(nextButton);
+
+      nextButton.setBounds(GAME_WIDTH / 2, GAME_HEIGHT / 4, TILES_SIZE * 6, 100);
+      gamePanel.revalidate();
+      flag = false;
+    }
   }
 
   private void nextLevel() {
@@ -35,18 +44,16 @@ public class GameWon extends Dialog {
     int getLevels = playing.getLevelManager().getLevels().length;
     int currentlyLvl = game.getPlaying().getLevelManager().getCurrentlyLevel();
 
-    System.out.println("Nivel Actual: " + currentlyLvl + " de " + getLevels);
-
     if (currentlyLvl + 1 == getLevels) {
       System.out.println("Se Acabo el juego");
     } else {
+      playing.getPlayer();
+
       Playing newPlaying = new Playing(game, currentlyLvl + 1);
+      newPlaying.setPlayer(playing.getPlayer());
 
       game.setPlaying(newPlaying);
-      System.out.println("Siguiente Nivel: " + game.getPlaying().getLevelManager().getCurrentlyLevel());
-
       game.setState(States.PLAYING);
-      resetPanel(gamePanel);
     }
   }
 

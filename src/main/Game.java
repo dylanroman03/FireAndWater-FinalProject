@@ -27,7 +27,7 @@ public class Game implements Runnable {
 	private MainMenu menu;
 	private Characters characters;
 
-	private States state = States.MENU;
+	private States state = States.CHARACTERS;
 
 	public Game() {
 		playing = new Playing(this);
@@ -142,7 +142,7 @@ public class Game implements Runnable {
 		resetPanel(gamePanel);
 
 		if (state == States.PLAYING) {
-			playing.startPlaying(playing.getPlayer().getHero(), "Player");
+			playing.startPlaying(playing.getPlayer().getHero(), playing.getPlayer().getName());
 		}
 
 		this.state = state;
