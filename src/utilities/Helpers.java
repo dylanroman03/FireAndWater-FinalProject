@@ -5,7 +5,6 @@ import static main.Game.GAME_WIDTH;
 import static main.Game.TILES_SIZE;
 
 import java.awt.Image;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,7 +13,6 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import entities.Entity;
 import main.GamePanel;
 import screens.Playing;
 
@@ -75,33 +73,6 @@ public class Helpers {
     } else if (!isSolid(x, y, playing) && (!isSolid(x + width, y + height, playing))
         && (!isSolid(x + width, y, playing)) && (!isSolid(x, y + height, playing))) {
       return true;
-      // } else {
-      // switch (playing.getPlayer().getPlayerAction()) {
-      // case RUNNING_LEFT:
-      // if (!isSolid(x, y, playing))
-      // if (!isSolid(x, y + height, playing))
-      // return true;
-      // break;
-      // case RUNNING_RIGHT:
-      // if (!isSolid(x + width, y, playing))
-      // if (!isSolid(x + width, y + height, playing))
-      // return true;
-      // break;
-      // case JUMP:
-      // if (!isSolid(x, y, playing))
-      // if (!isSolid(x + width, y, playing))
-      // return true;
-      // break;
-      // case DOWN:
-      // if (!isSolid(x, y + height, playing))
-      // if (!isSolid(x + width, y + height, playing))
-      // return true;
-      // break;
-      // default:
-      // if (!isSolid(x, y + height, playing))
-      // if (!isSolid(x + width, y + height, playing))
-      // return false;
-      // }
     }
 
     return false;
@@ -122,10 +93,8 @@ public class Helpers {
       return true;
     }
 
-    for (Entity platform : playing.getPlatformManager().getPlatforms()) {
-      if (platform.getHitBox().intersects(new Rectangle2D.Float(x, y, 1, 1))) {
-        return true;
-      }
+    if (playing.getPlatformManager().someIntersect(playing.getPlayer().getHero(), playing.getPlayer())) {
+      return true;
     }
 
     if (playing.getBoxManager().someIntersect(playing.getPlayer().getHero(), playing.getPlayer())) {

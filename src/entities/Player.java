@@ -32,30 +32,22 @@ public class Player extends Entity {
 	private boolean gameWon = false;
 	private float runningSpeed = 1.2f;
 	private Heroes hero = Heroes.PINK_MONSTER;
+	private String name;
 
-	public Heroes getHero() {
-		return hero;
-	}
+	private Playing playing;
 
 	public enum View {
 		LEFT,
 		RIGHT,
 	}
 
-	private Playing playing;
-
 	// Gravity
 	private float airSpeed = 0f;
-
-	public float getAirSpeed() {
-		return airSpeed;
-	}
-
 	private float gravity = 0.02f * Game.SCALE;
 	private float jumpingSpeed = -1.2f * Game.SCALE;
 	private float fallSpeed = 0.7f * Game.SCALE;
 	private boolean inAir = false;
-	public 	float xSpeed = 0;
+	public float xSpeed = 0;
 
 	public Player(float x, float y, int width, int height, Playing playing) {
 		super(x, y, width, height);
@@ -96,6 +88,7 @@ public class Player extends Entity {
 			if (aniIndex >= animations[playerAction.ordinal()].length) {
 				if (death) {
 					stopAnimation = true;
+					playing.gameOver();
 					aniIndex--;
 				} else {
 					aniIndex = 0;
@@ -172,9 +165,9 @@ public class Player extends Entity {
 			death = true;
 			moving = false;
 		}
-		
+
 		if (playing.getLevelManager().intersectDoor(hero, this)) {
-    	playing.nextLevel();
+			playing.gameWon();
 			gameWon = true;
 			stopAnimation = true;
 		}
@@ -230,6 +223,14 @@ public class Player extends Entity {
 		}
 	}
 
+	public void resetDirection() {
+		left = false;
+		right = false;
+		fall = false;
+		jump = false;
+		moving = false;
+	}
+
 	public boolean isLeft() {
 		return left;
 	}
@@ -264,12 +265,8 @@ public class Player extends Entity {
 		this.fall = fall;
 	}
 
-	public void resetDirection() {
-		left = false;
-		right = false;
-		fall = false;
-		jump = false;
-		moving = false;
+	public float getAirSpeed() {
+		return airSpeed;
 	}
 
 	public void setHero(Heroes hero) {
@@ -277,11 +274,19 @@ public class Player extends Entity {
 		loadAnimations();
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public PlayerActions getPlayerAction() {
 		return playerAction;
 	}
 
-  public void setY(float f) {
+	public void setY(float f) {
 		hitBox.y = f;
-  }
+	}
+
+	public Heroes getHero() {
+		return hero;
+	}
 }

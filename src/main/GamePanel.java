@@ -2,7 +2,12 @@ package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -17,6 +22,18 @@ public class GamePanel extends JPanel {
 		MouseInputs mouseInputs;
 		mouseInputs = new MouseInputs(this);
 		this.game = game;
+
+		try {
+      // create the font to use. Specify the size!
+      Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/MinimalPixelFont.ttf")).deriveFont(12f);
+      GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+      // register the font
+      ge.registerFont(customFont);
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (FontFormatException e) {
+      e.printStackTrace();
+    }
 
 		setPanelSize();
 		addKeyListener(new KeyboardInputs(this));

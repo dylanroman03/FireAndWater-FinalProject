@@ -2,6 +2,7 @@ package entities;
 
 import static main.Game.TILES_SIZE;
 
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Platform extends Entity {
@@ -15,18 +16,17 @@ public class Platform extends Entity {
     sprites = new BufferedImage[1];
     sprites[0] = image;
     yInit = status == 0 ? y : y + 100;
-    climbing= status == 0 ? false : true;
+    climbing = status == 0 ? false : true;
     initHitBox(x, y, width, height);
 
     this.id = id;
     System.out.println(id);
   }
 
-
   public void update(Player player) {
     if (climbing) {
       if (yInit - 100 < hitBox.y) {
-        if(isPlayerOver(player)) {
+        if (isPlayerOver(player)) {
           player.setY(player.getY() - 0.5f);
         }
         hitBox.y -= 0.5;
@@ -54,6 +54,18 @@ public class Platform extends Entity {
       climbing = true;
       dropping = false;
     }
+  }
+
+  @Override
+  public boolean intersect(Entity entity) {
+    // Cast entity to Player
+    Player player = (Player) entity;
+    Rectangle2D.Float entityHB;
+
+    entityHB = new Rectangle2D.Float(player.getX() + player.xSpeed, player.getY() + player.getAirSpeed(),
+        player.width, player.height);
+
+    return hitBox.intersects(entityHB);
   }
 
 }

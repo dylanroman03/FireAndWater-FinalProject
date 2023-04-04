@@ -23,7 +23,7 @@ public class Constants {
 	}
 
 	public enum States {
-		MENU, CHARACTERS, PLAYING, CREDITS, GAME_WON
+		MENU, CHARACTERS, PLAYING, CREDITS
 	}
 
 	public static final String[][] PATH_CHARACTERS_LIST = {
@@ -68,5 +68,10 @@ public class Constants {
 
 	public static final String PATH_DIALOG = "res/Gui/Dialog.png";
 	public static final String PATH_PLAY_BTN = "res/Gui/Buttons_2.png";
+	public static final String PATH_BUTTONS = "res/Gui/Buttons_3.png";
 	public static final String PATH_LINE = "res/Gui/Line.png";
+
+	public static String GetTimePath (int time) {
+		return "res/Numbers/" + time + ".png";
+	}
 }

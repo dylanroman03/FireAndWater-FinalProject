@@ -1,10 +1,11 @@
 package main;
 
+import static utilities.Helpers.resetPanel;
+
 import java.awt.Graphics;
 
 import screens.Characters;
-import screens.GameWon;
-import screens.Menu;
+import screens.MainMenu;
 import screens.Playing;
 import utilities.Constants.Heroes;
 import utilities.Constants.States;
@@ -23,17 +24,15 @@ public class Game implements Runnable {
 	public static final boolean DEBUGING = false;
 
 	private Playing playing;
-	private Menu menu;
+	private MainMenu menu;
 	private Characters characters;
-	private GameWon gameWon;
 
-	private States state = States.PLAYING;
+	private States state = States.MENU;
 
 	public Game() {
 		playing = new Playing(this);
-		menu = new Menu(this);
+		menu = new MainMenu(this);
 		characters = new Characters(this);
-		gameWon = new GameWon(this);
 
 		gamePanel = new GamePanel(this);
 		new GameWindow(gamePanel);
@@ -52,6 +51,9 @@ public class Game implements Runnable {
 	public void render(Graphics g) {
 		switch (state) {
 			case PLAYING:
+			 	// if (!playing.isPlaying()) {
+				// 	playing.startPlaying();
+				// }
 				playing.render(g, gamePanel);
 				break;
 			case MENU:
@@ -62,9 +64,6 @@ public class Game implements Runnable {
 			case CHARACTERS:
 				characters.render(g, gamePanel);
 				break;
-			case GAME_WON:
-			 	gameWon.render(g, gamePanel);
-				break;
 			default:
 				break;
 		}
@@ -74,9 +73,6 @@ public class Game implements Runnable {
 		switch (state) {
 			case PLAYING:
 				playing.update();
-				break;
-			case MENU:
-				menu.update();
 				break;
 			case CREDITS:
 				characters.update();
@@ -143,7 +139,14 @@ public class Game implements Runnable {
 	}
 
 	public void setState(States state) {
+		resetPanel(gamePanel);
+
+		if (state == States.PLAYING) {
+			playing.startPlaying(playing.getPlayer().getHero(), "Player");
+		}
+
 		this.state = state;
+		System.out.println("State: " + state);
 	}
 
 
@@ -159,7 +162,9 @@ public class Game implements Runnable {
 		return characters;
 	}
 
-	public void setHero(Heroes selectedHero) {
-		playing.getPlayer().setHero(selectedHero);
+	public void setPlayer(Heroes selectedHero, String name) {
+		resetPanel(gamePanel);
+		playing.startPlaying(selectedHero, name);
+		this.state = States.PLAYING;
 	}
 }

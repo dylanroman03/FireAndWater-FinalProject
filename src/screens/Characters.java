@@ -9,7 +9,6 @@ import static utilities.Constants.PATH_PLAY_BTN;
 import static utilities.Helpers.getAnimationsX;
 import static utilities.Helpers.getAnimationsY;
 import static utilities.Helpers.getImage;
-import static utilities.Helpers.resetPanel;
 import static utilities.Helpers.resizeImage;
 
 import java.awt.Graphics;
@@ -27,7 +26,6 @@ import gui.Button;
 import main.Game;
 import main.GamePanel;
 import utilities.Constants.Heroes;
-import utilities.Constants.States;
 
 public class Characters {
   private BufferedImage[][] characters = new BufferedImage[2][];
@@ -95,14 +93,13 @@ public class Characters {
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         goPlaying();
+        flag = true;
       }
     });
   }
 
   protected void goPlaying() {
-    game.setHero(selectedHero);
-    game.setState(States.PLAYING);
-    resetPanel(gamePanel);
+    game.setPlayer(selectedHero, input.getText());
   }
 
   private void loadImages() {

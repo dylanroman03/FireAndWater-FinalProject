@@ -20,7 +20,7 @@ import main.Game;
 import main.GamePanel;
 import utilities.Constants.States;
 
-public class Menu {
+public class MainMenu {
   private BufferedImage dialog;
   private BufferedImage[] playBtnImg;
   private Button playButton;
@@ -28,7 +28,7 @@ public class Menu {
   private Game game;
   private GamePanel gamePanel;
 
-  public Menu(Game game) {
+  public MainMenu(Game game) {
     this.game = game;
     dialog = getImage(PATH_DIALOG);
     playBtnImg = getAnimationsY(PATH_PLAY_BTN);
@@ -42,6 +42,7 @@ public class Menu {
     playButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         goCharacters();
+        flag = true;
       }
     });
   }
@@ -56,6 +57,7 @@ public class Menu {
     this.gamePanel = gamePanel;
     g.drawImage(dialog, (GAME_WIDTH - (TILES_SIZE * 8)) / 2, (GAME_HEIGHT - (TILES_SIZE * 8)) / 2, TILES_SIZE * 8,
         TILES_SIZE * 8, null);
+    System.out.println(flag);
 
     if (flag) {
       gamePanel.add(playButton);
@@ -63,8 +65,5 @@ public class Menu {
       gamePanel.revalidate();
       flag = false;
     }
-  }
-
-  public void update() {
   }
 }
