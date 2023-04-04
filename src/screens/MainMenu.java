@@ -57,7 +57,6 @@ public class MainMenu {
     this.gamePanel = gamePanel;
     g.drawImage(dialog, (GAME_WIDTH - (TILES_SIZE * 8)) / 2, (GAME_HEIGHT - (TILES_SIZE * 8)) / 2, TILES_SIZE * 8,
         TILES_SIZE * 8, null);
-    System.out.println(flag);
 
     if (flag) {
       gamePanel.add(playButton);
