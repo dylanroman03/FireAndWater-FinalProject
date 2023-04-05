@@ -1,5 +1,6 @@
 package entities;
 
+import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_CHARACTERS_LIST;
 import static utilities.Helpers.canMove;
 import static utilities.Helpers.getAnimationsX;
@@ -49,8 +50,10 @@ public class Player extends Entity {
 	private boolean inAir = false;
 	public float xSpeed = 0;
 
-	public Player(float x, float y, int width, int height, Playing playing) {
-		super(x, y, width, height);
+	public Player(float x, float y, Playing playing) {
+		// (TILES_SIZE), (TILES_SIZE), 
+
+		super(x, y, (int) (TILES_SIZE * 0.6), (int) (TILES_SIZE * 0.8));
 		this.playing = playing;
 		loadAnimations();
 		initHitBox(x, y, width, height);
@@ -66,8 +69,9 @@ public class Player extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(animations[playerAction.ordinal()][(int) aniIndex], (int) (hitBox.x), (int) (hitBox.y),
-				width, height, null);
+		g.drawImage(animations[playerAction.ordinal()][(int) aniIndex], 
+				(int) (hitBox.x - (width * 0.3)), (int) (hitBox.y - (height * 0.3)),
+				TILES_SIZE, TILES_SIZE, null);
 
 		if (Game.DEBUGING) {
 			showHitBox(g);

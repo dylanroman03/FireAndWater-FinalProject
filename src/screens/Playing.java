@@ -71,7 +71,7 @@ public class Playing {
     leverManager = new LeverManager(levelManager, platformManager);
     switchManager = new SwitchManager(levelManager, platformManager);
 
-    player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), (TILES_SIZE), (TILES_SIZE), this);
+    player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), this);
   }
 
   public void startPlaying(Heroes hero, String name) {
