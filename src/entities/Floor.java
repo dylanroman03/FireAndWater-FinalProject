@@ -1,6 +1,6 @@
 package entities;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import main.Game;
@@ -24,12 +24,12 @@ public class Floor extends Entity {
   // }
 
   @Override
-  public void render(Graphics g) {
+  public void render(Graphics2D g) {
     g.drawImage(backImage, (int) getHitBox().x, (int) getHitBox().y, Game.TILES_SIZE, Game.TILES_SIZE, null);
     g.drawImage(image, (int) getHitBox().x, (int) getHitBox().y, Game.TILES_SIZE, Game.TILES_SIZE, null);
 
     if (Game.DEBUGING) {
-      showHitBox(g);
+      showHitBox(g, null);
     }
   }
 }

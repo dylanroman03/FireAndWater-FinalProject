@@ -2,7 +2,7 @@ package entities;
 
 import static main.Game.TILES_SIZE;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Crystal extends Entity {
@@ -17,7 +17,7 @@ public class Crystal extends Entity {
   }
 
   @Override
-  public void render(Graphics g) {
+  public void render(Graphics2D g) {
     if (visible) {
       super.render(g);
     }

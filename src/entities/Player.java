@@ -6,7 +6,7 @@ import static utilities.Helpers.canMove;
 import static utilities.Helpers.getAnimationsX;
 import static utilities.Helpers.isSolid;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
@@ -46,13 +46,11 @@ public class Player extends Entity {
 	private float airSpeed = 0f;
 	private float gravity = 0.02f * Game.SCALE;
 	private float jumpingSpeed = -1.2f * Game.SCALE;
-	private float fallSpeed = 0.7f * Game.SCALE;
+	private float fallSpeed = 0.3f * Game.SCALE; // Originalmente 0.7f
 	private boolean inAir = false;
 	public float xSpeed = 0;
 
 	public Player(float x, float y, Playing playing) {
-		// (TILES_SIZE), (TILES_SIZE), 
-
 		super(x, y, (int) (TILES_SIZE * 0.6), (int) (TILES_SIZE * 0.8));
 		this.playing = playing;
 		loadAnimations();
@@ -68,13 +66,13 @@ public class Player extends Entity {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		g.drawImage(animations[playerAction.ordinal()][(int) aniIndex], 
 				(int) (hitBox.x - (width * 0.3)), (int) (hitBox.y - (height * 0.3)),
 				TILES_SIZE, TILES_SIZE, null);
 
 		if (Game.DEBUGING) {
-			showHitBox(g);
+			showHitBox(g, null);
 		}
 	}
 

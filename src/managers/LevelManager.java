@@ -8,7 +8,7 @@ import static utilities.Constants.PATH_FILE_LEVELS;
 import static utilities.Constants.PATH_FLOOR;
 import static utilities.Helpers.getImage;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -68,7 +68,7 @@ public class LevelManager {
     return matrix;
   }
 
-  public void render(Graphics g) {
+  public void render(Graphics2D g) {
     g.drawImage(background, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
     g.drawImage(backgroundTwo, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
     

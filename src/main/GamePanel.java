@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +55,9 @@ public class GamePanel extends JPanel {
 		super.paintComponent(g);
 
 		g.setColor(Color.white);
-		game.render(g);
+
+		Graphics2D g2 = (Graphics2D) g;
+		game.render(g2);
 	}
 
 	public Game getGame() {

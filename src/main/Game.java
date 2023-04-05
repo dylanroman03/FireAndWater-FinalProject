@@ -2,7 +2,7 @@ package main;
 
 import static utilities.Helpers.resetPanel;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import screens.Characters;
 import screens.MainMenu;
@@ -48,7 +48,7 @@ public class Game implements Runnable {
 		gameThread.start();
 	}
 
-	public void render(Graphics g) {
+	public void render(Graphics2D g) {
 		switch (state) {
 			case PLAYING:
 			 	// if (!playing.isPlaying()) {

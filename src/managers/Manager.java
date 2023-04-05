@@ -1,6 +1,6 @@
 package managers;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import entities.Entity;
 import utilities.Constants.Heroes;
@@ -20,7 +20,7 @@ public class Manager {
     entities = new Entity[length][];
   }
 
-  public void render(Graphics g) {
+  public void render(Graphics2D g) {
     for (Entity[] entityArray : entities) {
       for (Entity entity : entityArray) {
         entity.render(g);

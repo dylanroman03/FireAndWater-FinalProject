@@ -8,6 +8,7 @@ import static utilities.Helpers.getImage;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -97,7 +98,7 @@ public class Playing {
     isGameWon = false;
   }
 
-  public void render(Graphics g, GamePanel gamePanel) {
+  public void render(Graphics2D g, GamePanel gamePanel) {
     this.gamePanel = gamePanel;
 
     if (isPlaying) {

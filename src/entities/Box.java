@@ -13,6 +13,8 @@ public class Box extends Entity {
     super(x, y, TILES_SIZE, TILES_SIZE);
     this.sprites = sprite;
     initHitBox(x, y, width, height);
+    angle = 45;
+    rotateRectangle();
   }
 
   @Override
@@ -23,12 +25,13 @@ public class Box extends Entity {
 
     switch (player.getPlayerAction()) {
       case RUNNING_LEFT:
-        if (hitBox.intersects(player.hitBox.x + player.xSpeed, player.hitBox.y, 1, 1)) {
+        if (hitBox.intersects(player.hitBox.getX() + player.xSpeed, player.hitBox.getY(), 1, 1)) {
           moveLeft();
         }
         break;
       case RUNNING_RIGHT:
-        if (hitBox.intersects(player.hitBox.x + player.hitBox.width + player.xSpeed, player.hitBox.y, 1, hitBox.height)) {
+        if (hitBox.intersects(player.hitBox.getX() + player.hitBox.getWidth() + player.xSpeed, player.hitBox.getY(), 1,
+            hitBox.getHeight())) {
           moveRight();
         }
         break;
@@ -54,14 +57,14 @@ public class Box extends Entity {
     boolean some = false;
     for (Entity[] entities : floorManager.getEntities()) {
       for (Entity floor : entities) {
-        if(hitBox.intersects(floor.getX(), floor.getY() - 1, floor.width, 1)) {
+        if (hitBox.intersects(floor.getX(), floor.getY() - 1, floor.width, 1)) {
           some = true;
         }
       }
     }
 
     if (!some) {
-     hitBox.y += 1; 
+      // hitBox.y += 1;
     }
   }
 }
