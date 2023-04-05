@@ -65,7 +65,7 @@ public class SwitchManager extends Manager {
             public void run() {
               platformManager.movePlatform(switchEntity.getIdPlatform());
             }
-          }, 3 * 1000);
+          }, 4 * 1000);
 
           timer.schedule(new TimerTask() {
             @Override
@@ -73,7 +73,7 @@ public class SwitchManager extends Manager {
               switchEntity.turnOff();
               platformManager.movePlatform(switchEntity.getIdPlatform());
             }
-          }, 6 * 1000);
+          }, 8 * 1000);
 
           return true;
         }

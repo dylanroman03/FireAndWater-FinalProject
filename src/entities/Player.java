@@ -286,6 +286,10 @@ public class Player extends Entity {
 		hitBox.y = f;
 	}
 
+  public void setX(float f) {
+		hitBox.x = f;
+  }
+
 	public Heroes getHero() {
 		return hero;
 	}

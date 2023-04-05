@@ -40,7 +40,7 @@ public class PlatformManager extends Manager {
 
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] > 100 && lvlData[i][j] < 200)
+        if (lvlData[i][j] > 1000 && lvlData[i][j] < 3000)
           length++;
       }
     }
@@ -49,12 +49,14 @@ public class PlatformManager extends Manager {
 
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[0].length; j++) {
-        if (lvlData[i][j] > 100 && lvlData[i][j] < 200) {
+        if (lvlData[i][j] > 1000  && lvlData[i][j] < 3000) {
           String numStr = Integer.toString(lvlData[i][j]);
+          int direction = Character.getNumericValue(numStr.charAt(0));
           int id = Character.getNumericValue(numStr.charAt(1));
           int status = Character.getNumericValue(numStr.charAt(2));
+          int height = Character.getNumericValue(numStr.charAt(3));
 
-          platformArray[e] = new Platform((TILES_SIZE * j), (TILES_SIZE * i), platformImage, id, status);
+          platformArray[e] = new Platform((TILES_SIZE * j), (TILES_SIZE * i), platformImage, id, status, direction, height);
           e++;
         }
       }

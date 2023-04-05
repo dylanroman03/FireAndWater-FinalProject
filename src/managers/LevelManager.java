@@ -35,6 +35,8 @@ public class LevelManager {
   }
 
   public LevelManager(int level) {
+    background = getImage(PATH_BACKGROUND);
+    backgroundTwo = getImage(PATH_BACKGROUND_TWO);
     currentlyLevel = level;
     getImage(PATH_FLOOR);
     lvlData = getLevelData();

@@ -13,7 +13,7 @@ import utilities.Constants.Heroes;
 public class LeverManager extends Manager {
   private int[][] lvlData;
   private PlatformManager platformManager;
-  private BufferedImage[] leverImages =  new BufferedImage[2];
+  private BufferedImage[] leverImages = new BufferedImage[2];
 
   public LeverManager(LevelManager levelManager, PlatformManager platforManager) {
     super();
@@ -29,28 +29,29 @@ public class LeverManager extends Manager {
 
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] > 700 && lvlData[i][j] < 800) length++;
+        if (lvlData[i][j] > 700 && lvlData[i][j] < 800)
+          length++;
       }
     }
 
     Lever[] leverArray = new Lever[length];
 
     for (int i = 0; i < lvlData.length; i++) {
-     for (int j = 0; j < lvlData[0].length; j++) {
-       if (lvlData[i][j] > 700 && lvlData[i][j] < 800) {
+      for (int j = 0; j < lvlData[0].length; j++) {
+        if (lvlData[i][j] > 700 && lvlData[i][j] < 800) {
           String numStr = Integer.toString(lvlData[i][j]);
           int digit = Character.getNumericValue(numStr.charAt(1));
           int isOn = Character.getNumericValue(numStr.charAt(2));
-          System.out.println("digit: " + digit);
 
-          leverArray[e] = new Lever((TILES_SIZE * j), (TILES_SIZE * i), TILES_SIZE, TILES_SIZE, leverImages, digit,isOn);
+          leverArray[e] = new Lever((TILES_SIZE * j), (TILES_SIZE * i), TILES_SIZE, TILES_SIZE, leverImages, digit,
+              isOn);
           e++;
-       }
-     } 
+        }
+      }
     }
 
     entities[0] = leverArray;
-	}
+  }
 
   @Override
   public boolean someIntersect(Heroes hero, Entity player) {
@@ -66,5 +67,4 @@ public class LeverManager extends Manager {
     return false;
   }
 
-  
 }
