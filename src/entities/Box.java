@@ -2,7 +2,6 @@ package entities;
 
 import static main.Game.TILES_SIZE;
 
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import managers.FloorManager;
@@ -13,15 +12,12 @@ public class Box extends Entity {
     super(x, y, TILES_SIZE, TILES_SIZE);
     this.sprites = sprite;
     initHitBox(x, y, width, height);
-    angle = 45;
-    rotateRectangle();
   }
 
   @Override
   public boolean intersect(Entity entity) {
     // Cast entity to Player
     Player player = (Player) entity;
-    Rectangle2D.Float entityHB;
 
     switch (player.getPlayerAction()) {
       case RUNNING_LEFT:
@@ -39,10 +35,7 @@ public class Box extends Entity {
         break;
     }
 
-    entityHB = new Rectangle2D.Float(player.getX() + player.xSpeed, player.getY() + player.getAirSpeed(),
-        player.width, player.height);
-
-    return hitBox.intersects(entityHB);
+    return super.intersect(entity);
   }
 
   private void moveRight() {
@@ -64,7 +57,7 @@ public class Box extends Entity {
     }
 
     if (!some) {
-      // hitBox.y += 1;
+      hitBox.y += 1;
     }
   }
 }

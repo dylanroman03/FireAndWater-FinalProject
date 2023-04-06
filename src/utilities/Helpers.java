@@ -101,6 +101,11 @@ public class Helpers {
       return true;  
     }
 
+    // Checking if the player intersects with a swing
+    if (playing.getSwingManager().someIntersect(playing.getPlayer().getHero(), playing.getPlayer())) {
+      return true;
+    }
+
     return false;
   }
 

@@ -2,7 +2,6 @@ package entities;
 
 import static main.Game.TILES_SIZE;
 
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Platform extends Entity {
@@ -91,17 +90,4 @@ public class Platform extends Entity {
       dropping = false;
     }
   }
-
-  @Override
-  public boolean intersect(Entity entity) {
-    // Cast entity to Player
-    Player player = (Player) entity;
-    Rectangle2D.Float entityHB;
-
-    entityHB = new Rectangle2D.Float(player.getX() + player.xSpeed, player.getY() + player.getAirSpeed(),
-        player.width, player.height);
-
-    return hitBox.intersects(entityHB);
-  }
-
 }

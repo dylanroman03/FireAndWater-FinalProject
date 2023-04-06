@@ -18,7 +18,7 @@ public abstract class Entity {
 	protected Rectangle2D.Float hitBox;
 	protected BufferedImage[] sprites;
 	protected int aniIndex = 0;
-	protected int angle = 0;
+	protected double angle = 0;
 
 	public Entity(float x, float y, int width, int height) {
 		this.x = x;
@@ -38,7 +38,13 @@ public abstract class Entity {
 
 	// Intersect method for collision detection
 	public boolean intersect(Entity entity) {
-		return hitBox.intersects(entity.getHitBox());
+		Player player = (Player) entity;
+		Rectangle2D.Float entityHB;
+
+		entityHB = new Rectangle2D.Float(player.getX() + player.xSpeed, player.getY() + player.getAirSpeed(),
+				player.width, player.height);
+
+		return hitBox.intersects(entityHB);
 	}
 
 	public void render(Graphics2D g) {
@@ -72,31 +78,6 @@ public abstract class Entity {
 		g.setTransform(oldTransform);
 	}
 
-	public void rotateRectangle() {
-		// Guardar el tamaño original del hitBox
-		double oriWidth = hitBox.getWidth();
-		double oriHeight = hitBox.getHeight();
-
-		// Obtener las coordenadas del centro del hitBox original
-		float centerX = (float) hitBox.getCenterX();
-		float centerY = (float) hitBox.getCenterY();
-
-		// Crear una nueva instancia de AffineTransform para realizar la rotación
-		AffineTransform transform = new AffineTransform();
-		transform.rotate(Math.toRadians(angle), centerX, centerY);
-
-		// Aplicar la transformación al hitBox original y guardar el resultado en
-		// rotatedRectangle
-		Shape rotatedRect = transform.createTransformedShape(hitBox);
-
-		// Guardar el rectángulo rotado en el original
-		hitBox = new Rectangle2D.Float(
-				(float) rotatedRect.getBounds2D().getX(),
-				(float) rotatedRect.getBounds2D().getY(),
-				(float) oriWidth,
-				(float) oriHeight);
-	}
-
 	public void update() {
 	}
 
@@ -118,5 +99,13 @@ public abstract class Entity {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public double getAngle() {
+		return angle;
+	}
+
+	public void setAngle(double angle) {
+		this.angle = angle;
 	}
 }

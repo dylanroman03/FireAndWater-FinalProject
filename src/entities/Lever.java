@@ -56,7 +56,7 @@ public class Lever extends Entity {
         break;
     }
 
-    return false;
+    return super.intersect(entity);
   }
 
 }

@@ -23,6 +23,7 @@ import managers.FloorManager;
 import managers.LevelManager;
 import managers.LeverManager;
 import managers.PlatformManager;
+import managers.SwingManager;
 import managers.SwitchManager;
 import utilities.Constants.Heroes;
 
@@ -36,6 +37,11 @@ public class Playing {
   private PlatformManager platformManager;
   private FloorManager floorManager;
   private BoxManager boxManager;
+  private SwingManager swingManager;
+
+  public SwingManager getSwingManager() {
+    return swingManager;
+  }
 
   private Game game;
   private GamePanel gamePanel;
@@ -68,6 +74,7 @@ public class Playing {
     floorManager = new FloorManager(levelManager);
     platformManager = new PlatformManager(levelManager, this);
     boxManager = new BoxManager(levelManager, floorManager);
+    swingManager = new SwingManager(levelManager);
 
     leverManager = new LeverManager(levelManager, platformManager);
     switchManager = new SwitchManager(levelManager, platformManager);
@@ -107,6 +114,7 @@ public class Playing {
       platformManager.render(g);
       switchManager.render(g);
       boxManager.render(g);
+      swingManager.render(g);
 
       fireManager.render(g);
       crystalManager.render(g);
@@ -139,6 +147,7 @@ public class Playing {
       switchManager.update();
       platformManager.update();
       boxManager.update();
+      swingManager.update();
   
       player.update();
     }
