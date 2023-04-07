@@ -7,11 +7,16 @@ import static main.Game.TILES_SIZE;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.swing.ImageIcon;
 
 import main.GamePanel;
@@ -118,5 +123,43 @@ public class Helpers {
     gamePanel.requestFocus();
     gamePanel.removeAll();
     gamePanel.revalidate();
+  }
+
+  public static Clip playMusic(String filename, Clip clip) {
+    try {
+      File file = new File(filename);
+      clip = AudioSystem.getClip();
+      clip.open(AudioSystem.getAudioInputStream(file));
+      clip.loop(Clip.LOOP_CONTINUOUSLY);
+    } catch (Exception e) {
+      System.out.println("Error al reproducir la música: " + e.getMessage());
+    }
+
+    return clip;
+  }
+
+  public static void stopMusic(Clip clip) {
+    if (clip != null && clip.isRunning()) {
+      clip.stop();
+    }
+  }
+
+  public static void playSound(String path) {
+    try {
+      File file = new File(path);
+      Clip clip = AudioSystem.getClip();
+      clip.open(AudioSystem.getAudioInputStream(file));
+      clip.addLineListener(new LineListener() {
+        public void update(LineEvent evt) {
+          if (evt.getType() == LineEvent.Type.STOP) {
+            clip.close();
+          }
+        }
+      });
+      
+      clip.start();
+    } catch (Exception e) {
+      System.out.println("Error al reproducir el sonido: " + e.getMessage());
+    }
   }
 }

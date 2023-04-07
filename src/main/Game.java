@@ -1,11 +1,16 @@
 package main;
 
 import static utilities.Constants.PATH_BACKGROUND_CERO;
+import static utilities.Constants.PATH_TOWN_VILLAGE;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.playMusic;
 import static utilities.Helpers.resetPanel;
+import static utilities.Helpers.stopMusic;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+
+import javax.sound.sampled.Clip;
 
 import screens.Characters;
 import screens.Credits;
@@ -19,11 +24,12 @@ public class Game implements Runnable {
 	private GamePanel gamePanel;
 	private boolean isGaming = true;
 	private BufferedImage background;
+	private Clip music;
 
 	public static final int TILES_DEFAULT_SIZE = 10;
 	public static final float SCALE = 3f;
 	public static final int TILES_WIDTH = 29;
-	public static final int TILES_HEIGTH = 24;
+	public static final int TILES_HEIGTH = 25;
 	public static final int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public static final int GAME_WIDTH = TILES_SIZE * TILES_WIDTH;
 	public static final int GAME_HEIGHT = TILES_SIZE * TILES_HEIGTH;
@@ -50,6 +56,8 @@ public class Game implements Runnable {
 
 		background = getImage(PATH_BACKGROUND_CERO);
 		startGameLoop();
+
+		music = playMusic(PATH_TOWN_VILLAGE, music);
 	}
 
 	private void startGameLoop() {
@@ -65,9 +73,13 @@ public class Game implements Runnable {
 
 		switch (state) {
 			case PLAYING:
+				stopMusic(music);
 				playing.render(g, gamePanel);
 				break;
 			case MENU:
+				if (music != null && !music.isRunning()) {
+					music = playMusic(PATH_TOWN_VILLAGE, music);
+				}
 				menu.render(g, gamePanel);
 				break;
 			case CREDITS:

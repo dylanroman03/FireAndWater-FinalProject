@@ -2,9 +2,14 @@ package entities;
 
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_CHARACTERS_LIST;
+import static utilities.Constants.PATH_FANFARE;
+import static utilities.Constants.PATH_GETTING_COIN;
+import static utilities.Constants.PATH_PLAYER_DIE;
+import static utilities.Constants.PATH_PLAYER_JUMP;
 import static utilities.Helpers.canMove;
 import static utilities.Helpers.getAnimationsX;
 import static utilities.Helpers.isSolid;
+import static utilities.Helpers.playSound;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
@@ -67,7 +72,7 @@ public class Player extends Entity {
 
 	@Override
 	public void render(Graphics2D g) {
-		g.drawImage(animations[playerAction.ordinal()][(int) aniIndex], 
+		g.drawImage(animations[playerAction.ordinal()][(int) aniIndex],
 				(int) (hitBox.x - (width * 0.3)), (int) (hitBox.y - (height * 0.3)),
 				TILES_SIZE, TILES_SIZE, null);
 
@@ -165,16 +170,23 @@ public class Player extends Entity {
 
 		if (playing.getFireManager().someIntersect(hero, this)) {
 			death = true;
+    	playing.getMusic().stop();
+    	playSound(PATH_PLAYER_DIE);
 			moving = false;
 		}
 
 		if (playing.getLevelManager().intersectDoor(hero, this)) {
 			playing.gameWon();
+			playing.getMusic().stop();
+			playSound(PATH_FANFARE);
 			gameWon = true;
 			stopAnimation = true;
 		}
 
-		playing.getCrystalManager().someIntersect(hero, this);
+		if (playing.getCrystalManager().someIntersect(hero, this)) {
+    	playSound(PATH_GETTING_COIN);
+		}
+
 		playing.getSwitchManager().someIntersect(hero, this);
 		playing.getLeverManager().someIntersect(hero, this);
 	}
@@ -217,6 +229,7 @@ public class Player extends Entity {
 			return;
 		inAir = true;
 		airSpeed = jumpingSpeed;
+		playSound(PATH_PLAYER_JUMP);
 	}
 
 	private void loadAnimations() {
@@ -288,15 +301,15 @@ public class Player extends Entity {
 		hitBox.y = f;
 	}
 
-  public void setX(float f) {
+	public void setX(float f) {
 		hitBox.x = f;
-  }
+	}
 
 	public Heroes getHero() {
 		return hero;
 	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 }

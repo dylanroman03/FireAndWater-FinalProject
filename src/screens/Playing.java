@@ -4,7 +4,9 @@ import static main.Game.GAME_HEIGHT;
 import static main.Game.GAME_WIDTH;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.GetTimePath;
+import static utilities.Constants.PATH_BATTLE_MUSIC;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.playMusic;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,6 +14,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.sound.sampled.Clip;
 
 import entities.Player;
 import main.Game;
@@ -39,8 +43,10 @@ public class Playing {
   private BoxManager boxManager;
   private SwingManager swingManager;
 
-  public SwingManager getSwingManager() {
-    return swingManager;
+  private Clip music;
+
+  public Clip getMusic() {
+    return music;
   }
 
   private Game game;
@@ -52,7 +58,7 @@ public class Playing {
   private boolean isGamePaused = false;
 
   private GameOver gameOver;
-  private Summary gameWon;
+  private Summary summary;
 
   private int time;
   private Timer timer = new Timer();
@@ -68,6 +74,8 @@ public class Playing {
   }
 
   private void initClasses() {
+    music = playMusic(PATH_BATTLE_MUSIC, music);
+
     fireManager = new FireManager(levelManager);
     crystalManager = new CrystalManager(levelManager);
 
@@ -131,7 +139,7 @@ public class Playing {
         if (isGameOver) {
           gameOver.render(g, gamePanel);
         } else if (isGameWon) {
-          gameWon.render(g, gamePanel);
+          summary.render(g, gamePanel);
         } else if (isGamePaused) {
           // gamePaused.render(g);
         }
@@ -143,12 +151,10 @@ public class Playing {
   public void update() {
     if (isPlaying) {
       fireManager.update();
-  
       switchManager.update();
       platformManager.update();
       boxManager.update();
       swingManager.update();
-  
       player.update();
     }
   }
@@ -174,7 +180,7 @@ public class Playing {
 
   public void gameWon() {
     timer.cancel();
-    gameWon = new Summary(game);
+    summary = new Summary(game);
     isGameWon = true;
   }
 
@@ -236,5 +242,9 @@ public class Playing {
 
   public int getTime() {
     return time;
+  }
+
+  public SwingManager getSwingManager() {
+    return swingManager;
   }
 }

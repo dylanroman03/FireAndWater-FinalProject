@@ -4,9 +4,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import main.GamePanel;
+import utilities.Constants.Heroes;
+import utilities.Constants.States;
 
 public class KeyboardInputs implements KeyListener {
 	private GamePanel gamePanel;
+	private int[] pinkKeys = { KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D };
+	private int[] dudeKeys = { KeyEvent.VK_UP, KeyEvent.VK_LEFT, KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT };
 
 	public KeyboardInputs(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -19,55 +23,35 @@ public class KeyboardInputs implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		switch (gamePanel.getGame().getState()) {
-			case PLAYING:
-				switch (e.getKeyCode()) {
-					case KeyEvent.VK_W:
-						gamePanel.getGame().getPlaying().getPlayer().setJump(false);
-						break;
-					case KeyEvent.VK_A:
-						gamePanel.getGame().getPlaying().getPlayer().setLeft(false);
-						break;
-					case KeyEvent.VK_S:
-						gamePanel.getGame().getPlaying().getPlayer().setFall(false);
-						break;
-					case KeyEvent.VK_D:
-						gamePanel.getGame().getPlaying().getPlayer().setRight(false);
-						break;
-					default:
-						break;
-				}
-				break;
+		if (gamePanel.getGame().getState() == States.PLAYING) {
+			int[] keys = gamePanel.getGame().getPlaying().getPlayer().getHero() == Heroes.PINK_MONSTER ? pinkKeys : dudeKeys;
 
-			default:
-				break;
+			if (e.getKeyCode() == keys[0]) {
+				gamePanel.getGame().getPlaying().getPlayer().setJump(false);
+			} else if (e.getKeyCode() == keys[1]) {
+				gamePanel.getGame().getPlaying().getPlayer().setLeft(false);
+			} else if (e.getKeyCode() == keys[2]) {
+				gamePanel.getGame().getPlaying().getPlayer().setFall(false);
+			} else if (e.getKeyCode() == keys[3]) {
+				gamePanel.getGame().getPlaying().getPlayer().setRight(false);
+			}
 		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		switch (gamePanel.getGame().getState()) {
-			case PLAYING:
-				switch (e.getKeyCode()) {
-					case KeyEvent.VK_W:
-						gamePanel.getGame().getPlaying().getPlayer().setJump(true);
-						break;
-					case KeyEvent.VK_A:
-						gamePanel.getGame().getPlaying().getPlayer().setLeft(true);
-						break;
-					case KeyEvent.VK_S:
-						gamePanel.getGame().getPlaying().getPlayer().setFall(true);
-						break;
-					case KeyEvent.VK_D:
-						gamePanel.getGame().getPlaying().getPlayer().setRight(true);
-						break;
-					default:
-						break;
-				}
-				break;
+		if (gamePanel.getGame().getState() == States.PLAYING) {
+			int[] keys = gamePanel.getGame().getPlaying().getPlayer().getHero() == Heroes.PINK_MONSTER ? pinkKeys : dudeKeys;
 
-			default:
-				break;
+			if (e.getKeyCode() == keys[0]) {
+				gamePanel.getGame().getPlaying().getPlayer().setJump(true);
+			} else if (e.getKeyCode() == keys[1]) {
+				gamePanel.getGame().getPlaying().getPlayer().setLeft(true);
+			} else if (e.getKeyCode() == keys[2]) {
+				gamePanel.getGame().getPlaying().getPlayer().setFall(true);
+			} else if (e.getKeyCode() == keys[3]) {
+				gamePanel.getGame().getPlaying().getPlayer().setRight(true);
+			}
 		}
 	}
 }

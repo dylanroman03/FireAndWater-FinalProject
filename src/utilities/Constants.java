@@ -72,6 +72,21 @@ public class Constants {
 	public static final String PATH_BUTTONS = "res/Gui/Buttons_3.png";
 	public static final String PATH_LINE = "res/Gui/Line.png";
 
+	// Music and Sounds
+
+	public static final String PATH_TOWN_VILLAGE = "res/audio/PGS Fantasy RPG Music Pack/town-village-theme-3.wav";
+	public static final String PATH_BATTLE_MUSIC = "res/audio/PGS Fantasy RPG Music Pack/battle-music-1.wav";
+	public static final String PATH_FANFARE = "res/audio/PGS Fantasy RPG Music Pack/Success Fanfare.wav";
+
+	public static final String PATH_PLAYER_DIE = "res/audio/Player/death.wav";
+	public static final String PATH_GETTING_COIN = "res/audio/Player/gem.wav";
+	public static final String PATH_PLAYER_JUMP = "res/audio/Player/jump.wav";
+
+	public static final String PATH_BUTTON_SOUND = "res/audio/GUI/button.wav";
+	public static final String PATH_LEVER_PULL = "res/audio/Player/lever pull.wav";
+
+
+
 	public static String GetTimePath (int time) {
 		return "res/Numbers/" + time + ".png";
 	}

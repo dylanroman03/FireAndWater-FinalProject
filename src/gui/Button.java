@@ -1,7 +1,9 @@
 package gui;
 
 import static utilities.Constants.PATH_BUTTONS;
+import static utilities.Constants.PATH_BUTTON_SOUND;
 import static utilities.Helpers.getAnimationsY;
+import static utilities.Helpers.playSound;
 import static utilities.Helpers.resizeImage;
 
 import java.awt.Font;
@@ -62,7 +64,7 @@ public class Button extends JButton {
   private class ChangeButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      System.out.println("CLICK SOUND");
+    	playSound(PATH_BUTTON_SOUND);
     }
   }
 

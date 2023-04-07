@@ -25,7 +25,7 @@ public class Crystal extends Entity {
 
   @Override
   public boolean intersect(Entity entity) {
-    if (super.intersect(entity)) {
+    if (super.intersect(entity) && visible) {
       setVisible(false);
       return true; 
     }

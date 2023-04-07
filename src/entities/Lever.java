@@ -1,9 +1,12 @@
 package entities;
 
+import static utilities.Constants.PATH_LEVER_PULL;
+import static utilities.Helpers.playSound;
+
 import java.awt.image.BufferedImage;
 
 import main.Game;
-import managers.PlatformManager;
+import managers.PlatformManager;;
 
 public class Lever extends Entity {
   private boolean isOn = false;
@@ -38,6 +41,7 @@ public class Lever extends Entity {
           if (isOn) {
             turnOff();
             platformManager.movePlatform(idPlatform);
+            playSound(PATH_LEVER_PULL);
           }
           return true;
         }
@@ -48,7 +52,9 @@ public class Lever extends Entity {
           if (!isOn) {
             turnOn();
             platformManager.movePlatform(idPlatform);
+            playSound(PATH_LEVER_PULL);
           }
+          playSound(PATH_LEVER_PULL);
           return true;
         }
         break;
