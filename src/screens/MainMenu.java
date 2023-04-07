@@ -37,7 +37,7 @@ public class MainMenu extends Dialog {
     playButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         System.out.println("Jugar");
-        goCharacters();
+        game.setState(States.CHARACTERS);
         flag = true;
       }
     });
@@ -45,7 +45,7 @@ public class MainMenu extends Dialog {
     instructionButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         System.out.println("Instrucciones");
-        goInstructions();
+        game.setState(States.INSTRUCTIONS);
         flag = true;
       }
 
@@ -54,7 +54,7 @@ public class MainMenu extends Dialog {
     creditsButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         System.out.println("Creditos");
-        goCredits();
+        game.setState(States.CREDITS);
         flag = true;
       }
     });
@@ -65,17 +65,6 @@ public class MainMenu extends Dialog {
         System.exit(0);
       }
     });
-  }
-
-  private void goCredits() {
-    game.setState(States.CREDITS);
-  }
-
-  private void goCharacters() {
-    game.setState(States.CHARACTERS);
-  }
-
-  private void goInstructions() {
   }
 
   @Override

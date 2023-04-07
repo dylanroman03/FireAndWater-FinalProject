@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import screens.Characters;
 import screens.Credits;
+import screens.Instructions;
 import screens.MainMenu;
 import screens.Playing;
 import utilities.Constants.Heroes;
@@ -32,6 +33,7 @@ public class Game implements Runnable {
 	private MainMenu menu;
 	private Characters characters;
 	private Credits credits;
+	private Instructions instructions;
 
 	private States state = States.MENU;
 
@@ -40,6 +42,7 @@ public class Game implements Runnable {
 		menu = new MainMenu(this);
 		characters = new Characters(this);
 		credits = new Credits(this);
+		instructions = new Instructions(this);
 
 		gamePanel = new GamePanel(this);
 		new GameWindow(gamePanel);
@@ -56,7 +59,7 @@ public class Game implements Runnable {
 	}
 
 	public void render(Graphics2D g) {
-		if (state != States.PLAYING) {
+		if (state != States.PLAYING && state != States.INSTRUCTIONS) {
 			g.drawImage(background, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
 		}
 
@@ -73,7 +76,8 @@ public class Game implements Runnable {
 			case CHARACTERS:
 				characters.render(g, gamePanel);
 				break;
-			default:
+			case INSTRUCTIONS:
+				instructions.render(g, gamePanel);
 				break;
 		}
 	}
@@ -155,7 +159,6 @@ public class Game implements Runnable {
 		}
 
 		this.state = state;
-		System.out.println("State: " + state);
 	}
 
 	public Playing getPlaying() {

@@ -33,15 +33,18 @@ public class GameOver extends Dialog {
 
     // add click funtion for menuButton
     menuButton.addActionListener(e -> {
-      game.setState(States.MENU);
-      flag = true;
+      click(States.MENU);
     });
 
     // add click funtion for retryButton
     retryButton.addActionListener(e -> {
-      game.setState(States.PLAYING);
-      flag = true;
+      click(States.PLAYING);
     });
+  }
+
+  private void click(States state) {
+    game.setState(state);
+    flag = true;
   }
 
   @Override
