@@ -1,8 +1,11 @@
 package main;
 
+import static utilities.Constants.PATH_BACKGROUND_CERO;
+import static utilities.Helpers.getImage;
 import static utilities.Helpers.resetPanel;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import screens.Characters;
 import screens.MainMenu;
@@ -13,6 +16,7 @@ import utilities.Constants.States;
 public class Game implements Runnable {
 	private GamePanel gamePanel;
 	private boolean isGaming = true;
+	private BufferedImage background;
 
 	public static final int TILES_DEFAULT_SIZE = 10;
 	public static final float SCALE = 3f;
@@ -21,7 +25,7 @@ public class Game implements Runnable {
 	public static final int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
 	public static final int GAME_WIDTH = TILES_SIZE * TILES_WIDTH;
 	public static final int GAME_HEIGHT = TILES_SIZE * TILES_HEIGTH;
-	public static final boolean DEBUGING = true;
+	public static final boolean DEBUGING = false;
 
 	private Playing playing;
 	private MainMenu menu;
@@ -38,7 +42,7 @@ public class Game implements Runnable {
 		new GameWindow(gamePanel);
 		gamePanel.requestFocus();
 
-
+		background = getImage(PATH_BACKGROUND_CERO);
 		startGameLoop();
 	}
 
@@ -49,11 +53,12 @@ public class Game implements Runnable {
 	}
 
 	public void render(Graphics2D g) {
+		if (state != States.PLAYING) {
+			g.drawImage(background, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
+		}
+
 		switch (state) {
 			case PLAYING:
-			 	// if (!playing.isPlaying()) {
-				// 	playing.startPlaying();
-				// }
 				playing.render(g, gamePanel);
 				break;
 			case MENU:
@@ -148,7 +153,6 @@ public class Game implements Runnable {
 		this.state = state;
 		System.out.println("State: " + state);
 	}
-
 
 	public Playing getPlaying() {
 		return playing;

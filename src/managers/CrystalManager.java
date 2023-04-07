@@ -8,6 +8,7 @@ import static utilities.Helpers.getImage;
 import java.awt.image.BufferedImage;
 
 import entities.Crystal;
+import utilities.Constants.Heroes;
 
 public class CrystalManager extends Manager {
 	private BufferedImage blueCoinImg;
@@ -48,4 +49,15 @@ public class CrystalManager extends Manager {
 
 		return crystals;
 	}
+
+  public Crystal[] getCrystals(Heroes hero) {
+		switch (hero) {
+			case PINK_MONSTER:
+				return (Crystal[]) this.entities[0];
+			case DUDE_MONSTER:
+				return (Crystal[]) this.entities[1];
+		}
+
+		return null;
+  }
 }

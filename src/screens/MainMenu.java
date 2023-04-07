@@ -1,68 +1,102 @@
 package screens;
 
-import static main.Game.GAME_HEIGHT;
 import static main.Game.GAME_WIDTH;
-import static main.Game.TILES_SIZE;
-import static utilities.Constants.PATH_DIALOG;
-import static utilities.Constants.PATH_PLAY_BTN;
-import static utilities.Helpers.getAnimationsY;
-import static utilities.Helpers.getImage;
-import static utilities.Helpers.resizeImage;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
 import gui.Button;
+import gui.Dialog;
 import main.Game;
 import main.GamePanel;
 import utilities.Constants.States;
 
-public class MainMenu {
-  private BufferedImage dialog;
-  private BufferedImage[] playBtnImg;
+public class MainMenu extends Dialog {
   private Button playButton;
+  private Button instructionButton;
+  private Button creditsButton;
+  private Button quitButton;
   private boolean flag = true;
   private Game game;
   private GamePanel gamePanel;
 
   public MainMenu(Game game) {
+    super(game, (int) (GAME_WIDTH / 1.9), (int) (GAME_WIDTH / 1.9));
     this.game = game;
-    dialog = getImage(PATH_DIALOG);
-    playBtnImg = getAnimationsY(PATH_PLAY_BTN);
     initClasses();
   }
 
   private void initClasses() {
-    Image playResized = resizeImage(playBtnImg[0], (int) (playBtnImg[0].getWidth() / 2), (int) (playBtnImg[0].getHeight() / 2));
-    playButton = new Button(playResized, playBtnImg, (GAME_WIDTH / 2) - (int) (playBtnImg[0].getWidth() / 3.7), (GAME_HEIGHT / 2) - (int) (playBtnImg[0].getHeight() / 1.7));
+    playButton = new Button((int) this.x + (this.width / 4), this.y + (int) (this.height / 9), "Jugar");
+    instructionButton = new Button((int) this.x + (this.width / 4), this.y + (int) (this.height / 3.2),
+        "Instrucciones");
+    creditsButton = new Button((int) this.x + (this.width / 4), this.y + (int) (this.height / 1.95), "Creditos");
+    quitButton = new Button((int) this.x + (this.width / 4), this.y + (int) (this.height / 1.4), "Salir");
 
     playButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        System.out.println("Jugar");
         goCharacters();
         flag = true;
       }
     });
+
+    instructionButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        System.out.println("Instrucciones");
+        goInstructions();
+        flag = true;
+      }
+
+    });
+
+    creditsButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        System.out.println("Creditos");
+        goCredits();
+        flag = true;
+      }
+    });
+
+    quitButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        System.out.println("Saliendo del juego");
+        System.exit(0);
+      }
+    });
   }
 
-  protected void goCharacters() {
+  private void goCredits() {
+
+  }
+
+  private void goCharacters() {
     game.setState(States.CHARACTERS);
-    gamePanel.removeAll();
-    gamePanel.revalidate();
   }
 
+  private void goInstructions() {
+  }
+
+  @Override
   public void render(Graphics g, GamePanel gamePanel) {
+    super.render(g, gamePanel);
     this.gamePanel = gamePanel;
-    g.drawImage(dialog, (GAME_WIDTH - (TILES_SIZE * 8)) / 2, (GAME_HEIGHT - (TILES_SIZE * 8)) / 2, TILES_SIZE * 8,
-        TILES_SIZE * 8, null);
 
     if (flag) {
       gamePanel.add(playButton);
+      gamePanel.add(instructionButton);
+      gamePanel.add(creditsButton);
+      gamePanel.add(quitButton);
+
       playButton.setBounds();
+      instructionButton.setBounds();
+      creditsButton.setBounds();
+      quitButton.setBounds();
+
       gamePanel.revalidate();
       flag = false;
     }
   }
+
 }

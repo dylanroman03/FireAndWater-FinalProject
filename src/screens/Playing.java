@@ -233,4 +233,8 @@ public class Playing {
   public void setPlayer(Player player) {
     this.player = player;
   }
+
+  public int getTime() {
+    return time;
+  }
 }

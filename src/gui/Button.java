@@ -35,7 +35,7 @@ public class Button extends JButton {
     images = getAnimationsY(PATH_BUTTONS);
 
     Image playResized = resizeImage(images[0],
-        (int) ((images[0].getWidth() / 3) * 1.3),
+        (int) ((images[0].getWidth() / 3) * 1.7),
         (int) ((images[0].getHeight() / 3) * 1.3));
 
     setIcon(new ImageIcon(playResized));
@@ -43,7 +43,7 @@ public class Button extends JButton {
     this.x = x;
     this.y = y;
 
-    setSize((int) (images[0].getWidth()), (int) (images[0].getHeight()));
+    setSize((int) (playResized.getWidth(null)), (int) (playResized.getHeight(null)));
     setBorder(BorderFactory.createEmptyBorder());
     setContentAreaFilled(false);
 

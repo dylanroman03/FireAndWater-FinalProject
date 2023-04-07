@@ -35,4 +35,9 @@ public class Crystal extends Entity {
   public void setVisible(boolean visible) {
     this.visible = visible;
   }
+
+  public boolean isVisible() {
+    return visible;
+  }
+
 }
