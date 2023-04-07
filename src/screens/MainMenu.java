@@ -68,7 +68,7 @@ public class MainMenu extends Dialog {
   }
 
   private void goCredits() {
-
+    game.setState(States.CREDITS);
   }
 
   private void goCharacters() {

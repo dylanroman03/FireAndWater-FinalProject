@@ -3,9 +3,9 @@ package screens;
 import static main.Game.GAME_HEIGHT;
 import static main.Game.GAME_WIDTH;
 import static main.Game.TILES_SIZE;
+import static utilities.Helpers.getFont;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
@@ -24,6 +24,8 @@ public class Summary extends Dialog {
   private boolean flag = true;
   private boolean endOfGame = false;
   private JLabel title;
+  private JLabel timeLabel;
+  private JLabel crystalLabel;
   private Player player;
   private int time;
   private int crystalsScore = 0;
@@ -43,7 +45,7 @@ public class Summary extends Dialog {
         crystalsScore++;
       }
     }
-    
+
     initButtons();
   }
 
@@ -51,13 +53,17 @@ public class Summary extends Dialog {
   public void render(Graphics g, GamePanel gamePanel) {
     super.render(g, gamePanel);
     if (flag) {
-      JLabel timeLabel = new JLabel("Tiempo: " + time + " segundos");
-      timeLabel.setForeground(Color.WHITE);
-      timeLabel.setFont(new Font("MinimalPixel", Font.PLAIN, 60));
+      title = new JLabel("<html>Felicitaciones <br>" + player.getName() + "</html>");
+      title.setForeground(Color.WHITE);
+      title.setFont(getFont());
 
-      JLabel crystalLabel = new JLabel("Cristales: " + crystalsScore + " de " + crystals);
+      timeLabel = new JLabel("Tiempo: " + time + " segundos");
+      timeLabel.setForeground(Color.WHITE);
+      timeLabel.setFont(getFont());
+
+      crystalLabel = new JLabel("Cristales: " + crystalsScore + " de " + crystals);
       crystalLabel.setForeground(Color.WHITE);
-      crystalLabel.setFont(new Font("MinimalPixel", Font.PLAIN, 60));
+      crystalLabel.setFont(getFont());
 
       gamePanel.add(title);
       gamePanel.add(timeLabel);
@@ -77,14 +83,20 @@ public class Summary extends Dialog {
     }
 
     if (endOfGame) {
-      gamePanel.remove(nextButton);
       gamePanel.remove(title);
+      gamePanel.remove(timeLabel);
+      gamePanel.remove(crystalLabel);
+      gamePanel.remove(nextButton);
+
+      title = new JLabel("<html> Felicitaciones <br> Finalizaste el juego </html>");
+      title.setForeground(Color.WHITE);
+      title.setFont(getFont());
 
       gamePanel.add(title);
       gamePanel.add(menuButton);
 
-      title.setBounds((GAME_WIDTH / 2) - TILES_SIZE * 3, (GAME_HEIGHT / 2) - TILES_SIZE * 5, TILES_SIZE * 15,
-          TILES_SIZE * 3);
+      title.setBounds((GAME_WIDTH / 2) - TILES_SIZE * 4, (GAME_HEIGHT / 2) - TILES_SIZE * 5,
+          TILES_SIZE * 15, TILES_SIZE * 3);
       menuButton.setBounds();
 
       gamePanel.revalidate();
@@ -98,22 +110,15 @@ public class Summary extends Dialog {
     nextButton.addActionListener(e -> {
       nextLevel();
     });
-
-    title = new JLabel("<html>Felicitaciones <br>" + player.getName() + "</html>");
-    title.setForeground(Color.WHITE);
-    title.setFont(new Font("MinimalPixel", Font.PLAIN, 60));
   }
 
   private void initCongratulation() {
-    menuButton = new Button((GAME_WIDTH / 2) - TILES_SIZE * 5, (GAME_HEIGHT / 2), "Menu");
+    menuButton = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 1.5)),
+        "Menu");
     menuButton.addActionListener(e -> {
       game.setState(States.MENU);
       flag = true;
     });
-
-    title = new JLabel("<html>Felicitaciones <br>" + player.getName() + "<br> Finalizaste el juego </html>");
-    title.setForeground(Color.WHITE);
-    title.setFont(new Font("MinimalPixel", Font.PLAIN, 60));
 
     endOfGame = true;
   }

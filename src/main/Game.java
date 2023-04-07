@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import screens.Characters;
+import screens.Credits;
 import screens.MainMenu;
 import screens.Playing;
 import utilities.Constants.Heroes;
@@ -30,13 +31,15 @@ public class Game implements Runnable {
 	private Playing playing;
 	private MainMenu menu;
 	private Characters characters;
+	private Credits credits;
 
-	private States state = States.CHARACTERS;
+	private States state = States.MENU;
 
 	public Game() {
 		playing = new Playing(this);
 		menu = new MainMenu(this);
 		characters = new Characters(this);
+		credits = new Credits(this);
 
 		gamePanel = new GamePanel(this);
 		new GameWindow(gamePanel);
@@ -65,6 +68,7 @@ public class Game implements Runnable {
 				menu.render(g, gamePanel);
 				break;
 			case CREDITS:
+				credits.render(g, gamePanel);
 				break;
 			case CHARACTERS:
 				characters.render(g, gamePanel);
@@ -79,10 +83,10 @@ public class Game implements Runnable {
 			case PLAYING:
 				playing.update();
 				break;
-			case CREDITS:
+			case CHARACTERS:
 				characters.update();
 				break;
-			case CHARACTERS:
+			case CREDITS:
 				break;
 			default:
 				break;

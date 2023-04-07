@@ -1,11 +1,10 @@
 package screens;
 
 import static main.Game.GAME_HEIGHT;
-import static main.Game.GAME_WIDTH;
 import static main.Game.TILES_SIZE;
+import static utilities.Helpers.getFont;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
@@ -27,8 +26,10 @@ public class GameOver extends Dialog {
   }
 
   private void initButtons() {
-    retryButton = new Button((TILES_SIZE * 7), (GAME_HEIGHT / 2) - TILES_SIZE * 4, "Repetir");
-    menuButton = new Button((TILES_SIZE * 7), (GAME_HEIGHT / 2), "Menu");
+    retryButton = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 2.5)),
+        "Repetir");
+    menuButton = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 1.5)),
+        "Menu");
 
     // add click funtion for menuButton
     menuButton.addActionListener(e -> {
@@ -49,13 +50,14 @@ public class GameOver extends Dialog {
     if (flag) {
       JLabel title = new JLabel("Game Over");
       title.setForeground(Color.WHITE);
-      title.setFont(new Font("MinimalPixel", Font.PLAIN, 60));
+      title.setFont(getFont());
 
       gamePanel.add(title);
       gamePanel.add(retryButton);
       gamePanel.add(menuButton);
 
-      title.setBounds(GAME_WIDTH / 2, GAME_HEIGHT / 4, TILES_SIZE * 6, 100);
+      title.setBounds((int) (this.x + (this.width / 2) - (TILES_SIZE * 2.5)), (GAME_HEIGHT / 2) - TILES_SIZE * 5,
+          TILES_SIZE * 6, TILES_SIZE * 3);
       retryButton.setBounds();
       menuButton.setBounds();
 

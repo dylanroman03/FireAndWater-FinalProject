@@ -4,6 +4,7 @@ import static main.Game.GAME_HEIGHT;
 import static main.Game.GAME_WIDTH;
 import static main.Game.TILES_SIZE;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -98,7 +99,7 @@ public class Helpers {
     }
 
     if (playing.getBoxManager().someIntersect(playing.getPlayer().getHero(), playing.getPlayer())) {
-      return true;  
+      return true;
     }
 
     // Checking if the player intersects with a swing
@@ -107,6 +108,10 @@ public class Helpers {
     }
 
     return false;
+  }
+
+  public static Font getFont() {
+    return new Font("MinimalPixel", Font.PLAIN, 60);
   }
 
   public static void resetPanel(GamePanel gamePanel) {
