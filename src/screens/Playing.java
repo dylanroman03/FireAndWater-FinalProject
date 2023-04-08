@@ -118,6 +118,7 @@ public class Playing {
 
     if (isPlaying) {
       levelManager.render(g);
+      floorManager.render(g);
 
       platformManager.render(g);
       switchManager.render(g);
@@ -129,7 +130,6 @@ public class Playing {
       leverManager.render(g);
 
       player.render(g);
-      floorManager.render(g);
       renderTime(g, time);
 
       /// Draw a full rectangle with opacity in 0.5 to darken the screen

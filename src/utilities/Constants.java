@@ -27,7 +27,7 @@ public class Constants {
 	}
 
 	public static final String PATH_PINK_MONSTER = "res/Heros/1 Pink_Monster/Pink_Monster.png";
-	public static final String PATH_DUDE_MONSTER = "res/Heros/2 Owlet_Monster/Owlet_Monster.png";
+	public static final String PATH_DUDE_MONSTER = "res/Heros/3 Dude_Monster/Dude_Monster.png";
 
 	public static final String[][] PATH_CHARACTERS_LIST = {
 		{
@@ -40,13 +40,13 @@ public class Constants {
 				"res/Heros/1 Pink_Monster/Pink_Monster_Death_8.png"
 		},
 		{
-				"res/Heros/2 Owlet_Monster/Owlet_Monster_Jump_8.png",
-				"res/Heros/2 Owlet_Monster/Owlet_Monster_Run_Left_6.png",
-				"res/Heros/2 Owlet_Monster/Owlet_Monster_Run_6.png",
-				"res/Heros/2 Owlet_Monster/Owlet_Monster_Fall_4.png",
-				"res/Heros/2 Owlet_Monster/Owlet_Monster_Idle_4.png",
-				"res/Heros/2 Owlet_Monster/Owlet_Monster_Idle_Left_4.png",
-				"res/Heros/2 Owlet_Monster/Owlet_Monster_Death_8.png"
+				"res/Heros/3 Dude_Monster/Dude_Monster_Jump_8.png",
+				"res/Heros/3 Dude_Monster/Dude_Monster_Run_Left_6.png",
+				"res/Heros/3 Dude_Monster/Dude_Monster_Run_6.png",
+				"res/Heros/3 Dude_Monster/Dude_Monster_Fall_4.png",
+				"res/Heros/3 Dude_Monster/Dude_Monster_Idle_4.png",
+				"res/Heros/3 Dude_Monster/Dude_Monster_Idle_Left_4.png",
+				"res/Heros/3 Dude_Monster/Dude_Monster_Death_8.png"
 		}
 	};
 
