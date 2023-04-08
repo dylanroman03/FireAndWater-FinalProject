@@ -26,6 +26,9 @@ public class Constants {
 		MENU, CHARACTERS, PLAYING, CREDITS, INSTRUCTIONS
 	}
 
+	public static final String PATH_PINK_MONSTER = "res/Heros/1 Pink_Monster/Pink_Monster.png";
+	public static final String PATH_DUDE_MONSTER = "res/Heros/2 Owlet_Monster/Owlet_Monster.png";
+
 	public static final String[][] PATH_CHARACTERS_LIST = {
 		{
 				"res/Heros/1 Pink_Monster/Pink_Monster_Jump_8.png",
@@ -71,6 +74,7 @@ public class Constants {
 	public static final String PATH_PLAY_BTN = "res/Gui/Buttons_2.png";
 	public static final String PATH_BUTTONS = "res/Gui/Buttons_3.png";
 	public static final String PATH_LINE = "res/Gui/Line.png";
+	public static final String PATH_KEYS = "res/Gui/Keyboard.png";
 
 	// Music and Sounds
 

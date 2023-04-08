@@ -67,7 +67,7 @@ public class Game implements Runnable {
 	}
 
 	public void render(Graphics2D g) {
-		if (state != States.PLAYING && state != States.INSTRUCTIONS) {
+		if (state != States.PLAYING) {
 			g.drawImage(background, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
 		}
 
