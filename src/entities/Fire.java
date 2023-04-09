@@ -9,9 +9,9 @@ public class Fire extends Entity {
 	private int aniSpeed = 15;
 
   public Fire(float x, float y, int type, BufferedImage[] animations) {
-    super(x, y, TILES_SIZE, TILES_SIZE);
+    super(x, y + 5, TILES_SIZE, (int) (TILES_SIZE - 5));
     this.sprites = animations;
-    initHitBox(x, y, TILES_SIZE, TILES_SIZE);
+    initHitBox(x, y + 5, TILES_SIZE, (int) (TILES_SIZE - 5));
   }
 
   public void update() {

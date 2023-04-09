@@ -98,7 +98,6 @@ public class Helpers {
     if (x < 0 || x >= GAME_WIDTH || y < 0 || y >= GAME_HEIGHT || value == 1 || value > 700 && value < 800) {
       return true;
     }
-
     if (playing.getPlatformManager().someIntersect(playing.getPlayer().getHero(), playing.getPlayer())) {
       return true;
     }

@@ -24,7 +24,6 @@ public class Platform extends Entity {
     sprites = new BufferedImage[1];
     sprites[0] = image;
 
-    
     int xIntSum = width == TILES_SIZE * 2 ? 100 : (width / (TILES_SIZE * 2)) * 100;
 
     yInit = status == 0 ? y : y + 100;

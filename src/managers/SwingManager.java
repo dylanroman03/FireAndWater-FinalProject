@@ -1,7 +1,7 @@
 package managers;
 
 import static main.Game.TILES_SIZE;
-import static utilities.Constants.PATH_FLOOR;
+import static utilities.Constants.PATH_LEVEL_BUILD;
 import static utilities.Helpers.getImage;
 
 import java.awt.image.BufferedImage;
@@ -16,9 +16,8 @@ public class SwingManager extends Manager {
 
     int[][] lvlData = levelManager.getLvlData();
 
-    BufferedImage buildImg = getImage(PATH_FLOOR);
-    swingImage = buildImg;
-    // swingImage = buildImg.getSubimage(753, 20, 175, 12);
+    BufferedImage buildImg = getImage(PATH_LEVEL_BUILD);
+    swingImage = buildImg.getSubimage(753, 20, 175, 12);
 
     addEntities(lvlData);
   }

@@ -68,6 +68,8 @@ public abstract class Entity {
 		// Dibujar la imagen con las coordenadas y el tamaño del rectángulo original
 		g.drawImage(sprites[aniIndex], x, y, (int) hitBox.getWidth(), (int) hitBox.getHeight(), null);
 
+		// g.drawImage(sprites[aniIndex], (int) hitBox.x, (int) hitBox.y, (int) width, (int) height, null);
+
 		// Dibujar el rectángulo rotado en rojo
 		if (Game.DEBUGING) {
 			showHitBox(g, hitBox);

@@ -12,7 +12,6 @@ import static utilities.Helpers.isSolid;
 import static utilities.Helpers.playSound;
 
 import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import main.Game;
@@ -139,19 +138,10 @@ public class Player extends Entity {
 	private void updatePosition() {
 		moving = false;
 
+		if (death) return;
+
 		if (jump) {
 			jump();
-		}
-
-		if (!left && !right && !inAir || death || gameWon)
-			return;
-
-		xSpeed = 0;
-
-		if (left && !right) {
-			xSpeed = -runningSpeed;
-		} else if (right && !left) {
-			xSpeed = runningSpeed;
 		}
 
 		if (inAir) {
@@ -162,6 +152,24 @@ public class Player extends Entity {
 			}
 		}
 
+		if (!left && !right && !inAir || gameWon)
+			return;
+
+		xSpeed = 0;
+
+		if (left && !right) {
+			xSpeed = -runningSpeed;
+		} else if (right && !left) {
+			xSpeed = runningSpeed;
+		}
+		// if (inAir) {
+		// 	inAir();
+		// } else {
+		// 	if (!isInFloor()) {
+		// 		inAir = true;
+		// 	}
+		// }
+
 		if (canMove(playing, hitBox.x + xSpeed, hitBox.y)) {
 			hitBox.x += xSpeed;
 		}
@@ -170,8 +178,8 @@ public class Player extends Entity {
 
 		if (playing.getFireManager().someIntersect(hero, this)) {
 			death = true;
-    	playing.getMusic().stop();
-    	playSound(PATH_PLAYER_DIE);
+			playing.getMusic().stop();
+			playSound(PATH_PLAYER_DIE);
 			moving = false;
 		}
 
@@ -184,7 +192,7 @@ public class Player extends Entity {
 		}
 
 		if (playing.getCrystalManager().someIntersect(hero, this)) {
-    	playSound(PATH_GETTING_COIN);
+			playSound(PATH_GETTING_COIN);
 		}
 
 		playing.getSwitchManager().someIntersect(hero, this);
@@ -194,7 +202,9 @@ public class Player extends Entity {
 	private boolean isInFloor() {
 		if (!isSolid(hitBox.x, hitBox.y + hitBox.height + 1, playing)
 				&& (!isSolid(hitBox.x + hitBox.width, hitBox.y + hitBox.height + 1, playing))) {
-			return false;
+			if (!playing.getPlatformManager().overSome(this)) {
+				return false;
+			}
 		}
 
 		return true;
@@ -208,7 +218,6 @@ public class Player extends Entity {
 				setFall(true);
 			}
 		} else {
-			hitBox.y = getEntityY(hitBox, airSpeed);
 
 			if (airSpeed > 0) {
 				inAir = false;
@@ -220,9 +229,6 @@ public class Player extends Entity {
 		}
 	}
 
-	public static float getEntityY(Rectangle2D.Float hitbox, float airSpeed) {
-		return hitbox.y;
-	}
 
 	private void jump() {
 		if (inAir)
@@ -286,6 +292,17 @@ public class Player extends Entity {
 
 	public void setHero(Heroes hero) {
 		this.hero = hero;
+		int[][] lvlData = playing.getLevelManager().getLvlData();
+		int tile = hero == Heroes.PINK_MONSTER ? 10 : 11;
+
+		for (int i = 0; i < lvlData.length; i++) {
+			for (int j = 0; j < lvlData[i].length; j++) {
+				if (lvlData[i][j] == tile) {
+					hitBox.x = j * TILES_SIZE;
+					hitBox.y = i * TILES_SIZE;
+				}
+			}
+		}
 		loadAnimations();
 	}
 

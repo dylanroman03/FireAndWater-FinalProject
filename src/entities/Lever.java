@@ -54,7 +54,6 @@ public class Lever extends Entity {
             platformManager.movePlatform(idPlatform);
             playSound(PATH_LEVER_PULL);
           }
-          playSound(PATH_LEVER_PULL);
           return true;
         }
         break;

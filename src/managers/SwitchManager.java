@@ -44,7 +44,7 @@ public class SwitchManager extends Manager {
           String numStr = Integer.toString(lvlData[i][j]);
           int digit = Character.getNumericValue(numStr.charAt(1));
 
-          leverArray[e] = new Switch((TILES_SIZE * j), (TILES_SIZE * i), TILES_SIZE, TILES_SIZE, digit, animations);
+          leverArray[e] = new Switch((TILES_SIZE * j), (TILES_SIZE * i), digit, animations);
           e++;
         }
       }

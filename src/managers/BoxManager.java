@@ -38,7 +38,7 @@ public class BoxManager extends Manager {
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[0].length; j++) {
         if (lvlData[i][j] == 7) {
-          platformArray[e] = new Box((TILES_SIZE * j), (TILES_SIZE * i), sprites);
+          platformArray[e] = new Box((TILES_SIZE * j), (TILES_SIZE * i), sprites, floorManager);
           e++;
         }
       }

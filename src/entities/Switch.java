@@ -1,8 +1,8 @@
 package entities;
 
-import java.awt.image.BufferedImage;
+import static main.Game.TILES_SIZE;
 
-import main.Game;
+import java.awt.image.BufferedImage;
 
 public class Switch extends Entity {
   private int idPlatform;
@@ -10,12 +10,12 @@ public class Switch extends Entity {
   private int aniTick = 0;
 	private int aniSpeed = 15;
 
-  public Switch(float x, float y, int width, int height, int idPlatform, BufferedImage[] animations) {
-    super(x, y, width, height);
+  public Switch(float x, float y, int idPlatform, BufferedImage[] animations) {
+    super(x, y + (TILES_SIZE / 2), TILES_SIZE, TILES_SIZE);
     this.idPlatform = idPlatform;
     this.sprites = animations;
     aniIndex = 1;
-    initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
+    initHitBox(x, y + (TILES_SIZE / 2), TILES_SIZE, TILES_SIZE / 2);
   }
 
   @Override

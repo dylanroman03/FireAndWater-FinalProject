@@ -118,9 +118,10 @@ public class Playing {
 
     if (isPlaying) {
       levelManager.render(g);
-      floorManager.render(g);
 
       platformManager.render(g);
+
+      floorManager.render(g);
       switchManager.render(g);
       boxManager.render(g);
       swingManager.render(g);
