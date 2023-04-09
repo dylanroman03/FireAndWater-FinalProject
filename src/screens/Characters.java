@@ -87,8 +87,10 @@ public class Characters {
 
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        game.setPlayer(selectedHero, input.getText());
-        flag = true;
+        if (!input.getText().equals("")) {
+          game.setPlayer(selectedHero, input.getText());
+          flag = true;
+        }
       }
     });
   }
