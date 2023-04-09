@@ -6,6 +6,7 @@ import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_CHARACTERS_LIST;
 import static utilities.Constants.PATH_LINE;
 import static utilities.Helpers.getAnimationsX;
+import static utilities.Helpers.getFont;
 import static utilities.Helpers.getImage;
 
 import java.awt.Color;
@@ -34,6 +35,7 @@ public class Characters {
   private JTextField input;
   private boolean flag = true;
   private Button button;
+  private boolean showMessage = false;
 
   public Characters(Game game) {
     this.game = game;
@@ -71,6 +73,18 @@ public class Characters {
       gamePanel.revalidate();
       flag = false;
     }
+
+    if (showMessage) {
+      JLabel message = new JLabel("Debes ingresar un nombre de usuario");
+      message.setForeground(Color.WHITE);
+      message.setFont(getFont());
+      gamePanel.add(message);
+
+      message.setBounds((GAME_WIDTH / 2) - (TILES_SIZE * 9), (TILES_SIZE * 2), (TILES_SIZE * 20), GAME_HEIGHT - TILES_SIZE * 4);
+
+      gamePanel.revalidate();
+      showMessage = false;
+    }
   }
 
   private void initRectangles() {
@@ -87,7 +101,9 @@ public class Characters {
 
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if (!input.getText().equals("")) {
+        if (input.getText().equals("")) {
+          showMessage = true;
+        } else {
           game.setPlayer(selectedHero, input.getText());
           flag = true;
         }
