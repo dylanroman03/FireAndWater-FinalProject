@@ -15,7 +15,6 @@ import main.Game;
 enum Direction {Left, Right, LeftDown, RightDown};
 
 public class Swing extends Entity {
-  private AffineTransform transform = new AffineTransform();
   private double angle = 0;
 
   public Swing(float x, float y, BufferedImage image) {
@@ -31,7 +30,6 @@ public class Swing extends Entity {
     Direction dir;
     Player player = (Player) entity;
 
-    // Calcular el ángulo de inclinación a partir de la posición del objeto
     double centerX = x + width / 2.0;
     double centerY = y + height / 2.0;
 
@@ -40,7 +38,6 @@ public class Swing extends Entity {
 
     double newAngle;
 
-    // Determinar donde intersecto el objeto
     if (centerX > entity.getX() && centerY > entity.getY()) {
       newAngle = Math.atan2(deltaY, -deltaX);
       dir = Direction.Left;

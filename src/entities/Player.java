@@ -30,7 +30,6 @@ public class Player extends Entity {
 	private boolean left;
 	private boolean jump;
 	private boolean right;
-	private boolean fall;
 	private boolean death;
 	private View view;
 	private boolean stopAnimation = false;
@@ -206,15 +205,11 @@ public class Player extends Entity {
 		if (canMove(playing, hitBox.x, hitBox.y + airSpeed)) {
 			hitBox.y += airSpeed;
 			airSpeed += gravity;
-			if (airSpeed > 0) {
-				setFall(true);
-			}
 		} else {
 
 			if (airSpeed > 0) {
 				inAir = false;
 				airSpeed = 0;
-				setFall(true);
 			} else {
 				airSpeed = fallSpeed;
 			}
@@ -238,7 +233,6 @@ public class Player extends Entity {
 	public void resetDirection() {
 		left = false;
 		right = false;
-		fall = false;
 		jump = false;
 		moving = false;
 	}
@@ -271,10 +265,6 @@ public class Player extends Entity {
 	public void setRight(boolean right) {
 		this.right = right;
 		view = View.RIGHT;
-	}
-
-	public void setFall(boolean fall) {
-		this.fall = fall;
 	}
 
 	public float getAirSpeed() {

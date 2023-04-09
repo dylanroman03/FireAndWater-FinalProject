@@ -9,8 +9,8 @@ import utilities.Constants.States;
 
 public class KeyboardInputs implements KeyListener {
 	private GamePanel gamePanel;
-	private int[] pinkKeys = { KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D };
-	private int[] dudeKeys = { KeyEvent.VK_UP, KeyEvent.VK_LEFT, KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT };
+	private int[] pinkKeys = { KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_D };
+	private int[] dudeKeys = { KeyEvent.VK_UP, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT };
 
 	public KeyboardInputs(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -31,8 +31,6 @@ public class KeyboardInputs implements KeyListener {
 			} else if (e.getKeyCode() == keys[1]) {
 				gamePanel.getGame().getPlaying().getPlayer().setLeft(false);
 			} else if (e.getKeyCode() == keys[2]) {
-				gamePanel.getGame().getPlaying().getPlayer().setFall(false);
-			} else if (e.getKeyCode() == keys[3]) {
 				gamePanel.getGame().getPlaying().getPlayer().setRight(false);
 			}
 		}
@@ -48,8 +46,6 @@ public class KeyboardInputs implements KeyListener {
 			} else if (e.getKeyCode() == keys[1]) {
 				gamePanel.getGame().getPlaying().getPlayer().setLeft(true);
 			} else if (e.getKeyCode() == keys[2]) {
-				gamePanel.getGame().getPlaying().getPlayer().setFall(true);
-			} else if (e.getKeyCode() == keys[3]) {
 				gamePanel.getGame().getPlaying().getPlayer().setRight(true);
 			}
 		}

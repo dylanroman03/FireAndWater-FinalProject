@@ -82,7 +82,6 @@ public class PlatformManager extends Manager {
         Platform platform = (Platform) entity;
 
         if (platform.id == idPlatform) {
-          System.out.println("move platform: " + idPlatform + " platform: " + platform);
           platform.move();
         }
       }

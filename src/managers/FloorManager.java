@@ -49,9 +49,9 @@ public class FloorManager extends Manager {
           BufferedImage img;
           BufferedImage back = backFloorImg;
 
-          if (i != 0  && lvlData[i - 1][j] == 1) { // checking if the tile is under a floor
+          if (i != 0  && lvlData[i - 1][j] == 1) {
             img = backFloorImg;
-          } else if (j == 0 || lvlData[i][j - 1] != 1) { // checking if the tile is a corner
+          } else if (j == 0 || lvlData[i][j - 1] != 1) {
             img = cornerLOneImg;
           } else if (j == 1 || lvlData[i][j - 2] != 1) {
             img = cornerLTwoImg;

@@ -8,7 +8,6 @@ public class Switch extends Entity {
   private int idPlatform;
   private boolean isOn = false;
   private int aniTick = 0;
-	private int aniSpeed = 15;
 
   public Switch(float x, float y, int idPlatform, BufferedImage[] animations) {
     super(x, y + (TILES_SIZE / 2), TILES_SIZE, TILES_SIZE);
@@ -18,6 +17,7 @@ public class Switch extends Entity {
     initHitBox(x, y + (TILES_SIZE / 2), TILES_SIZE, TILES_SIZE / 2);
   }
 
+  @Override
   public void update() {
     aniTick++;
     if (aniTick >= aniSpeed) {

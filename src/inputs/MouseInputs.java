@@ -2,27 +2,15 @@ package inputs;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 import main.GamePanel;
 import utilities.Constants.States;
 
-public class MouseInputs implements MouseListener, MouseMotionListener {
+public class MouseInputs implements MouseListener {
 	GamePanel gamePanel;
 
 	public MouseInputs(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// Auto-generated method stub
 	}
 
 	@Override

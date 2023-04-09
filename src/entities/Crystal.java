@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Crystal extends Entity {
-  // private BufferedImage[] animations;
   private boolean visible = true;
 
   public Crystal(float x, float y, int type, BufferedImage animations) {

@@ -17,6 +17,8 @@ public abstract class Entity {
 	protected Rectangle2D.Float hitBox;
 	protected BufferedImage[] sprites;
 	protected int aniIndex = 0;
+	protected int aniSpeed = 15;
+	private int aniTick = 0;
 
 	public Entity(float x, float y, int width, int height) {
 		this.x = x;
@@ -34,7 +36,6 @@ public abstract class Entity {
 		g.draw(hitBox);
 	}
 
-	// Intersect method for collision detection
 	public boolean intersect(Entity entity) {
 		Player player = (Player) entity;
 		Rectangle2D.Float entityHB;
@@ -46,17 +47,23 @@ public abstract class Entity {
 	}
 
 	public void render(Graphics2D g) {
-		// Dibujar la imagen con las coordenadas y el tamaño del rectángulo original
 		g.drawImage(sprites[aniIndex], (int) hitBox.x, (int) hitBox.y, (int) hitBox.getWidth(), (int) hitBox.getHeight(),
 				null);
 
-		// Dibujar el rectángulo rotado en rojo
 		if (Game.DEBUGING) {
 			showHitBox(g, hitBox);
 		}
 	}
 
 	public void update() {
+		aniTick++;
+		if (aniTick >= aniSpeed) {
+			aniTick = 0;
+			aniIndex++;
+			if (aniIndex >= sprites.length) {
+				aniIndex = 0;
+			}
+		}
 	}
 
 	public Rectangle2D.Float getHitBox() {
