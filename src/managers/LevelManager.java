@@ -5,7 +5,6 @@ import static main.Game.GAME_WIDTH;
 import static utilities.Constants.PATH_BACKGROUND;
 import static utilities.Constants.PATH_BACKGROUND_TWO;
 import static utilities.Constants.PATH_FILE_LEVELS;
-import static utilities.Constants.PATH_FLOOR;
 import static utilities.Helpers.getImage;
 
 import java.awt.Graphics2D;
@@ -38,7 +37,6 @@ public class LevelManager {
     background = getImage(PATH_BACKGROUND);
     backgroundTwo = getImage(PATH_BACKGROUND_TWO);
     currentlyLevel = level;
-    getImage(PATH_FLOOR);
     lvlData = getLevelData();
     initDoors();
   }
