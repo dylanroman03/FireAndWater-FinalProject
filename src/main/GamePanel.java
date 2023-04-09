@@ -25,10 +25,8 @@ public class GamePanel extends JPanel {
 		this.game = game;
 
 		try {
-      // create the font to use. Specify the size!
       Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/MinimalPixelFont.ttf")).deriveFont(12f);
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-      // register the font
       ge.registerFont(customFont);
     } catch (IOException e) {
       e.printStackTrace();
@@ -45,8 +43,6 @@ public class GamePanel extends JPanel {
 
 	private void setPanelSize() {
 		Dimension size = new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT);
-		System.out.println("Dimesion:" + size.width + " " + size.height);
-		System.out.println("Tile:" + Game.TILES_SIZE);
 		setPreferredSize(size);
 	}
 

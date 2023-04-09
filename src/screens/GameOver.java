@@ -31,12 +31,11 @@ public class GameOver extends Dialog {
     menuButton = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 1.5)),
         "Menu");
 
-    // add click funtion for menuButton
     menuButton.addActionListener(e -> {
+      game.initClasses();
       click(States.MENU);
     });
 
-    // add click funtion for retryButton
     retryButton.addActionListener(e -> {
       click(States.PLAYING);
     });

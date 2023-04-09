@@ -55,32 +55,27 @@ public class Box extends Entity {
     hitBox.x -= 1;
   }
 
-
   private boolean intersectFloor(int xSpeed) {
-    boolean some = false;
     for (Entity[] entities : floorManager.getEntities()) {
       for (Entity floor : entities) {
         if (hitBox.intersects(floor.getX() + xSpeed, floor.getY(), floor.width, floor.height)) {
-          some = true;
+          return true;
         }
       }
     }
 
-    return some;
+    return false;
   }
 
   public void isOnFLoor(FloorManager floorManager) {
-    boolean some = false;
     for (Entity[] entities : floorManager.getEntities()) {
       for (Entity floor : entities) {
         if (hitBox.intersects(floor.getX(), floor.getY() - 1, floor.width, 1)) {
-          some = true;
+          return;
         }
       }
     }
 
-    if (!some) {
-      hitBox.y += 1;
-    }
+    hitBox.y += 1;
   }
 }

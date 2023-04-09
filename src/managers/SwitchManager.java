@@ -1,8 +1,8 @@
 package managers;
-
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_SWITCH;
 import static utilities.Helpers.getAnimationsY;
+import static utilities.Helpers.getQunatity;
 
 import java.awt.image.BufferedImage;
 import java.util.Timer;
@@ -13,7 +13,6 @@ import entities.Switch;
 import utilities.Constants.Heroes;
 
 public class SwitchManager extends Manager {
-  private int[][] lvlData;
   private PlatformManager platformManager;
   private BufferedImage[] animations;
 
@@ -26,15 +25,8 @@ public class SwitchManager extends Manager {
   }
 
   private void addLever() {
-    int length = 0;
+    int length = getQunatity(lvlData, 80, 90);
     int e = 0;
-
-    for (int i = 0; i < lvlData.length; i++) {
-      for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] > 80 && lvlData[i][j] < 90)
-          length++;
-      }
-    }
 
     Switch[] leverArray = new Switch[length];
 

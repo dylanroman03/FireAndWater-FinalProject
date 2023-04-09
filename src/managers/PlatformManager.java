@@ -3,6 +3,7 @@ package managers;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_LEVEL_BUILD;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.getQunatity;
 
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -13,7 +14,6 @@ import entities.Player;
 import screens.Playing;
 
 public class PlatformManager extends Manager {
-  private int[][] lvlData;
   private BufferedImage platformImage;
   private Playing playing;
 
@@ -26,7 +26,6 @@ public class PlatformManager extends Manager {
     addEntity();
   }
 
-  @Override
   public void update() {
     for (Entity[] entitiesArray : entities) {
       for (Entity entity : entitiesArray) {
@@ -37,15 +36,8 @@ public class PlatformManager extends Manager {
   }
 
   private void addEntity() {
-    int length = 0;
+    int length = getQunatity(lvlData, 1000, 3000);
     int e = 0;
-
-    for (int i = 0; i < lvlData.length; i++) {
-      for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] > 1000 && lvlData[i][j] < 3000)
-          length++;
-      }
-    }
 
     Platform[] platformArray = new Platform[length];
 

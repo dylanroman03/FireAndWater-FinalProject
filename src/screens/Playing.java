@@ -50,12 +50,10 @@ public class Playing {
   }
 
   private Game game;
-  private GamePanel gamePanel;
 
   private boolean isPlaying = false;
   private boolean isGameOver = false;
   private boolean isGameWon = false;
-  private boolean isGamePaused = false;
 
   private GameOver gameOver;
   private Summary summary;
@@ -114,8 +112,6 @@ public class Playing {
   }
 
   public void render(Graphics2D g, GamePanel gamePanel) {
-    this.gamePanel = gamePanel;
-
     if (isPlaying) {
       levelManager.render(g);
 
@@ -134,15 +130,13 @@ public class Playing {
       renderTime(g, time);
 
       /// Draw a full rectangle with opacity in 0.5 to darken the screen
-      if (isGameOver || isGameWon || isGamePaused) {
+      if (isGameOver || isGameWon) {
         g.setColor(new Color(0, 0, 0, 0.5f));
         g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         if (isGameOver) {
           gameOver.render(g, gamePanel);
         } else if (isGameWon) {
           summary.render(g, gamePanel);
-        } else if (isGamePaused) {
-          // gamePaused.render(g);
         }
       }
     }
@@ -160,7 +154,7 @@ public class Playing {
     }
   }
 
-  public static void renderTime(Graphics g, int time) {
+  private static void renderTime(Graphics g, int time) {
     int x = Game.TILES_SIZE * 18;
 
     String number = String.valueOf(time);
@@ -191,14 +185,8 @@ public class Playing {
     isGameOver = true;
   }
 
-  /// Getters and Setters
-
   public LevelManager getLevelManager() {
     return levelManager;
-  }
-
-  public void setLevelManager(LevelManager levelManager) {
-    this.levelManager = levelManager;
   }
 
   public FireManager getFireManager() {
@@ -233,8 +221,16 @@ public class Playing {
     return boxManager;
   }
 
+  public SwingManager getSwingManager() {
+    return swingManager;
+  }
+
   public boolean isPlaying() {
     return isPlaying;
+  }
+
+  public void setLevelManager(LevelManager levelManager) {
+    this.levelManager = levelManager;
   }
 
   public void setPlayer(Player player) {
@@ -243,9 +239,5 @@ public class Playing {
 
   public int getTime() {
     return time;
-  }
-
-  public SwingManager getSwingManager() {
-    return swingManager;
   }
 }

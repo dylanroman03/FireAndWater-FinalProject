@@ -6,12 +6,8 @@ import java.awt.event.WindowFocusListener;
 import javax.swing.JFrame;
 
 public class GameWindow extends JFrame {
-	// private JFrame jframe;
 
 	public GameWindow(GamePanel gamePanel) {
-
-		// jframe = new JFrame();
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		add(gamePanel);
 		setResizable(false);
@@ -21,7 +17,6 @@ public class GameWindow extends JFrame {
 
 			@Override
 			public void windowGainedFocus(WindowEvent arg0) {
-				// Something
 			}
 
 			@Override

@@ -14,6 +14,7 @@ public class Fire extends Entity {
     initHitBox(x, y + 5, TILES_SIZE, (int) (TILES_SIZE - 5));
   }
 
+  @Override
   public void update() {
 		updateAnimationTick();
   }

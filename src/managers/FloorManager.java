@@ -4,6 +4,7 @@ import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_FLOOR;
 import static utilities.Constants.PATH_LEVEL_BUILD;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.getQunatity;
 
 import java.awt.image.BufferedImage;
 
@@ -18,7 +19,6 @@ public class FloorManager extends Manager {
   private BufferedImage cornerRTwoImg;
   private BufferedImage borderRImg;
   private BufferedImage backFloorImg;
-  private int[][] lvlData;
 
   public FloorManager(LevelManager levelManager) {
     super(1);
@@ -38,15 +38,8 @@ public class FloorManager extends Manager {
   }
 
   private void addFloor() {
-    int length = 0;
+    int length = getQunatity(lvlData, 1);
     int e = 0;
-
-    for (int i = 0; i < lvlData.length; i++) {
-      for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] == 1)
-          length++;
-      }
-    }
 
     Floor[] floorArray = new Floor[length];
 

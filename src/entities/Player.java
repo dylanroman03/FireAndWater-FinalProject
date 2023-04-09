@@ -46,11 +46,10 @@ public class Player extends Entity {
 		RIGHT,
 	}
 
-	// Gravity
 	private float airSpeed = 0f;
 	private float gravity = 0.02f * Game.SCALE;
 	private float jumpingSpeed = -1.2f * Game.SCALE;
-	private float fallSpeed = 0.3f * Game.SCALE; // Originalmente 0.7f
+	private float fallSpeed = 0.3f * Game.SCALE;
 	private boolean inAir = false;
 	public float xSpeed = 0;
 
@@ -105,19 +104,18 @@ public class Player extends Entity {
 	}
 
 	private void setAnimation() {
-		// int startAni = playerAction;
 		PlayerActions startAni = playerAction;
 
 		if (moving) {
-			if (left)
+			if (left) {
 				playerAction = PlayerActions.RUNNING_LEFT;
-			else if (right)
+			} else if (right) {
 				playerAction = PlayerActions.RUNNING_RIGHT;
-			else if (jump)
+			} else if (jump) {
 				playerAction = PlayerActions.JUMP;
-			else
+			} else {
 				playerAction = PlayerActions.DOWN;
-
+			}
 		} else if (death) {
 			playerAction = PlayerActions.DIE;
 		} else if (view == View.LEFT) {
@@ -138,7 +136,8 @@ public class Player extends Entity {
 	private void updatePosition() {
 		moving = false;
 
-		if (death) return;
+		if (death)
+			return;
 
 		if (jump) {
 			jump();
@@ -162,13 +161,6 @@ public class Player extends Entity {
 		} else if (right && !left) {
 			xSpeed = runningSpeed;
 		}
-		// if (inAir) {
-		// 	inAir();
-		// } else {
-		// 	if (!isInFloor()) {
-		// 		inAir = true;
-		// 	}
-		// }
 
 		if (canMove(playing, hitBox.x + xSpeed, hitBox.y)) {
 			hitBox.x += xSpeed;
@@ -229,7 +221,6 @@ public class Player extends Entity {
 		}
 	}
 
-
 	private void jump() {
 		if (inAir)
 			return;
@@ -252,44 +243,6 @@ public class Player extends Entity {
 		moving = false;
 	}
 
-	public boolean isLeft() {
-		return left;
-	}
-
-	public void setLeft(boolean left) {
-		this.left = left;
-		view = View.LEFT;
-	}
-
-	public boolean isJump() {
-		return jump;
-	}
-
-	public void setJump(boolean jump) {
-		this.jump = jump;
-	}
-
-	public boolean isRight() {
-		return right;
-	}
-
-	public void setRight(boolean right) {
-		this.right = right;
-		view = View.RIGHT;
-	}
-
-	public boolean isFall() {
-		return fall;
-	}
-
-	public void setFall(boolean fall) {
-		this.fall = fall;
-	}
-
-	public float getAirSpeed() {
-		return airSpeed;
-	}
-
 	public void setHero(Heroes hero) {
 		this.hero = hero;
 		int[][] lvlData = playing.getLevelManager().getLvlData();
@@ -304,6 +257,28 @@ public class Player extends Entity {
 			}
 		}
 		loadAnimations();
+	}
+
+	public void setLeft(boolean left) {
+		this.left = left;
+		view = View.LEFT;
+	}
+
+	public void setJump(boolean jump) {
+		this.jump = jump;
+	}
+
+	public void setRight(boolean right) {
+		this.right = right;
+		view = View.RIGHT;
+	}
+
+	public void setFall(boolean fall) {
+		this.fall = fall;
+	}
+
+	public float getAirSpeed() {
+		return airSpeed;
 	}
 
 	public void setName(String name) {

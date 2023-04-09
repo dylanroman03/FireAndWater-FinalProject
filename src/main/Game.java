@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 
 import javax.sound.sampled.Clip;
 
+import entities.Player;
 import screens.Characters;
 import screens.Credits;
 import screens.Instructions;
@@ -44,15 +45,7 @@ public class Game implements Runnable {
 	private States state = States.MENU;
 
 	public Game() {
-		playing = new Playing(this);
-		menu = new MainMenu(this);
-		characters = new Characters(this);
-		credits = new Credits(this);
-		instructions = new Instructions(this);
-
-		gamePanel = new GamePanel(this);
-		new GameWindow(gamePanel);
-		gamePanel.requestFocus();
+		initClasses();
 
 		background = getImage(PATH_BACKGROUND_CERO);
 		startGameLoop();
@@ -99,14 +92,21 @@ public class Game implements Runnable {
 			case PLAYING:
 				playing.update();
 				break;
-			case CHARACTERS:
-				characters.update();
-				break;
-			case CREDITS:
-				break;
 			default:
 				break;
 		}
+	}
+
+	public void initClasses() {
+		playing = new Playing(this);
+		menu = new MainMenu(this);
+		characters = new Characters(this);
+		credits = new Credits(this);
+		instructions = new Instructions(this);
+
+		gamePanel = new GamePanel(this);
+		new GameWindow(gamePanel);
+		gamePanel.requestFocus();
 	}
 
 	@Override
@@ -167,10 +167,18 @@ public class Game implements Runnable {
 		resetPanel(gamePanel);
 
 		if (state == States.PLAYING) {
-			playing.startPlaying(playing.getPlayer().getHero(), playing.getPlayer().getName());
+			startPlaying();
 		}
 
 		this.state = state;
+	}
+
+	private void startPlaying() {
+		Player player = playing.getPlayer();
+		Heroes hero = player.getHero();
+		String playerName = player.getName();
+
+		playing.startPlaying(hero, playerName);
 	}
 
 	public Playing getPlaying() {

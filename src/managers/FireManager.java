@@ -5,10 +5,10 @@ import static utilities.Constants.PATH_BLUE_FIRE;
 import static utilities.Constants.PATH_GREEN_FIRE;
 import static utilities.Constants.PATH_PURPLE_FIRE;
 import static utilities.Helpers.getAnimationsX;
+import static utilities.Helpers.getQunatity;
 
 import java.awt.image.BufferedImage;
 
-import entities.Entity;
 import entities.Fire;
 import utilities.Constants.FireTypes;
 
@@ -19,7 +19,7 @@ public class FireManager extends Manager {
 
 	public FireManager(LevelManager levelManager) {
 		super(3);
-		int[][] lvlData = levelManager.getLvlData();
+		lvlData = levelManager.getLvlData();
 
 		blueAnimations = getAnimationsX(PATH_BLUE_FIRE);
 		purpleAnimations = getAnimationsX(PATH_PURPLE_FIRE);
@@ -30,25 +30,9 @@ public class FireManager extends Manager {
 		entities[2] = addFires(lvlData, FireTypes.GREEN.ordinal() + 2, greenAnimations);
 	}
 
-	public void update() {
-		for (Entity[] fireArray : entities) {
-			for (Entity entity : fireArray) {
-				Fire fire = (Fire) entity;
-				fire.update();
-			}
-		}
-	}
-
 	private Fire[] addFires(int[][] lvlData, int type, BufferedImage[] animations) {
-		int length = 0;
+		int length = getQunatity(lvlData, type);
 		int e = 0;
-
-		for (int i = 0; i < lvlData.length; i++) {
-			for (int j = 0; j < lvlData[i].length; j++) {
-				if (lvlData[i][j] == type)
-					length++;
-			}
-		}
 
 		Fire[] fires = new Fire[length];
 

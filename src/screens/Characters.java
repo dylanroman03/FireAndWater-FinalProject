@@ -73,9 +73,6 @@ public class Characters {
     }
   }
 
-  public void update() {
-  }
-
   private void initRectangles() {
     for (int i = 0; i < characters.length; i++) {
       charRects[i] = new Rectangle((GAME_WIDTH / 2) - (TILES_SIZE * i * 6), (GAME_HEIGHT / 7), TILES_SIZE * 6,
@@ -87,18 +84,13 @@ public class Characters {
     input = new JTextField();
     input.setFont(new Font("MinimalPixel", Font.PLAIN, 60));
     button = new Button((GAME_WIDTH / 2) - (int) (TILES_SIZE * 3.5), GAME_HEIGHT - TILES_SIZE * 4, "Empezar");
-    
 
     button.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        goPlaying();
+        game.setPlayer(selectedHero, input.getText());
         flag = true;
       }
     });
-  }
-
-  protected void goPlaying() {
-    game.setPlayer(selectedHero, input.getText());
   }
 
   private void loadImages() {

@@ -66,12 +66,11 @@ public class Constants {
 	public static final String PATH_BOX = "res/Box.png";
 
 	public static final String PATH_LEVEL_BUILD = "res/Mainlev_Build.png";
-	public static final String PATH_BACKGROUND = "res/background1.png";
-	public static final String PATH_BACKGROUND_TWO = "res/background4b.png";
-	public static final String PATH_BACKGROUND_CERO = "res/background0.png";
+	public static final String PATH_BACKGROUND = "res/Backgrounds/background1.png";
+	public static final String PATH_BACKGROUND_TWO = "res/Backgrounds/background4b.png";
+	public static final String PATH_BACKGROUND_CERO = "res/Backgrounds/background0.png";
 
 	public static final String PATH_DIALOG = "res/Gui/Dialog.png";
-	public static final String PATH_PLAY_BTN = "res/Gui/Buttons_2.png";
 	public static final String PATH_BUTTONS = "res/Gui/Buttons_3.png";
 	public static final String PATH_LINE = "res/Gui/Line.png";
 	public static final String PATH_KEYS = "res/Gui/Keyboard.png";

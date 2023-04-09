@@ -16,6 +16,8 @@ import gui.Button;
 import gui.Dialog;
 import main.Game;
 import main.GamePanel;
+import managers.CrystalManager;
+import managers.LevelManager;
 import utilities.Constants.States;
 
 public class Summary extends Dialog {
@@ -34,14 +36,16 @@ public class Summary extends Dialog {
   public Summary(Game game) {
     super(game);
 
-    player = game.getPlaying().getPlayer();
-    time = game.getPlaying().getTime();
+    Playing playing = game.getPlaying();
+    player = playing.getPlayer();
+    time = playing.getTime();
 
-    Crystal[] crystalsArray = game.getPlaying().getCrystalManager().getCrystals(player.getHero());
+    CrystalManager crystalManager = playing.getCrystalManager();
+    Crystal[] crystalsArray = crystalManager.getCrystals(player.getHero());
 
     crystals = crystalsArray.length;
-    for (Crystal elemenCrystal : crystalsArray) {
-      if (!elemenCrystal.isVisible()) {
+    for (Crystal crystal : crystalsArray) {
+      if (!crystal.isVisible()) {
         crystalsScore++;
       }
     }
@@ -116,6 +120,7 @@ public class Summary extends Dialog {
     menuButton = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 1.5)),
         "Menu");
     menuButton.addActionListener(e -> {
+      game.initClasses();
       game.setState(States.MENU);
       flag = true;
     });
@@ -125,18 +130,17 @@ public class Summary extends Dialog {
 
   private void nextLevel() {
     Playing playing = game.getPlaying();
-    int getLevels = playing.getLevelManager().getLevels().length;
-    int currentlyLvl = game.getPlaying().getLevelManager().getCurrentlyLevel();
+    LevelManager levelManager = playing.getLevelManager();
+    int currentLevel = levelManager.getCurrentlyLevel();
+    int totalLevels = levelManager.getLevels().length;
 
-    if (currentlyLvl + 1 == getLevels) {
+    if (currentLevel + 1 == totalLevels) {
       initCongratulation();
       endOfGame = true;
     } else {
-      playing.getPlayer();
-
-      Playing newPlaying = new Playing(game, currentlyLvl + 1);
-      newPlaying.setPlayer(playing.getPlayer());
-
+      Player player = playing.getPlayer();
+      Playing newPlaying = new Playing(game, currentLevel + 1);
+      newPlaying.setPlayer(player);
       game.setPlaying(newPlaying);
       game.setState(States.PLAYING);
     }

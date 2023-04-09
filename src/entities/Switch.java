@@ -18,7 +18,6 @@ public class Switch extends Entity {
     initHitBox(x, y + (TILES_SIZE / 2), TILES_SIZE, TILES_SIZE / 2);
   }
 
-  @Override
   public void update() {
     aniTick++;
     if (aniTick >= aniSpeed) {
@@ -43,14 +42,6 @@ public class Switch extends Entity {
     return false;
   }
 
-  public void changeState() {
-    if (isOn) {
-      turnOff();
-    } else {
-      turnOn();
-    }
-  }
-
   public void turnOn() {
     this.isOn = true;
   }
@@ -61,10 +52,6 @@ public class Switch extends Entity {
 
   public int getIdPlatform() {
     return idPlatform;
-  }
-
-  public boolean isOn() {
-    return isOn;
   }
 
 }

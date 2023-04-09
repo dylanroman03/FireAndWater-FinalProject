@@ -3,6 +3,7 @@ package managers;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_BOX;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.getQunatity;
 
 import java.awt.image.BufferedImage;
 
@@ -11,27 +12,19 @@ import entities.Entity;
 
 /// The Manager to handle the Box
 public class BoxManager extends Manager {
-  private int[][] lvlData;
   private BufferedImage[] sprites = new BufferedImage[1];
   private FloorManager floorManager;
 
   public BoxManager(LevelManager levelManager, FloorManager floorManager) {
-    this.lvlData = levelManager.getLvlData();
+    lvlData = levelManager.getLvlData();
     this.floorManager = floorManager;
     sprites[0] = getImage(PATH_BOX);
     addEntity();
   }
 
   private void addEntity() {
-    int length = 0;
+    int length = getQunatity(lvlData, 7);
     int e = 0;
-
-    for (int i = 0; i < lvlData.length; i++) {
-      for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] == 7)
-          length++;
-      }
-    }
 
     Box[] platformArray = new Box[length];
 

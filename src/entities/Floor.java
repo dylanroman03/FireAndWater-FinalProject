@@ -13,15 +13,9 @@ public class Floor extends Entity {
   public Floor(float x, float y, BufferedImage image, BufferedImage backImg) {
     super(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
     this.backImage = backImg;
-    // init(image, x, y);
     this.image = image;
     initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
   }
-
-  // private void init(BufferedImage image, float x, float y) {
-  //   this.image = image;
-  //   initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
-  // }
 
   @Override
   public void render(Graphics2D g) {

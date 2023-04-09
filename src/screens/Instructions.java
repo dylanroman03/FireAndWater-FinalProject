@@ -89,8 +89,6 @@ public class Instructions {
       gamePanel.revalidate();
       flag = false;
     }
-
-    // g.setColor(Color.BLACK);
   }
 
 }

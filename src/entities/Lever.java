@@ -21,12 +21,12 @@ public class Lever extends Entity {
     initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
   }
 
-  public void turnOn() {
+  private void turnOn() {
     this.isOn = true;
     aniIndex = 0;
   }
 
-  public void turnOff() {
+  private void turnOff() {
     this.isOn = false;
     aniIndex = 1;
   }
@@ -36,7 +36,6 @@ public class Lever extends Entity {
 
     switch (player.getPlayerAction()) {
       case RUNNING_LEFT:
-        // check if lever intersect with the left side of the player
         if (hitBox.intersects(player.hitBox.x + player.xSpeed, player.hitBox.y, 1, 1)) {
           if (isOn) {
             turnOff();
@@ -47,7 +46,6 @@ public class Lever extends Entity {
         }
         break;
       case RUNNING_RIGHT:
-        // check if lever intersect with the right side of the player
         if (hitBox.intersects(player.hitBox.x + player.hitBox.width + player.xSpeed, player.hitBox.y, 1, hitBox.height)) {
           if (!isOn) {
             turnOn();

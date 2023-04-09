@@ -3,6 +3,7 @@ package managers;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_LEVER;
 import static utilities.Helpers.getAnimationsX;
+import static utilities.Helpers.getQunatity;
 
 import java.awt.image.BufferedImage;
 
@@ -11,7 +12,6 @@ import entities.Lever;
 import utilities.Constants.Heroes;
 
 public class LeverManager extends Manager {
-  private int[][] lvlData;
   private PlatformManager platformManager;
   private BufferedImage[] leverImages = new BufferedImage[2];
 
@@ -24,15 +24,8 @@ public class LeverManager extends Manager {
   }
 
   private void addLever() {
-    int length = 0;
+    int length = getQunatity(lvlData, 700, 800);
     int e = 0;
-
-    for (int i = 0; i < lvlData.length; i++) {
-      for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] > 700 && lvlData[i][j] < 800)
-          length++;
-      }
-    }
 
     Lever[] leverArray = new Lever[length];
 

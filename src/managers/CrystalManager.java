@@ -4,6 +4,7 @@ import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_BLUE_CRYSTAL;
 import static utilities.Constants.PATH_PURPLE_CRYSTAL;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.getQunatity;
 
 import java.awt.image.BufferedImage;
 
@@ -16,7 +17,7 @@ public class CrystalManager extends Manager {
 
 	public CrystalManager(LevelManager levelManager) {
 		super(2);
-		int[][] lvlData = levelManager.getLvlData();
+		lvlData = levelManager.getLvlData();
 
 		blueCoinImg = getImage(PATH_BLUE_CRYSTAL);
 		purpleCoinImg = getImage(PATH_PURPLE_CRYSTAL);
@@ -26,15 +27,8 @@ public class CrystalManager extends Manager {
 	}
 
 	private Crystal[] addCrystals(int[][] lvlData, int type, BufferedImage image) {
-		int length = 0;
+		int length = getQunatity(lvlData, type);
 		int e = 0;
-
-		for (int i = 0; i < lvlData.length; i++) {
-			for (int j = 0; j < lvlData[i].length; j++) {
-				if (lvlData[i][j] == type)
-					length++;
-			}
-		}
 
 		Crystal[] crystals = new Crystal[length];
 

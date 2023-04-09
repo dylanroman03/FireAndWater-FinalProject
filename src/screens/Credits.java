@@ -26,11 +26,10 @@ public class Credits extends Dialog {
 
     if (flag) {
       JLabel title = new JLabel("Creditos:");
-      JLabel name = new JLabel("Dylan Buitrago");
+      JLabel name = new JLabel("<html>Dylan Buitrago<br>Kevin Gonzales</html>");
       Button button = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 1.5)),
           "Menu");
 
-      // add click funtion for menuButton
       button.addActionListener(e -> {
         game.setState(States.MENU);
         flag = true;
@@ -47,7 +46,7 @@ public class Credits extends Dialog {
       gamePanel.add(button);
 
       title.setBounds((int) this.x + (this.width / 4), this.y + (int) (this.height / 9), 200, 50);
-      name.setBounds((int) this.x + (this.width / 4), this.y + (int) (this.height / 3.2), this.width, 50);
+      name.setBounds((int) this.x + (this.width / 4), this.y + (int) (this.height / 3.2), this.width, 100);
       button.setBounds();
 
       gamePanel.revalidate();

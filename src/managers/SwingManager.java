@@ -3,6 +3,7 @@ package managers;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.PATH_LEVEL_BUILD;
 import static utilities.Helpers.getImage;
+import static utilities.Helpers.getQunatity;
 
 import java.awt.image.BufferedImage;
 
@@ -14,7 +15,7 @@ public class SwingManager extends Manager {
   public SwingManager(LevelManager levelManager) {
     super();
 
-    int[][] lvlData = levelManager.getLvlData();
+    lvlData = levelManager.getLvlData();
 
     BufferedImage buildImg = getImage(PATH_LEVEL_BUILD);
     swingImage = buildImg.getSubimage(753, 20, 175, 12);
@@ -23,15 +24,8 @@ public class SwingManager extends Manager {
   }
 
   private void addEntities(int[][] lvlData) {
-		int length = 0;
+		int length = getQunatity(lvlData, 300);
 		int e = 0;
-
-    for (int i = 0; i < lvlData.length; i++) {
-      for (int j = 0; j < lvlData[i].length; j++) {
-        if (lvlData[i][j] == 300)
-          length++;
-      }
-    }
 
     Swing[] swings = new Swing[length];
 

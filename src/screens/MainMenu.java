@@ -18,12 +18,9 @@ public class MainMenu extends Dialog {
   private Button creditsButton;
   private Button quitButton;
   private boolean flag = true;
-  private Game game;
-  private GamePanel gamePanel;
 
   public MainMenu(Game game) {
     super(game, (int) (GAME_WIDTH / 1.9), (int) (GAME_WIDTH / 1.9));
-    this.game = game;
     initClasses();
   }
 
@@ -36,41 +33,38 @@ public class MainMenu extends Dialog {
 
     playButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        System.out.println("Jugar");
-        game.setState(States.CHARACTERS);
-        flag = true;
+        goTo(States.CHARACTERS);
       }
     });
 
     instructionButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        System.out.println("Instrucciones");
-        game.setState(States.INSTRUCTIONS);
-        flag = true;
+        goTo(States.INSTRUCTIONS);
       }
 
     });
 
     creditsButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        System.out.println("Creditos");
-        game.setState(States.CREDITS);
-        flag = true;
+        goTo(States.CREDITS);
       }
     });
 
     quitButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        System.out.println("Saliendo del juego");
         System.exit(0);
       }
     });
   }
 
+  private void goTo(States state) {
+    game.setState(state);
+    flag = true;
+  }
+
   @Override
   public void render(Graphics g, GamePanel gamePanel) {
     super.render(g, gamePanel);
-    this.gamePanel = gamePanel;
 
     if (flag) {
       gamePanel.add(playButton);

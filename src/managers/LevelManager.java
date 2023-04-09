@@ -80,7 +80,6 @@ public class LevelManager {
   public boolean intersectDoor(Heroes hero, Entity entity) {
     Door door = doors[hero.ordinal()];
     if (door.intersect(entity)) {
-      door.setAniTick(1);
       return true;
     }
     return false;
@@ -96,10 +95,6 @@ public class LevelManager {
         }
       }
     }
-  }
-
-  public void setCurrentlyLevel(int currentlyLevel) {
-    this.currentlyLevel = currentlyLevel;
   }
 
   public String[] getLevels() {

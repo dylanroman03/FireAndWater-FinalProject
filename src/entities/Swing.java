@@ -16,6 +16,7 @@ enum Direction {Left, Right, LeftDown, RightDown};
 
 public class Swing extends Entity {
   private AffineTransform transform = new AffineTransform();
+  private double angle = 0;
 
   public Swing(float x, float y, BufferedImage image) {
     super(x, y, TILES_SIZE * 4, TILES_SIZE / 2);
@@ -60,7 +61,6 @@ public class Swing extends Entity {
     if (hitBox.intersects(entity.getHitBox())) {
       switch (dir) {
         case Left:
-          System.out.println("LEFT");
           player.setX(player.hitBox.x - 0.5f) ;
           player.setY(player.hitBox.y - 0.5f);
           break;
@@ -69,7 +69,6 @@ public class Swing extends Entity {
           player.setY(player.hitBox.y + 0.5f);
           break;
         case Right:
-          System.out.println("RIGHT");
           player.setX(player.hitBox.x + 0.5f);
           player.setY(player.hitBox.y - 0.5f);
           break;
@@ -81,20 +80,15 @@ public class Swing extends Entity {
     }
 
     if (collidesWith(entity)) {
-
-      // Aplicar un factor de amortiguación para suavizar el cambio de ángulo
       double dampingFactor = 0.1;
       angle = angle + dampingFactor * (newAngle - angle);
-
-      player.setAngle(newAngle);
-
       return true;
     }
 
     return false;
   }
 
-  public boolean collidesWith(Entity entity) {
+  private boolean collidesWith(Entity entity) {
     Rectangle2D r1 = getHitBox();
 
     Player player = (Player) entity;
@@ -133,23 +127,8 @@ public class Swing extends Entity {
         4));
 
     area1.intersect(area2);
+
     return !area1.isEmpty();
-
-    // // Calcular la posición y tamaño de la plataforma con la transformación de
-    // // rotación
-    // Shape platformShape = transform.createTransformedShape(new
-    // Rectangle2D.Double(x, y, width, height));
-
-    // // Calcular la posición y tamaño del Player
-    // Player player = (Player) entity;
-    // Rectangle2D.Float entityHB;
-
-    // entityHB = new Rectangle2D.Float(player.getX() + player.xSpeed, player.getY()
-    // + player.getAirSpeed(),
-    // player.width, player.height);
-
-    // // Verificar si el objeto se superpone con la plataforma
-    // return platformShape.intersects(entityHB);
   }
 
   @Override
@@ -160,32 +139,24 @@ public class Swing extends Entity {
       angle += angle * 0.08;
     }
 
-    // Guardar la transformación original para restaurarla más tarde
     AffineTransform oldTransform = g.getTransform();
 
-    // Crear una nueva transformación afín para rotar los gráficos
     AffineTransform transform = new AffineTransform();
     transform.rotate(Math.toRadians(angle), hitBox.getCenterX(), hitBox.getCenterY());
 
-    // Guardar la transformación actual para restaurarla más tarde
     AffineTransform oldTransform2 = g.getTransform();
 
-    // Aplicar la transformación a los gráficos para dibujar la imagen
     g.transform(transform);
 
-    // Calcular las coordenadas x e y para dibujar la imagen
     int x = (int) hitBox.getX();
     int y = (int) hitBox.getY();
 
-    // Dibujar la imagen con las coordenadas y el tamaño del rectángulo original
     g.drawImage(sprites[aniIndex], x, y, (int) hitBox.getWidth(), (int) hitBox.getHeight(), null);
 
-    // Dibujar el rectángulo rotado en rojo
     if (Game.DEBUGING) {
       showHitBox(g, hitBox);
     }
 
-    // Restaurar la transformación actual y la original
     g.setTransform(oldTransform2);
     g.setTransform(oldTransform);
   }

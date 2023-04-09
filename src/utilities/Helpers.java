@@ -106,7 +106,6 @@ public class Helpers {
       return true;
     }
 
-    // Checking if the player intersects with a swing
     if (playing.getSwingManager().someIntersect(playing.getPlayer().getHero(), playing.getPlayer())) {
       return true;
     }
@@ -160,5 +159,29 @@ public class Helpers {
     } catch (Exception e) {
       System.out.println("Error al reproducir el sonido: " + e.getMessage());
     }
+  }
+
+  public static int getQunatity(int[][] lvlData, int value) {
+    int length = 0;
+    for (int i = 0; i < lvlData.length; i++) {
+      for (int j = 0; j < lvlData[i].length; j++) {
+        if (lvlData[i][j] == value)
+          length++;
+      }
+    }
+
+    return length;
+  }
+
+  public static int getQunatity(int[][] lvlData, int start, int end) {
+    int length = 0;
+    for (int i = 0; i < lvlData.length; i++) {
+      for (int j = 0; j < lvlData[i].length; j++) {
+        if (lvlData[i][j] >= start && lvlData[i][j] <= end)
+          length++;
+      }
+    }
+
+    return length;
   }
 }

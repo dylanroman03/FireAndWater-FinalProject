@@ -7,6 +7,7 @@ import utilities.Constants.Heroes;
 
 public class Manager {
   protected Entity[][] entities;
+  protected int[][] lvlData;
 
   public Entity[][] getEntities() {
     return entities;

@@ -7,8 +7,6 @@ import static utilities.Helpers.getAnimationsX;
 import utilities.Constants.Heroes;
 
 public class Door extends Entity {
-  private int aniTick = 0;
-
   public Door(float x, float y, int width, int height, Heroes type) {
     super(x, y, TILES_SIZE, TILES_SIZE);
 
@@ -16,8 +14,8 @@ public class Door extends Entity {
     sprites = getAnimationsX(PATH_DOOR);
   }
 
-  public void setAniTick(int aniTick) {
-    this.aniTick = aniTick;
+  public void setAniIndex(int aniTick) {
+    aniIndex = aniTick;
   }
 
 }
