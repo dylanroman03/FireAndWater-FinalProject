@@ -1,7 +1,9 @@
 package entities;
 
+import static main.Game.DEBUGING;
 import static main.Game.TILES_SIZE;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Switch extends Entity {
@@ -22,6 +24,16 @@ public class Switch extends Entity {
     this.sprites = animations;
     aniIndex = 1;
     initHitBox(x, y + (TILES_SIZE / 2), TILES_SIZE, TILES_SIZE / 2);
+  }
+
+  @Override
+  public void render(Graphics2D g) {
+    g.drawImage(sprites[aniIndex], (int) hitBox.x, (int) hitBox.y,
+        (int) hitBox.getWidth(), (int) height, null);
+
+    if (DEBUGING) {
+      showHitBox(g, hitBox);
+    }
   }
 
   @Override

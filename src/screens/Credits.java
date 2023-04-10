@@ -36,7 +36,7 @@ public class Credits extends Dialog {
 
     if (flag) {
       JLabel title = new JLabel("Creditos:");
-      JLabel name = new JLabel("<html>Dylan Buitrago<br>Kevin Gonzales</html>");
+      JLabel name = new JLabel("<html>Dylan Buitrago<br>Kevin Gonzalez</html>");
       Button button = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 1.5)),
           "Menu");
 

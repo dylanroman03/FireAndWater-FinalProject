@@ -63,6 +63,8 @@ public class Constants {
 	public static final String PATH_LEVER = "res/Lever_2.png";
 	public static final String PATH_SWITCH = "res/Switch_4.png";
 	public static final String PATH_BOX = "res/Box.png";
+	public static final String PATH_KEY_PINK = "res/key_01b.png";
+	public static final String PATH_KEY_BLUE = "res/key_01e.png";
 
 	public static final String PATH_LEVEL_BUILD = "res/Mainlev_Build.png";
 	public static final String PATH_BACKGROUND = "res/Backgrounds/background1.png";
