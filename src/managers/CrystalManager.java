@@ -15,6 +15,10 @@ public class CrystalManager extends Manager {
 	private BufferedImage blueCoinImg;
 	private BufferedImage purpleCoinImg;
 
+	/**
+	 * Constructor de la clase {@link CrystalManager}
+	 * @param levelManager
+	 */
 	public CrystalManager(LevelManager levelManager) {
 		super(2);
 		lvlData = levelManager.getLvlData();
@@ -28,6 +32,7 @@ public class CrystalManager extends Manager {
 
 	
 	/** 
+	 * Agrega los cristales al arreglo de entidades
 	 * @param lvlData
 	 * @param type
 	 * @param image

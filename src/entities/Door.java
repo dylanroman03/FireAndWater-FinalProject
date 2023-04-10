@@ -7,6 +7,14 @@ import static utilities.Helpers.getAnimationsX;
 import utilities.Constants.Heroes;
 
 public class Door extends Entity {
+  /**
+   * Constructor de la clase {@link Door}
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   * @param type
+   */
   public Door(float x, float y, int width, int height, Heroes type) {
     super(x, y, TILES_SIZE, TILES_SIZE);
 

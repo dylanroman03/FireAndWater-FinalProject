@@ -26,6 +26,9 @@ public class LevelManager {
   private BufferedImage background;
   private BufferedImage backgroundTwo;
 
+  /**
+   * Constructor de la clase {@link LevelManager}
+   */
   public LevelManager() {
     background = getImage(PATH_BACKGROUND);
     backgroundTwo = getImage(PATH_BACKGROUND_TWO);
@@ -33,6 +36,10 @@ public class LevelManager {
     initDoors();
   }
 
+  /**
+   * Constructor de la clase {@link LevelManager} dando un nivel en especifico
+   * @param level
+   */
   public LevelManager(int level) {
     background = getImage(PATH_BACKGROUND);
     backgroundTwo = getImage(PATH_BACKGROUND_TWO);
@@ -97,6 +104,9 @@ public class LevelManager {
     return false;
   }
 
+  /**
+   * Inicializa las puertas
+   */
   private void initDoors() {
     for (int i = 0; i < lvlData.length; i++) {
       for (int j = 0; j < lvlData[0].length; j++) {

@@ -40,6 +40,9 @@ public class GamePanel extends JPanel {
     setLayout(null);
 	}
 
+	/**
+	 * Configura el tamaño del panel
+	 */
 	private void setPanelSize() {
 		Dimension size = new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT);
 		setPreferredSize(size);

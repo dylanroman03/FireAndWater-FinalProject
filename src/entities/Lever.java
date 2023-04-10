@@ -21,18 +21,26 @@ public class Lever extends Entity {
     initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
   }
 
+  /**
+   * set {@link Lever#isOn} to true and set {@link Lever#aniIndex} to 0
+   */
   private void turnOn() {
     this.isOn = true;
     aniIndex = 0;
   }
 
+  /**
+   * set {@link Lever#isOn} to false and set {@link Lever#aniIndex} to 1
+   */
   private void turnOff() {
     this.isOn = false;
     aniIndex = 1;
   }
 
-  
-  /** 
+  /**
+   * Chequea si intersecta horizontalmente con el jugador, si lo hace, cambia el
+   * estado de la palanca y mueve la plataforma ademas de reproducir el sonido,
+   * luego llama a {@link Entity#intersect(Entity)} para retornar el valor
    * @param entity
    * @param platformManager
    * @return boolean
@@ -52,7 +60,8 @@ public class Lever extends Entity {
         }
         break;
       case RUNNING_RIGHT:
-        if (hitBox.intersects(player.hitBox.x + player.hitBox.width + player.xSpeed, player.hitBox.y, 1, hitBox.height)) {
+        if (hitBox.intersects(player.hitBox.x + player.hitBox.width + player.xSpeed, player.hitBox.y, 1,
+            hitBox.height)) {
           if (!isOn) {
             turnOn();
             platformManager.movePlatform(idPlatform);

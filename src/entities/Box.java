@@ -52,16 +52,23 @@ public class Box extends Entity {
     return super.intersect(entity);
   }
 
+  /** 
+   * Mueve la caja a la derecha
+   */
   private void moveRight() {
     hitBox.x += 1;
   }
 
+  /** 
+   * Mueve la caja a la izquierda
+   */
   private void moveLeft() {
     hitBox.x -= 1;
   }
 
   
   /** 
+   * Chequea si intersecta con el piso de manera horizontal
    * @param xSpeed
    * @return boolean
    */
@@ -79,6 +86,7 @@ public class Box extends Entity {
 
   
   /** 
+   * Chequea si intersecta con el piso de manera vertical
    * @param floorManager
    */
   public void isOnFLoor(FloorManager floorManager) {

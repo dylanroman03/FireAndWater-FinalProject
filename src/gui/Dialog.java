@@ -20,11 +20,21 @@ public class Dialog {
   protected int x = (GAME_WIDTH / 2) - (width / 2);
   protected int y = (GAME_HEIGHT / 2) - (height / 2);
 
+  /**
+   * Constructor de la clase {@link Dialog}
+   * @param game
+   */
   public Dialog(Game game) {
     this.game = game;
     dialog = getImage(PATH_DIALOG);
   }
 
+  /**
+   * Constructor de la clase {@link Dialog} con tamaño personalizado
+   * @param game
+   * @param width
+   * @param height
+   */
   public Dialog(Game game, int width, int height) {
     this.game = game;
     this.width = width;

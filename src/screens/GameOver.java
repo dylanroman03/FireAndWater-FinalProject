@@ -20,11 +20,18 @@ public class GameOver extends Dialog {
   private Button menuButton;
   private boolean flag = true;
 
+  /**
+   * Constructor de la clase {@link GameOver}
+   * @param game
+   */
   public GameOver(Game game) {
     super(game);
     initButtons();
   }
 
+  /**
+   * Inicializa los botones
+   */
   private void initButtons() {
     retryButton = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 2.5)),
         "Repetir");
@@ -43,6 +50,7 @@ public class GameOver extends Dialog {
 
   
   /** 
+   * Cambia el estado del juego y reinicia la bandera, se utiliza en los botones
    * @param state
    */
   private void click(States state) {

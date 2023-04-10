@@ -33,6 +33,10 @@ public class Summary extends Dialog {
   private int crystalsScore = 0;
   private int crystals;
 
+  /**
+   * Constructor de la clase {@link Summary}
+   * @param game
+   */
   public Summary(Game game) {
     super(game);
 
@@ -113,6 +117,9 @@ public class Summary extends Dialog {
     }
   }
 
+  /**
+   * Inicializa los botones
+   */
   private void initButtons() {
     nextButton = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 1.5)),
         "Continuar");
@@ -121,6 +128,9 @@ public class Summary extends Dialog {
     });
   }
 
+  /**
+   * Inicializa la pantalla de felicitaciones
+   */
   private void initCongratulation() {
     menuButton = new Button((int) ((int) this.x + (this.width / 4.2)), (int) (this.y + (this.height / 1.5)),
         "Menu");
@@ -133,6 +143,9 @@ public class Summary extends Dialog {
     endOfGame = true;
   }
 
+  /**
+   * Avanza al siguiente nivel
+   */
   private void nextLevel() {
     Playing playing = game.getPlaying();
     LevelManager levelManager = playing.getLevelManager();

@@ -16,12 +16,17 @@ import utilities.Constants.States;
 public class Credits extends Dialog {
   private boolean flag = true;
 
+  /**
+   * Constructor de la clase {@link Credits}
+   * @param game
+   */
   public Credits(Game game) {
     super(game);
   }
 
   
   /** 
+   * Renderiza la pantalla de créditos
    * @param g
    * @param gamePanel
    */

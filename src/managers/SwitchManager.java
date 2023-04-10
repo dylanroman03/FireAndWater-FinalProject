@@ -16,6 +16,9 @@ public class SwitchManager extends Manager {
   private PlatformManager platformManager;
   private BufferedImage[] animations;
 
+  /**
+   * Constructor de la clase {@link SwitchManager}
+   */
   public SwitchManager(LevelManager levelManager, PlatformManager platforManager) {
     super();
     this.lvlData = levelManager.getLvlData();
@@ -24,6 +27,9 @@ public class SwitchManager extends Manager {
     addLever();
   }
 
+  /**
+   * Agrega los levers al arreglo de entidades
+   */
   private void addLever() {
     int length = getQunatity(lvlData, 80, 90);
     int e = 0;

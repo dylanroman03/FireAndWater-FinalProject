@@ -18,6 +18,10 @@ public class FloorManager extends Manager {
   private BufferedImage borderRImg;
   private BufferedImage backFloorImg;
 
+  /**
+   * Constructor de la clase {@link FloorManager}
+   * @param levelManager
+   */
   public FloorManager(LevelManager levelManager) {
     super(1);
     this.lvlData = levelManager.getLvlData();
@@ -34,6 +38,9 @@ public class FloorManager extends Manager {
     addFloor();
   }
 
+  /**
+   * Agrega los suelos al arreglo de entidades
+   */
   private void addFloor() {
     int length = getQunatity(lvlData, 1);
     int e = 0;

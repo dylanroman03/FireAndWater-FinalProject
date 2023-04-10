@@ -12,6 +12,10 @@ import entities.Swing;
 public class SwingManager extends Manager {
   BufferedImage swingImage;
 
+  /**
+   * Constructor de la clase {@link SwingManager}
+   * @param levelManager
+   */
   public SwingManager(LevelManager levelManager) {
     super();
 
@@ -25,6 +29,7 @@ public class SwingManager extends Manager {
 
   
   /** 
+   * Agrega las entidades al arreglo de entidades
    * @param lvlData
    */
   private void addEntities(int[][] lvlData) {

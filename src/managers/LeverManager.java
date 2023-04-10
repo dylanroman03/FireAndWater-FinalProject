@@ -15,6 +15,11 @@ public class LeverManager extends Manager {
   private PlatformManager platformManager;
   private BufferedImage[] leverImages = new BufferedImage[2];
 
+  /**
+   * Constructor de la clase {@link LeverManager}
+   * @param levelManager
+   * @param platforManager
+   */
   public LeverManager(LevelManager levelManager, PlatformManager platforManager) {
     super();
     this.lvlData = levelManager.getLvlData();
@@ -23,6 +28,9 @@ public class LeverManager extends Manager {
     addLever();
   }
 
+  /**
+   * Agrega los levers al arreglo de entidades
+   */
   private void addLever() {
     int length = getQunatity(lvlData, 700, 800);
     int e = 0;

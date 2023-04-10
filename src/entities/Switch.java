@@ -9,6 +9,13 @@ public class Switch extends Entity {
   private boolean isOn = false;
   private int aniTick = 0;
 
+  /**
+   * Constructor de la clase {@link Switch}
+   * @param x
+   * @param y
+   * @param idPlatform
+   * @param animations
+   */
   public Switch(float x, float y, int idPlatform, BufferedImage[] animations) {
     super(x, y + (TILES_SIZE / 2), TILES_SIZE, TILES_SIZE);
     this.idPlatform = idPlatform;
@@ -47,10 +54,16 @@ public class Switch extends Entity {
     return false;
   }
 
+  /**
+   * Enciende el boton
+   */
   public void turnOn() {
     this.isOn = true;
   }
 
+  /**
+   * Apaga el boton
+   */
   public void turnOff() {
     this.isOn = false;
   }

@@ -27,15 +27,22 @@ public class Instructions {
   private boolean flag = true;
   private Game game;
 
+  /**
+   * Constructor de la clase {@link Instructions}
+   * @param game
+   */
   public Instructions(Game game) {
     this.game = game;
 
     characters[0] = getImage(PATH_PINK_MONSTER);
     characters[1] = getImage(PATH_DUDE_MONSTER);
     getKeys();
-    initComponents();
+    initBody();
   }
 
+  /**
+   * Carga las imagenes de las teclas de los personajes, es decir, los mandos
+   */
   private void getKeys() {
     BufferedImage image = getImage(PATH_KEYS);
     int[] keysYDude = { 4, 4, 2, 2 };
@@ -50,7 +57,10 @@ public class Instructions {
     }
   }
 
-  private void initComponents() {
+  /**
+   * Inicializa el body
+   */
+  private void initBody() {
     body = new JLabel(
         "<html>En este juego, te encontraras en una cueva llena de peligros y desafios. Tu objetivo es llegar a la meta correspondiente, pero ten cuidado de no tocar las llamas que no sean de tu color. Si tocas una llama del color equivocado, perderas una vida.<br> Para ayudarte en tu camino, hay gemas de colores que puedes recolectar. Toma todas las gemas de tu color que puedas para aumentar tu puntaje. Pero cuidado, las gemas del otro color no puden ser recolectadas. Hay plataformas que debes activar con palancas y botones. Ten cuidado, las plataformas activadas con botones volveran a su estado original despues de un tiempo, asi que debes ser rapido para llegar a la plataforma.<br>Ademas, hay columpios que se inclinan, asi que ten cuidado</html>");
   }

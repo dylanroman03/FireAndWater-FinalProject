@@ -10,11 +10,15 @@ import java.awt.image.BufferedImage;
 import entities.Box;
 import entities.Entity;
 
-/// The Manager to handle the Box
 public class BoxManager extends Manager {
   private BufferedImage[] sprites = new BufferedImage[1];
   private FloorManager floorManager;
 
+  /**
+   * Constructor de la clase {@link BoxManager}
+   * @param levelManager
+   * @param floorManager
+   */
   public BoxManager(LevelManager levelManager, FloorManager floorManager) {
     lvlData = levelManager.getLvlData();
     this.floorManager = floorManager;
@@ -22,6 +26,9 @@ public class BoxManager extends Manager {
     addEntity();
   }
 
+  /**
+   * Agrega las cajas al arreglo de entidades
+   */
   private void addEntity() {
     int length = getQunatity(lvlData, 7);
     int e = 0;
@@ -46,6 +53,9 @@ public class BoxManager extends Manager {
     checkIfBoxIsOnFloor();
   }
 
+  /**
+   * Chequea si las cajas estan en el piso
+   */
   private void checkIfBoxIsOnFloor() {
     for (Entity[] entities : entities) {
       for (Entity entity : entities) {

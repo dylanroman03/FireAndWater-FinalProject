@@ -52,6 +52,12 @@ public class Player extends Entity {
 	private boolean inAir = false;
 	public float xSpeed = 0;
 
+	/**
+	 * Constructor de la clase {@link Player}
+	 * @param x
+	 * @param y
+	 * @param playing
+	 */
 	public Player(float x, float y, Playing playing) {
 		super(x, y, (int) (TILES_SIZE * 0.6), (int) (TILES_SIZE * 0.8));
 		this.playing = playing;
@@ -59,6 +65,9 @@ public class Player extends Entity {
 		initHitBox(x, y, width, height);
 	}
 
+	/**
+	 * Actualiza las animaciones del jugador asi como su posicion
+	 */
 	public void update() {
 		updatePosition();
 		if (!stopAnimation) {
@@ -82,6 +91,9 @@ public class Player extends Entity {
 		}
 	}
 
+	/**
+	 * Actualiza anitick del jugador
+	 */
 	private void updateAnimationTick() {
 		aniTick++;
 
@@ -106,6 +118,9 @@ public class Player extends Entity {
 		}
 	}
 
+	/**
+	 * Setea las animaciones del jugador
+	 */
 	private void setAnimation() {
 		PlayerActions startAni = playerAction;
 
@@ -131,11 +146,17 @@ public class Player extends Entity {
 			resetAniTick();
 	}
 
+	/**
+	 * Reinicia el tick de las animaciones
+	 */
 	private void resetAniTick() {
 		aniTick = 0;
 		aniIndex = 0;
 	}
 
+	/**
+	 * Actualiza la posicion del jugador
+	 */
 	private void updatePosition() {
 		moving = false;
 
@@ -196,6 +217,7 @@ public class Player extends Entity {
 
 	
 	/** 
+	 * Determina si esta sobre el piso
 	 * @return boolean
 	 */
 	private boolean isInFloor() {
@@ -209,6 +231,9 @@ public class Player extends Entity {
 		return true;
 	}
 
+	/**
+	 * Determina si esta en el aire
+	 */
 	private void inAir() {
 		if (canMove(playing, hitBox.x, hitBox.y + airSpeed)) {
 			hitBox.y += airSpeed;
@@ -224,6 +249,9 @@ public class Player extends Entity {
 		}
 	}
 
+	/**
+	 * Salta
+	 */
 	private void jump() {
 		if (inAir)
 			return;
@@ -232,12 +260,18 @@ public class Player extends Entity {
 		playSound(PATH_PLAYER_JUMP);
 	}
 
+	/**
+	 * Carga las animaciones del jugador
+	 */
 	private void loadAnimations() {
 		for (int i = 0; i < animations.length; i++) {
 			animations[i] = getAnimationsX(PATH_CHARACTERS_LIST[hero.ordinal()][i]);
 		}
 	}
 
+	/**
+	 * Reinicia la direccion
+	 */
 	public void resetDirection() {
 		left = false;
 		right = false;
@@ -247,6 +281,7 @@ public class Player extends Entity {
 
 	
 	/** 
+	 * Setea el jugador y sus animaciones correspondientes
 	 * @param hero
 	 */
 	public void setHero(Heroes hero) {

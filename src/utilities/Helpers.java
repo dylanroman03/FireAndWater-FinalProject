@@ -28,6 +28,7 @@ public class Helpers {
 
   
   /** 
+   * Trae una imagen
    * @param path
    * @return BufferedImage
    */
@@ -47,6 +48,7 @@ public class Helpers {
 
   
   /** 
+   * Retorna las imagen de un sprite por x
    * @param path
    * @return BufferedImage[]
    */
@@ -65,6 +67,7 @@ public class Helpers {
 
   
   /** 
+   * Retorna las imagen de un sprite por y
    * @param path
    * @return BufferedImage[]
    */
@@ -83,6 +86,7 @@ public class Helpers {
 
   
   /** 
+   * Cambia el tamaño de una imagen
    * @param image
    * @param width
    * @param height
@@ -94,6 +98,7 @@ public class Helpers {
 
   
   /** 
+   * Chequea si puede moverse en el mapa, en la posicion a la que va
    * @param playing
    * @param x
    * @param y
@@ -115,6 +120,7 @@ public class Helpers {
 
   
   /** 
+   * Verfica la posicion es un solido para colision
    * @param x
    * @param y
    * @param playing
@@ -169,6 +175,7 @@ public class Helpers {
 
   
   /** 
+   * Reproduce la musica
    * @param filename
    * @param clip
    * @return Clip
@@ -188,6 +195,7 @@ public class Helpers {
 
   
   /** 
+   * Para la musica
    * @param clip
    */
   public static void stopMusic(Clip clip) {
@@ -198,6 +206,7 @@ public class Helpers {
 
   
   /** 
+   * Reproduce un sonido al finalizar devuele los recursos, para no saturar la memoria
    * @param path
    */
   public static void playSound(String path) {
@@ -221,6 +230,7 @@ public class Helpers {
 
   
   /** 
+   * Retorna la cantidad de concidencias en el mapa dado
    * @param lvlData
    * @param value
    * @return int
@@ -239,6 +249,7 @@ public class Helpers {
 
   
   /** 
+   * Retorna la cantidad de concidencias en el mapa dado pero en un rango
    * @param lvlData
    * @param start
    * @param end

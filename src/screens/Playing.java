@@ -65,16 +65,29 @@ public class Playing {
   private int time;
   private Timer timer = new Timer();
 
+  /**
+   * Constructor de la clase {@link Playing}
+   * 
+   * @param game
+   */
   public Playing(Game game) {
     this.game = game;
     levelManager = new LevelManager();
   }
 
+  /**
+   * Constructor de la clase {@link Playing} con nivel
+   * @param game
+   * @param level
+   */
   public Playing(Game game, int level) {
     this.game = game;
     levelManager = new LevelManager(level);
   }
 
+  /**
+   * Inicializa las clases
+   */
   private void initClasses() {
     music = playMusic(PATH_BATTLE_MUSIC, music);
 
@@ -94,6 +107,7 @@ public class Playing {
 
   
   /** 
+   * Iniciliza para jugar
    * @param hero
    * @param name
    */
@@ -157,6 +171,9 @@ public class Playing {
 
   }
 
+  /**
+   * Actualiza la vista
+   */
   public void update() {
     if (isPlaying) {
       fireManager.update();
@@ -170,6 +187,7 @@ public class Playing {
 
   
   /** 
+   * Renderiza el contador del tiempo
    * @param g
    * @param time
    */
@@ -188,16 +206,25 @@ public class Playing {
     }
   }
 
+  /**
+   * Revisa si perdio el foco
+   */
   public void windowsFocusLost() {
     player.resetDirection();
   }
 
+  /**
+   * Revisa si gano el juego
+   */
   public void gameWon() {
     timer.cancel();
     summary = new Summary(game);
     isGameWon = true;
   }
 
+  /**
+   * Revisa si perdio el juego
+   */
   public void gameOver() {
     timer.cancel();
     gameOver = new GameOver(game);

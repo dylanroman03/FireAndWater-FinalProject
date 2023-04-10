@@ -40,6 +40,7 @@ public abstract class Entity {
 
 	
 	/** 
+	 * Renderiza el cuadro del hitbox, solo es llamada si {@link Game#DEBUGING} es true
 	 * @param g
 	 * @param rotatedRectangle
 	 */
@@ -50,6 +51,7 @@ public abstract class Entity {
 
 	
 	/** 
+	 * Chequea si el hitbox de la entidad intersecta con el hitbox {@link Player}, tomando en cuenta su aceleración
 	 * @param entity
 	 * @return boolean
 	 */
@@ -77,6 +79,9 @@ public abstract class Entity {
 		}
 	}
 
+	/**
+	 * Update the {@link Entity#aniIndex} para cambiar la imagen del sprite
+	 */
 	public void update() {
 		aniTick++;
 		if (aniTick >= aniSpeed) {

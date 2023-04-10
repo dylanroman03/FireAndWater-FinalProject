@@ -19,11 +19,18 @@ public class MainMenu extends Dialog {
   private Button quitButton;
   private boolean flag = true;
 
+  /**
+   * Constructor de la clase {@link MainMenu}
+   * @param game
+   */
   public MainMenu(Game game) {
     super(game, (int) (GAME_WIDTH / 1.9), (int) (GAME_WIDTH / 1.9));
     initClasses();
   }
 
+  /**
+   * Inicializa las clases
+   */
   private void initClasses() {
     playButton = new Button((int) this.x + (this.width / 4), this.y + (int) (this.height / 9), "Jugar");
     instructionButton = new Button((int) this.x + (this.width / 4), this.y + (int) (this.height / 3.2),
@@ -59,6 +66,7 @@ public class MainMenu extends Dialog {
 
   
   /** 
+   * Cambia el estado del juego y reinicia la bandera, se utiliza en los botones
    * @param state
    */
   private void goTo(States state) {

@@ -10,6 +10,13 @@ public class Floor extends Entity {
   private BufferedImage image;
   public int id = 0;
 
+  /**
+   * Constructor de la clase {@link Floor}
+   * @param x
+   * @param y
+   * @param image
+   * @param backImg
+   */
   public Floor(float x, float y, BufferedImage image, BufferedImage backImg) {
     super(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
     this.backImage = backImg;

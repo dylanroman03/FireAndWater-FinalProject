@@ -17,6 +17,10 @@ public class FireManager extends Manager {
 	private BufferedImage[] greenAnimations;
 	private BufferedImage[] purpleAnimations;
 
+	/**
+	 * Constructor de la clase {@link FireManager}
+	 * @param levelManager
+	 */
 	public FireManager(LevelManager levelManager) {
 		super(3);
 		lvlData = levelManager.getLvlData();
@@ -32,6 +36,7 @@ public class FireManager extends Manager {
 
 	
 	/** 
+	 * Agrega los fuegos al arreglo de entidades
 	 * @param lvlData
 	 * @param type
 	 * @param animations

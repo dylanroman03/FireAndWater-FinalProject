@@ -37,6 +37,10 @@ public class Characters {
   private Button button;
   private boolean showMessage = false;
 
+  /**
+   * Constructor de la clase {@link Characters}
+   * @param game
+   */
   public Characters(Game game) {
     this.game = game;
     loadImages();
@@ -46,6 +50,7 @@ public class Characters {
 
   
   /** 
+   * Renderiza la pantalla de selección de personajes
    * @param g
    * @param gamePanel
    */
@@ -92,6 +97,9 @@ public class Characters {
     }
   }
 
+  /**
+   * Inicializa los rectángulos de selección de personajes
+   */
   private void initRectangles() {
     for (int i = 0; i < characters.length; i++) {
       charRects[i] = new Rectangle((GAME_WIDTH / 2) - (TILES_SIZE * i * 6), (GAME_HEIGHT / 7), TILES_SIZE * 6,
@@ -99,6 +107,9 @@ public class Characters {
     }
   }
 
+  /**
+   * Inicializa los componentes de la pantalla
+   */
   private void initComponents() {
     input = new JTextField();
     input.setFont(new Font("MinimalPixel", Font.PLAIN, 60));

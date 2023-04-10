@@ -17,6 +17,12 @@ enum Direction {Left, Right, LeftDown, RightDown};
 public class Swing extends Entity {
   private double angle = 0;
 
+  /**
+   * Constructor de la clase {@link Swing}
+   * @param x
+   * @param y
+   * @param image
+   */
   public Swing(float x, float y, BufferedImage image) {
     super(x, y, TILES_SIZE * 4, TILES_SIZE / 2);
 
@@ -27,6 +33,7 @@ public class Swing extends Entity {
 
   
   /** 
+   * Chequea si intersecta con el jugador, ademas de rotar la plataforma
    * @param entity
    * @return boolean
    */
@@ -92,6 +99,7 @@ public class Swing extends Entity {
 
   
   /** 
+   * Determina si esta colisionando con el jugador, tomando en cuenta el angulo de rotacion
    * @param entity
    * @return boolean
    */
@@ -140,6 +148,7 @@ public class Swing extends Entity {
 
   
   /** 
+   * Renderiza la plataforma tomando en cuenta {@link Swing#angle} como angulo de rotacion
    * @param g
    */
   @Override

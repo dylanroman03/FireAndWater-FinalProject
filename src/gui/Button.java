@@ -20,19 +20,13 @@ public class Button extends JButton {
   private BufferedImage[] images;
   private int x, y;
 
-  public Button(Image newImg, BufferedImage[] images, int x, int y) {
-    super(new ImageIcon(newImg));
 
-    this.images = images;
-    this.x = x;
-    this.y = y;
-
-    setSize((int) (images[0].getWidth()), (int) (images[0].getHeight()));
-    setBorder(BorderFactory.createEmptyBorder());
-    setContentAreaFilled(false);
-    addActionListener(new ChangeButton());
-  }
-
+  /**
+   * Constructor de la clase {@link Button}
+   * @param x
+   * @param y
+   * @param message
+   */
   public Button(int x, int y, String message) {
     images = getAnimationsY(PATH_BUTTONS);
 
@@ -57,10 +51,16 @@ public class Button extends JButton {
     addActionListener(new ChangeButton());
   }
 
+  /**
+   * SetBounds segun las coordenadas su tamaño y x, y
+   */
   public void setBounds() {
     setBounds(x, y, getWidth(), getHeight());
   }
 
+  /**
+   * Clase privada que implementa {@link ActionListener} y reproduce un sonido al presionar el boton
+   */
   private class ChangeButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {

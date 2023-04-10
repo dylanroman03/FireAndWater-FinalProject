@@ -16,6 +16,16 @@ public class Platform extends Entity {
     Vertical, Horizontal
   };
 
+  /**
+   * Constructor de la clase {@link Platform}
+   * @param x
+   * @param y
+   * @param image
+   * @param id
+   * @param status
+   * @param direction
+   * @param size
+   */
   public Platform(float x, float y, BufferedImage image, int id, int status, int direction, int size) {
     super(x, y,
         size > 0 && direction == 1 ?  TILES_SIZE / 2 : size > 0 ? TILES_SIZE * size : TILES_SIZE * 2,
@@ -38,6 +48,7 @@ public class Platform extends Entity {
 
   
   /** 
+   * Mueve la plataforma
    * @param player
    */
   public void update(Player player) {
@@ -81,6 +92,7 @@ public class Platform extends Entity {
 
   
   /** 
+   * Chequea si el jugador esta sobre la plataforma
    * @param player
    * @return boolean
    */
@@ -89,6 +101,9 @@ public class Platform extends Entity {
         && player.getY() + player.getHeight() + 5 > hitBox.y && player.getY() < hitBox.y + height;
   }
 
+  /*
+   * Cambia el estado de la plataforma
+   */
   public void move() {
     if (climbing) {
       climbing = false;

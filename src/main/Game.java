@@ -44,6 +44,9 @@ public class Game implements Runnable {
 
 	private States state = States.MENU;
 
+	/**
+	 * Constructor de la clase {@link Game}
+	 */
 	public Game() {
 		initClasses();
 
@@ -53,6 +56,9 @@ public class Game implements Runnable {
 		music = playMusic(PATH_TOWN_VILLAGE, music);
 	}
 
+	/**
+	 * Inicia el bucle del juego y sus hilos
+	 */
 	private void startGameLoop() {
 		Thread gameThread;
 		gameThread = new Thread(this);
@@ -61,6 +67,7 @@ public class Game implements Runnable {
 
 	
 	/** 
+	 * Encargada de renderizar segun el estado del juego
 	 * @param g
 	 */
 	public void render(Graphics2D g) {
@@ -91,6 +98,9 @@ public class Game implements Runnable {
 		}
 	}
 
+	/**
+	 * Encargada de actualizar segun el estado del juego
+	 */
 	public void update() {
 		switch (state) {
 			case PLAYING:
@@ -101,6 +111,9 @@ public class Game implements Runnable {
 		}
 	}
 
+	/**
+	 * Inicializa las clases
+	 */
 	public void initClasses() {
 		playing = new Playing(this);
 		menu = new MainMenu(this);
@@ -113,6 +126,9 @@ public class Game implements Runnable {
 		gamePanel.requestFocus();
 	}
 
+	/**
+	 * Inicia el bucle del juego y actualiza a 120 fps y 200 ups
+	 */
 	@Override
 	public void run() {
 		final int FPS_SET = 120;
@@ -152,6 +168,9 @@ public class Game implements Runnable {
 
 	}
 
+	/**
+	 * Detiene el movimiento del jugador cuando pierde el foco
+	 */
 	public void windowsFocusLost() {
 		switch (state) {
 			case PLAYING:
@@ -173,6 +192,7 @@ public class Game implements Runnable {
 
 	
 	/** 
+	 * Setea el estado del juego y resetea el panel si state es PLAYING, llama a {@link #startPlaying()}
 	 * @param state
 	 */
 	public void setState(States state) {
@@ -185,6 +205,9 @@ public class Game implements Runnable {
 		this.state = state;
 	}
 
+	/**
+	 * Inicia el Jugador
+	 */
 	private void startPlaying() {
 		Player player = playing.getPlayer();
 		Heroes hero = player.getHero();

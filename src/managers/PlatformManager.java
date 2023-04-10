@@ -17,6 +17,11 @@ public class PlatformManager extends Manager {
   private BufferedImage platformImage;
   private Playing playing;
 
+  /**
+   * Constructor de la clase {@link PlatformManager}
+   * @param levelManager
+   * @param playing
+   */
   public PlatformManager(LevelManager levelManager, Playing playing) {
     super();
     this.lvlData = levelManager.getLvlData();
@@ -26,6 +31,9 @@ public class PlatformManager extends Manager {
     addEntity();
   }
 
+  /**
+   * Actualiza las plataformas
+   */
   public void update() {
     for (Entity[] entitiesArray : entities) {
       for (Entity entity : entitiesArray) {
@@ -35,6 +43,9 @@ public class PlatformManager extends Manager {
     }
   }
 
+  /**
+   * Agrega las plataformas al arreglo de entidades
+   */
   private void addEntity() {
     int length = getQunatity(lvlData, 1000, 3000);
     int e = 0;
@@ -62,6 +73,7 @@ public class PlatformManager extends Manager {
 
   
   /** 
+   * Chequea si el jugador esta sobre alguna plataforma
    * @param player
    * @return boolean
    */

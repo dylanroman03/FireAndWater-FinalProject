@@ -17,10 +17,17 @@ public class Manager {
     return entities;
   }
 
+  /**
+   * Constructor de la clase {@link Manager}
+   */
   public Manager() {
     entities = new Entity[1][];
   }
 
+  /**
+   * Constructor de la clase {@link Manager} especificando el tamaño del arreglo de entidades
+   * @param length
+   */
   public Manager(int length) {
     entities = new Entity[length][];
   }
@@ -37,6 +44,9 @@ public class Manager {
     }
   }
 
+  /**
+   * Actualiza las entidades llamando {@link Entity#update()}
+   */
   public void update() {
     for (Entity[] entitiesArray : entities) {
       for (Entity entity : entitiesArray) {
@@ -47,6 +57,7 @@ public class Manager {
 
   
   /** 
+   * Chequea si alguna entidad colisiona con el Player
    * @param hero
    * @param heroEntity
    * @return boolean
