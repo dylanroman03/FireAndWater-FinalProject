@@ -20,6 +20,10 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 import gui.Button;
 import main.Game;
@@ -39,6 +43,7 @@ public class Characters {
 
   /**
    * Constructor de la clase {@link Characters}
+   * 
    * @param game
    */
   public Characters(Game game) {
@@ -48,9 +53,9 @@ public class Characters {
     initComponents();
   }
 
-  
-  /** 
+  /**
    * Renderiza la pantalla de selección de personajes
+   * 
    * @param g
    * @param gamePanel
    */
@@ -90,7 +95,8 @@ public class Characters {
       message.setFont(getFont());
       gamePanel.add(message);
 
-      message.setBounds((GAME_WIDTH / 2) - (TILES_SIZE * 9), (TILES_SIZE * 2), (TILES_SIZE * 20), GAME_HEIGHT - TILES_SIZE * 4);
+      message.setBounds((GAME_WIDTH / 2) - (TILES_SIZE * 9), (TILES_SIZE * 2), (TILES_SIZE * 20),
+          GAME_HEIGHT - TILES_SIZE * 4);
 
       gamePanel.revalidate();
       showMessage = false;
@@ -113,6 +119,24 @@ public class Characters {
   private void initComponents() {
     input = new JTextField();
     input.setFont(new Font("MinimalPixel", Font.PLAIN, 60));
+    ((AbstractDocument) input.getDocument()).setDocumentFilter(new DocumentFilter() {
+      int maxCharacters = 8;
+
+      @Override
+      public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs)
+          throws BadLocationException {
+        int currentLength = fb.getDocument().getLength();
+        int overLimit = (currentLength + text.length()) - maxCharacters - length;
+
+        if (overLimit > 0) {
+          text = text.substring(0, text.length() - overLimit);
+        }
+        if (text.length() > 0) {
+          super.replace(fb, offset, length, text, attrs);
+        }
+      }
+    });
+
     button = new Button((GAME_WIDTH / 2) - (int) (TILES_SIZE * 3.5), GAME_HEIGHT - TILES_SIZE * 4, "Empezar");
 
     button.addActionListener(new ActionListener() {
@@ -133,8 +157,7 @@ public class Characters {
     }
   }
 
-  
-  /** 
+  /**
    * @param e
    */
   public void mouseClick(MouseEvent e) {
