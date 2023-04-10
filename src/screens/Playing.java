@@ -45,8 +45,7 @@ public class Playing {
 
   private Clip music;
 
-  
-  /** 
+  /**
    * @return Clip
    */
   public Clip getMusic() {
@@ -105,8 +104,7 @@ public class Playing {
     player = new Player(0, (GAME_HEIGHT - (int) (TILES_SIZE * 2.05)), this);
   }
 
-  
-  /** 
+  /**
    * Iniciliza para jugar
    * @param hero
    * @param name
@@ -134,8 +132,7 @@ public class Playing {
     isGameWon = false;
   }
 
-  
-  /** 
+  /**
    * @param g
    * @param gamePanel
    */
@@ -186,7 +183,7 @@ public class Playing {
   }
 
   
-  /** 
+  /**
    * Renderiza el contador del tiempo
    * @param g
    * @param time
@@ -194,11 +191,16 @@ public class Playing {
   private static void renderTime(Graphics g, int time) {
     int x = Game.TILES_SIZE * 18;
 
-    String number = String.valueOf(time);
-    char[] digits1 = number.toCharArray();
+    // calculate minutes and seconds from time
+    int minutes = time / 60;
+    int seconds = time % 60;
+
+    // format time as mm:ss
+    String formattedTime = String.format("%02d:%02d", minutes, seconds);
+    char[] digits1 = formattedTime.toCharArray();
 
     for (char c : digits1) {
-      String path = GetTimePath(Character.getNumericValue(c));
+      String path = GetTimePath(c);
       BufferedImage image = getImage(path);
 
       g.drawImage(image, x, Game.TILES_SIZE / 2, Game.TILES_SIZE / 2, Game.TILES_SIZE / 2, null);
@@ -231,112 +233,98 @@ public class Playing {
     isGameOver = true;
   }
 
-  
-  /** 
+  /**
    * @return LevelManager
    */
   public LevelManager getLevelManager() {
     return levelManager;
   }
 
-  
-  /** 
+  /**
    * @return FireManager
    */
   public FireManager getFireManager() {
     return fireManager;
   }
 
-  
-  /** 
+  /**
    * @return Player
    */
   public Player getPlayer() {
     return player;
   }
 
-  
-  /** 
+  /**
    * @return CrystalManager
    */
   public CrystalManager getCrystalManager() {
     return crystalManager;
   }
 
-  
-  /** 
+  /**
    * @return SwitchManager
    */
   public SwitchManager getSwitchManager() {
     return switchManager;
   }
 
-  
-  /** 
+  /**
    * @return PlatformManager
    */
   public PlatformManager getPlatformManager() {
     return platformManager;
   }
 
-  
-  /** 
+  /**
    * @return LeverManager
    */
   public LeverManager getLeverManager() {
     return leverManager;
   }
 
-  
-  /** 
+  /**
    * @return FloorManager
    */
   public FloorManager getFloorManager() {
     return floorManager;
   }
 
-  
-  /** 
+  /**
    * @return BoxManager
    */
   public BoxManager getBoxManager() {
     return boxManager;
   }
 
-  
-  /** 
+  /**
    * @return SwingManager
    */
   public SwingManager getSwingManager() {
     return swingManager;
   }
 
-  
-  /** 
+  /**
    * @return boolean
    */
   public boolean isPlaying() {
     return isPlaying;
   }
 
-  
-  /** 
+  /**
    * @param levelManager
    */
   public void setLevelManager(LevelManager levelManager) {
     this.levelManager = levelManager;
   }
 
-  
-  /** 
+  /**
    * @param player
    */
   public void setPlayer(Player player) {
     this.player = player;
   }
 
-  
-  /** 
+  /**
    * @return int
    */
   public int getTime() {

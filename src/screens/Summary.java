@@ -29,7 +29,7 @@ public class Summary extends Dialog {
   private JLabel timeLabel;
   private JLabel crystalLabel;
   private Player player;
-  private int time;
+  private String time;
   private int crystalsScore = 0;
   private int crystals;
 
@@ -42,7 +42,11 @@ public class Summary extends Dialog {
 
     Playing playing = game.getPlaying();
     player = playing.getPlayer();
-    time = playing.getTime();
+    int minutes = playing.getTime() / 60;
+    int seconds = playing.getTime() % 60;
+
+    // format time as mm:ss
+    time = String.format("%02d:%02d", minutes, seconds);
 
     CrystalManager crystalManager = playing.getCrystalManager();
     Crystal[] crystalsArray = crystalManager.getCrystals(player.getHero());
@@ -70,7 +74,7 @@ public class Summary extends Dialog {
       title.setForeground(Color.WHITE);
       title.setFont(getFont());
 
-      timeLabel = new JLabel("Tiempo: " + time + " segundos");
+      timeLabel = new JLabel("Tiempo: " + time);
       timeLabel.setForeground(Color.WHITE);
       timeLabel.setFont(getFont());
 

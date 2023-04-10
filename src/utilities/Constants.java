@@ -96,7 +96,7 @@ public class Constants {
 	 * @param time
 	 * @return String
 	 */
-	public static String GetTimePath (int time) {
+	public static String GetTimePath (char time) {
 		return "res/Numbers/" + time + ".png";
 	}
 }
