@@ -26,6 +26,13 @@ public class CrystalManager extends Manager {
 		entities[1] = addCrystals(lvlData, 5, blueCoinImg);
 	}
 
+	
+	/** 
+	 * @param lvlData
+	 * @param type
+	 * @param image
+	 * @return Crystal[]
+	 */
 	private Crystal[] addCrystals(int[][] lvlData, int type, BufferedImage image) {
 		int length = getQunatity(lvlData, type);
 		int e = 0;
@@ -44,7 +51,12 @@ public class CrystalManager extends Manager {
 		return crystals;
 	}
 
-  public Crystal[] getCrystals(Heroes hero) {
+  
+	/** 
+	 * @param hero
+	 * @return Crystal[]
+	 */
+	public Crystal[] getCrystals(Heroes hero) {
 		switch (hero) {
 			case PINK_MONSTER:
 				return (Crystal[]) this.entities[0];

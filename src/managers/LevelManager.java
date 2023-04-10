@@ -41,6 +41,10 @@ public class LevelManager {
     initDoors();
   }
 
+  
+  /** 
+   * @return int[][]
+   */
   private int[][] getLevelData() {
     int[][] matrix = null;
 
@@ -66,6 +70,10 @@ public class LevelManager {
     return matrix;
   }
 
+  
+  /** 
+   * @param g
+   */
   public void render(Graphics2D g) {
     g.drawImage(background, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
     g.drawImage(backgroundTwo, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
@@ -75,6 +83,12 @@ public class LevelManager {
     }
   }
 
+  
+  /** 
+   * @param hero
+   * @param entity
+   * @return boolean
+   */
   public boolean intersectDoor(Heroes hero, Entity entity) {
     Door door = doors[hero.ordinal()];
     if (door.intersect(entity)) {
@@ -95,14 +109,26 @@ public class LevelManager {
     }
   }
 
+  
+  /** 
+   * @return String[]
+   */
   public String[] getLevels() {
     return levels;
   }
 
+  
+  /** 
+   * @return int
+   */
   public int getCurrentlyLevel() {
     return currentlyLevel;
   }
 
+  
+  /** 
+   * @return int[][]
+   */
   public int[][] getLvlData() {
     return lvlData;
   }

@@ -13,11 +13,19 @@ public class MouseInputs implements MouseListener {
 		this.gamePanel = gamePanel;
 	}
 
+	
+	/** 
+	 * @param e
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// Auto-generated method stub
 	}
 
+	
+	/** 
+	 * @param e
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if (gamePanel.getGame().getState() == States.CHARACTERS) {
@@ -25,18 +33,30 @@ public class MouseInputs implements MouseListener {
 		}
 	}
 
+	
+	/** 
+	 * @param e
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// Auto-generated method stub
 
 	}
 
+	
+	/** 
+	 * @param e
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// Auto-generated method stub
 
 	}
 
+	
+	/** 
+	 * @param e
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// Auto-generated method stub

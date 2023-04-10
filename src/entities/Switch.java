@@ -30,6 +30,11 @@ public class Switch extends Entity {
     }
   }
 
+  
+  /** 
+   * @param entity
+   * @return boolean
+   */
   @Override
   public boolean intersect(Entity entity) {
     if (super.intersect(entity)) {
@@ -50,6 +55,10 @@ public class Switch extends Entity {
     this.isOn = false;
   }
 
+  
+  /** 
+   * @return int
+   */
   public int getIdPlatform() {
     return idPlatform;
   }

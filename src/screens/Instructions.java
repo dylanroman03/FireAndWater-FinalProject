@@ -55,6 +55,11 @@ public class Instructions {
         "<html>En este juego, te encontraras en una cueva llena de peligros y desafios. Tu objetivo es llegar a la meta correspondiente, pero ten cuidado de no tocar las llamas que no sean de tu color. Si tocas una llama del color equivocado, perderas una vida.<br> Para ayudarte en tu camino, hay gemas de colores que puedes recolectar. Toma todas las gemas de tu color que puedas para aumentar tu puntaje. Pero cuidado, las gemas del otro color no puden ser recolectadas. Hay plataformas que debes activar con palancas y botones. Ten cuidado, las plataformas activadas con botones volveran a su estado original despues de un tiempo, asi que debes ser rapido para llegar a la plataforma.<br>Ademas, hay columpios que se inclinan, asi que ten cuidado</html>");
   }
 
+  
+  /** 
+   * @param g
+   * @param gamePanel
+   */
   public void render(Graphics2D g, GamePanel gamePanel) {
     for (int i = 0; i < characters.length; i++) {
       g.drawImage(characters[i], (TILES_SIZE * 5) + (TILES_SIZE * i * 15),

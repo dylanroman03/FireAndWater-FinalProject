@@ -59,6 +59,10 @@ public class Game implements Runnable {
 		gameThread.start();
 	}
 
+	
+	/** 
+	 * @param g
+	 */
 	public void render(Graphics2D g) {
 		if (state != States.PLAYING) {
 			g.drawImage(background, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
@@ -159,10 +163,18 @@ public class Game implements Runnable {
 		}
 	}
 
+	
+	/** 
+	 * @return States
+	 */
 	public States getState() {
 		return state;
 	}
 
+	
+	/** 
+	 * @param state
+	 */
 	public void setState(States state) {
 		resetPanel(gamePanel);
 
@@ -181,18 +193,35 @@ public class Game implements Runnable {
 		playing.startPlaying(hero, playerName);
 	}
 
+	
+	/** 
+	 * @return Playing
+	 */
 	public Playing getPlaying() {
 		return playing;
 	}
 
+	
+	/** 
+	 * @param playing
+	 */
 	public void setPlaying(Playing playing) {
 		this.playing = playing;
 	}
 
+	
+	/** 
+	 * @return Characters
+	 */
 	public Characters getCharacters() {
 		return characters;
 	}
 
+	
+	/** 
+	 * @param selectedHero
+	 * @param name
+	 */
 	public void setPlayer(Heroes selectedHero, String name) {
 		resetPanel(gamePanel);
 		playing.startPlaying(selectedHero, name);

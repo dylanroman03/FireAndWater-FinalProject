@@ -53,6 +53,11 @@ public class Summary extends Dialog {
     initButtons();
   }
 
+  
+  /** 
+   * @param g
+   * @param gamePanel
+   */
   @Override
   public void render(Graphics g, GamePanel gamePanel) {
     super.render(g, gamePanel);

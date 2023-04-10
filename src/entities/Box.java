@@ -16,6 +16,11 @@ public class Box extends Entity {
     initHitBox(x, y, width, height);
   }
 
+  
+  /** 
+   * @param entity
+   * @return boolean
+   */
   @Override
   public boolean intersect(Entity entity) {
     // Cast entity to Player
@@ -55,6 +60,11 @@ public class Box extends Entity {
     hitBox.x -= 1;
   }
 
+  
+  /** 
+   * @param xSpeed
+   * @return boolean
+   */
   private boolean intersectFloor(int xSpeed) {
     for (Entity[] entities : floorManager.getEntities()) {
       for (Entity floor : entities) {
@@ -67,6 +77,10 @@ public class Box extends Entity {
     return false;
   }
 
+  
+  /** 
+   * @param floorManager
+   */
   public void isOnFLoor(FloorManager floorManager) {
     for (Entity[] entities : floorManager.getEntities()) {
       for (Entity floor : entities) {

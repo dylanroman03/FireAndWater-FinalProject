@@ -45,6 +45,10 @@ public class GamePanel extends JPanel {
 		setPreferredSize(size);
 	}
 
+	
+	/** 
+	 * @param g
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -55,6 +59,10 @@ public class GamePanel extends JPanel {
 		game.render(g2);
 	}
 
+	
+	/** 
+	 * @return Game
+	 */
 	public Game getGame() {
 		return game;
 	}

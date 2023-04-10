@@ -14,6 +14,10 @@ public class Door extends Entity {
     sprites = getAnimationsX(PATH_DOOR);
   }
 
+  
+  /** 
+   * @param aniTick
+   */
   public void setAniIndex(int aniTick) {
     aniIndex = aniTick;
   }

@@ -67,6 +67,10 @@ public class Player extends Entity {
 		setAnimation();
 	}
 
+	
+	/** 
+	 * @param g
+	 */
 	@Override
 	public void render(Graphics2D g) {
 		g.drawImage(animations[playerAction.ordinal()][(int) aniIndex],
@@ -190,6 +194,10 @@ public class Player extends Entity {
 		playing.getLeverManager().someIntersect(hero, this);
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	private boolean isInFloor() {
 		if (!isSolid(hitBox.x, hitBox.y + hitBox.height + 1, playing)
 				&& (!isSolid(hitBox.x + hitBox.width, hitBox.y + hitBox.height + 1, playing))) {
@@ -237,6 +245,10 @@ public class Player extends Entity {
 		moving = false;
 	}
 
+	
+	/** 
+	 * @param hero
+	 */
 	public void setHero(Heroes hero) {
 		this.hero = hero;
 		int[][] lvlData = playing.getLevelManager().getLvlData();
@@ -253,44 +265,84 @@ public class Player extends Entity {
 		loadAnimations();
 	}
 
+	
+	/** 
+	 * @param left
+	 */
 	public void setLeft(boolean left) {
 		this.left = left;
 		view = View.LEFT;
 	}
 
+	
+	/** 
+	 * @param jump
+	 */
 	public void setJump(boolean jump) {
 		this.jump = jump;
 	}
 
+	
+	/** 
+	 * @param right
+	 */
 	public void setRight(boolean right) {
 		this.right = right;
 		view = View.RIGHT;
 	}
 
+	
+	/** 
+	 * @return float
+	 */
 	public float getAirSpeed() {
 		return airSpeed;
 	}
 
+	
+	/** 
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	
+	/** 
+	 * @return PlayerActions
+	 */
 	public PlayerActions getPlayerAction() {
 		return playerAction;
 	}
 
+	
+	/** 
+	 * @param f
+	 */
 	public void setY(float f) {
 		hitBox.y = f;
 	}
 
+	
+	/** 
+	 * @param f
+	 */
 	public void setX(float f) {
 		hitBox.x = f;
 	}
 
+	
+	/** 
+	 * @return Heroes
+	 */
 	public Heroes getHero() {
 		return hero;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getName() {
 		return name;
 	}

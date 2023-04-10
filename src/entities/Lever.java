@@ -31,6 +31,12 @@ public class Lever extends Entity {
     aniIndex = 1;
   }
 
+  
+  /** 
+   * @param entity
+   * @param platformManager
+   * @return boolean
+   */
   public boolean intersect(Entity entity, PlatformManager platformManager) {
     Player player = (Player) entity;
 

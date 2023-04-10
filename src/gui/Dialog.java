@@ -35,6 +35,11 @@ public class Dialog {
     dialog = getImage(PATH_DIALOG);
   }
 
+  
+  /** 
+   * @param g
+   * @param gamePanel
+   */
   public void render(Graphics g, GamePanel gamePanel) {
     g.drawImage(dialog, x, y, width, height, null);
   }

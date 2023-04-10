@@ -60,6 +60,11 @@ public class PlatformManager extends Manager {
     entities[0] = platformArray;
   }
 
+  
+  /** 
+   * @param player
+   * @return boolean
+   */
   public boolean overSome(Player player) {
     boolean some = false;
     for (Entity[] entitiesArray : entities) {
@@ -76,6 +81,10 @@ public class PlatformManager extends Manager {
     return some;
   }
 
+  
+  /** 
+   * @param idPlatform
+   */
   public void movePlatform(int idPlatform) {
     for (Entity[] entitiesArray : entities) {
       for (Entity entity : entitiesArray) {
@@ -88,6 +97,10 @@ public class PlatformManager extends Manager {
     }
   }
 
+  
+  /** 
+   * @return Entity[]
+   */
   public Entity[] getPlatforms() {
     return entities[0];
   }

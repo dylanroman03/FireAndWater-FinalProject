@@ -17,6 +17,10 @@ public class Floor extends Entity {
     initHitBox(x, y, Game.TILES_SIZE, Game.TILES_SIZE);
   }
 
+  
+  /** 
+   * @param g
+   */
   @Override
   public void render(Graphics2D g) {
     g.drawImage(backImage, (int) getHitBox().x, (int) getHitBox().y, Game.TILES_SIZE, Game.TILES_SIZE, null);

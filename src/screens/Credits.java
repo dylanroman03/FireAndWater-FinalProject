@@ -20,6 +20,11 @@ public class Credits extends Dialog {
     super(game);
   }
 
+  
+  /** 
+   * @param g
+   * @param gamePanel
+   */
   @Override
   public void render(Graphics g, GamePanel gamePanel) {
     super.render(g, gamePanel);

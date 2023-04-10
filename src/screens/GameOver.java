@@ -41,11 +41,20 @@ public class GameOver extends Dialog {
     });
   }
 
+  
+  /** 
+   * @param state
+   */
   private void click(States state) {
     game.setState(state);
     flag = true;
   }
 
+  
+  /** 
+   * @param g
+   * @param gamePanel
+   */
   @Override
   public void render(Graphics g, GamePanel gamePanel) {
     super.render(g, gamePanel);

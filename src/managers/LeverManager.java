@@ -46,6 +46,12 @@ public class LeverManager extends Manager {
     entities[0] = leverArray;
   }
 
+  
+  /** 
+   * @param hero
+   * @param player
+   * @return boolean
+   */
   @Override
   public boolean someIntersect(Heroes hero, Entity player) {
     for (Entity[] entitiesArray : entities) {

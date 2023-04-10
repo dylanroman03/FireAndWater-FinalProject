@@ -25,6 +25,11 @@ public class Swing extends Entity {
     initHitBox(x, y, width, height);
   }
 
+  
+  /** 
+   * @param entity
+   * @return boolean
+   */
   @Override
   public boolean intersect(Entity entity) {
     Direction dir;
@@ -85,6 +90,11 @@ public class Swing extends Entity {
     return false;
   }
 
+  
+  /** 
+   * @param entity
+   * @return boolean
+   */
   private boolean collidesWith(Entity entity) {
     Rectangle2D r1 = getHitBox();
 
@@ -128,6 +138,10 @@ public class Swing extends Entity {
     return !area1.isEmpty();
   }
 
+  
+  /** 
+   * @param g
+   */
   @Override
   public void render(Graphics2D g) {
     if (angle >= 180 || angle <= -180) {

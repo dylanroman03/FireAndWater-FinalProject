@@ -57,11 +57,20 @@ public class MainMenu extends Dialog {
     });
   }
 
+  
+  /** 
+   * @param state
+   */
   private void goTo(States state) {
     game.setState(state);
     flag = true;
   }
 
+  
+  /** 
+   * @param g
+   * @param gamePanel
+   */
   @Override
   public void render(Graphics g, GamePanel gamePanel) {
     super.render(g, gamePanel);

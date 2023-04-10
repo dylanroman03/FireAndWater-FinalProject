@@ -20,6 +20,10 @@ public class Test extends JPanel {
         rectangle = new Rectangle2D.Double(250, 410, 50, 50);
     }
 
+    
+    /** 
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -59,6 +63,10 @@ public class Test extends JPanel {
         g2.setTransform(oldTransform);
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.add(new Test());

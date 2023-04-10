@@ -30,6 +30,13 @@ public class FireManager extends Manager {
 		entities[2] = addFires(lvlData, FireTypes.GREEN.ordinal() + 2, greenAnimations);
 	}
 
+	
+	/** 
+	 * @param lvlData
+	 * @param type
+	 * @param animations
+	 * @return Fire[]
+	 */
 	private Fire[] addFires(int[][] lvlData, int type, BufferedImage[] animations) {
 		int length = getQunatity(lvlData, type);
 		int e = 0;

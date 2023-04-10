@@ -44,6 +44,11 @@ public class Characters {
     initComponents();
   }
 
+  
+  /** 
+   * @param g
+   * @param gamePanel
+   */
   public void render(Graphics g, GamePanel gamePanel) {
     for (int i = 0; i < characters.length; i++) {
       g.drawImage(characters[i][aniTick], (GAME_WIDTH / 2) - (TILES_SIZE * i * 6),
@@ -117,6 +122,10 @@ public class Characters {
     }
   }
 
+  
+  /** 
+   * @param e
+   */
   public void mouseClick(MouseEvent e) {
     int i = 0;
     for (Rectangle rect : charRects) {

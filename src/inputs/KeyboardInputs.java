@@ -16,11 +16,19 @@ public class KeyboardInputs implements KeyListener {
 		this.gamePanel = gamePanel;
 	}
 
+	
+	/** 
+	 * @param e
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Auto-generated method stub
 	}
 
+	
+	/** 
+	 * @param e
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (gamePanel.getGame().getState() == States.PLAYING) {
@@ -36,6 +44,10 @@ public class KeyboardInputs implements KeyListener {
 		}
 	}
 
+	
+	/** 
+	 * @param e
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (gamePanel.getGame().getState() == States.PLAYING) {

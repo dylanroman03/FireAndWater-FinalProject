@@ -23,6 +23,10 @@ public class SwingManager extends Manager {
     addEntities(lvlData);
   }
 
+  
+  /** 
+   * @param lvlData
+   */
   private void addEntities(int[][] lvlData) {
 		int length = getQunatity(lvlData, 300);
 		int e = 0;

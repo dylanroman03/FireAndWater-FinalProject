@@ -15,6 +15,10 @@ public class Crystal extends Entity {
     initHitBox(x, y, TILES_SIZE, TILES_SIZE);
   }
 
+  
+  /** 
+   * @param g
+   */
   @Override
   public void render(Graphics2D g) {
     if (visible) {
@@ -22,6 +26,11 @@ public class Crystal extends Entity {
     }
   }
 
+  
+  /** 
+   * @param entity
+   * @return boolean
+   */
   @Override
   public boolean intersect(Entity entity) {
     if (super.intersect(entity) && visible) {
@@ -31,6 +40,10 @@ public class Crystal extends Entity {
     return false;
   }
 
+  
+  /** 
+   * @return boolean
+   */
   public boolean isVisible() {
     return visible;
   }

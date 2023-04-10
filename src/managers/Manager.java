@@ -9,6 +9,10 @@ public class Manager {
   protected Entity[][] entities;
   protected int[][] lvlData;
 
+  
+  /** 
+   * @return Entity[][]
+   */
   public Entity[][] getEntities() {
     return entities;
   }
@@ -21,6 +25,10 @@ public class Manager {
     entities = new Entity[length][];
   }
 
+  
+  /** 
+   * @param g
+   */
   public void render(Graphics2D g) {
     for (Entity[] entityArray : entities) {
       for (Entity entity : entityArray) {
@@ -37,6 +45,12 @@ public class Manager {
     }
   }
 
+  
+  /** 
+   * @param hero
+   * @param heroEntity
+   * @return boolean
+   */
   public boolean someIntersect(Heroes hero, Entity heroEntity) {
     Entity[][] entityToCompare;
 

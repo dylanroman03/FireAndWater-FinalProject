@@ -27,15 +27,32 @@ public abstract class Entity {
 		this.height = height;
 	}
 
+	/**
+	 * Initialize the hitbox of the entity
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	protected void initHitBox(float x, float y, float width, float height) {
 		hitBox = new Rectangle2D.Float(x, y, width, height);
 	}
 
+	
+	/** 
+	 * @param g
+	 * @param rotatedRectangle
+	 */
 	protected void showHitBox(Graphics2D g, Shape rotatedRectangle) {
 		g.setColor(Color.RED);
 		g.draw(hitBox);
 	}
 
+	
+	/** 
+	 * @param entity
+	 * @return boolean
+	 */
 	public boolean intersect(Entity entity) {
 		Player player = (Player) entity;
 		Rectangle2D.Float entityHB;
@@ -46,6 +63,11 @@ public abstract class Entity {
 		return hitBox.intersects(entityHB);
 	}
 
+	
+	/** 
+	 * Render the entity
+	 * @param g
+	 */
 	public void render(Graphics2D g) {
 		g.drawImage(sprites[aniIndex], (int) hitBox.x, (int) hitBox.y, (int) hitBox.getWidth(), (int) hitBox.getHeight(),
 				null);
@@ -66,22 +88,42 @@ public abstract class Entity {
 		}
 	}
 
+	
+	/** 
+	 * @return Float
+	 */
 	public Rectangle2D.Float getHitBox() {
 		return hitBox;
 	}
 
+	
+	/** 
+	 * @return float
+	 */
 	public float getY() {
 		return hitBox.y;
 	}
 
+	
+	/** 
+	 * @return float
+	 */
 	public float getX() {
 		return hitBox.x;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getHeight() {
 		return height;
 	}

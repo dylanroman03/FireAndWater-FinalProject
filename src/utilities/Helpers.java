@@ -26,6 +26,11 @@ public class Helpers {
   private Helpers() {
   }
 
+  
+  /** 
+   * @param path
+   * @return BufferedImage
+   */
   public static BufferedImage getImage(String path) {
     BufferedImage img = null;
 
@@ -40,6 +45,11 @@ public class Helpers {
     return img;
   }
 
+  
+  /** 
+   * @param path
+   * @return BufferedImage[]
+   */
   public static BufferedImage[] getAnimationsX(String path) {
     int length = Integer.parseInt(path.substring(path.length() - 5, path.length() - 4));
     BufferedImage[] animations = new BufferedImage[length];
@@ -53,6 +63,11 @@ public class Helpers {
     return animations;
   }
 
+  
+  /** 
+   * @param path
+   * @return BufferedImage[]
+   */
   public static BufferedImage[] getAnimationsY(String path) {
     int length = Integer.parseInt(path.substring(path.length() - 5, path.length() - 4));
     BufferedImage[] animations = new BufferedImage[length];
@@ -66,10 +81,24 @@ public class Helpers {
     return animations;
   }
 
+  
+  /** 
+   * @param image
+   * @param width
+   * @param height
+   * @return Image
+   */
   public static Image resizeImage(BufferedImage image, int width, int height) {
     return new ImageIcon(image).getImage().getScaledInstance(width, height, 4);
   }
 
+  
+  /** 
+   * @param playing
+   * @param x
+   * @param y
+   * @return boolean
+   */
   public static boolean canMove(Playing playing, float x, float y) {
     float height = playing.getPlayer().getHitBox().height;
     float width = playing.getPlayer().getHitBox().width;
@@ -84,6 +113,13 @@ public class Helpers {
     return false;
   }
 
+  
+  /** 
+   * @param x
+   * @param y
+   * @param playing
+   * @return boolean
+   */
   public static boolean isSolid(float x, float y, Playing playing) {
     float xIndex = x / TILES_SIZE;
     float yIndex = y / TILES_SIZE;
@@ -113,16 +149,30 @@ public class Helpers {
     return false;
   }
 
+  
+  /** 
+   * @return Font
+   */
   public static Font getFont() {
     return new Font("MinimalPixel", Font.PLAIN, 60);
   }
 
+  
+  /** 
+   * @param gamePanel
+   */
   public static void resetPanel(GamePanel gamePanel) {
     gamePanel.requestFocus();
     gamePanel.removeAll();
     gamePanel.revalidate();
   }
 
+  
+  /** 
+   * @param filename
+   * @param clip
+   * @return Clip
+   */
   public static Clip playMusic(String filename, Clip clip) {
     try {
       File file = new File(filename);
@@ -136,12 +186,20 @@ public class Helpers {
     return clip;
   }
 
+  
+  /** 
+   * @param clip
+   */
   public static void stopMusic(Clip clip) {
     if (clip != null && clip.isRunning()) {
       clip.stop();
     }
   }
 
+  
+  /** 
+   * @param path
+   */
   public static void playSound(String path) {
     try {
       File file = new File(path);
@@ -161,6 +219,12 @@ public class Helpers {
     }
   }
 
+  
+  /** 
+   * @param lvlData
+   * @param value
+   * @return int
+   */
   public static int getQunatity(int[][] lvlData, int value) {
     int length = 0;
     for (int i = 0; i < lvlData.length; i++) {
@@ -173,6 +237,13 @@ public class Helpers {
     return length;
   }
 
+  
+  /** 
+   * @param lvlData
+   * @param start
+   * @param end
+   * @return int
+   */
   public static int getQunatity(int[][] lvlData, int start, int end) {
     int length = 0;
     for (int i = 0; i < lvlData.length; i++) {
