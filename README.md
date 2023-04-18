@@ -1,13 +1,3 @@
-## Miembros
-Dylan Buitrago
-Kevin Gonzales 
+## University project - Cloning Fire And Water Game
 
-## Estructura del Projecto
-
-El espacio de trabajo contiene tres carpetas por defecto, donde:
-
-- `src`: la carpeta que contiene el codigo
-- `lib`: la carpeta que contiene las dependencias
-- `res`: la carpeta que contiene las imagenes y otros recursos
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+This repository contains the final project of the second semester of computer career, consists of making a clone of the known game Fire and Water, in the Intructions.pdf is all the information of the activity.
